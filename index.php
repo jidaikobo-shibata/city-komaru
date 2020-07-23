@@ -18,8 +18,14 @@
 	<li>意図的にアクセシビリティ上の問題を生成するため、HTMLの文法に誤った箇所が含まれている場合があります。4.1.1の試験に関しては、対象としないようにしてください。</li>
 </ul>
 
-<p><a href="./practice">試験の練習を行う</a></p>
-<p><a href="./config.php">試験の設定を行う</a></p>
+<h2>実行</h2>
+<ul>
+	<li><a href="./practice">試験の練習を行う</a></li>
+	<li><a href="./config.php">試験の設定を行う</a></li>
+</ul>
 
+<footer>
+<a href="https:/www.jidaikobo.com">有限会社時代工房</a>
+</footer>
 </body>
 </html>

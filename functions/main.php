@@ -1,11 +1,18 @@
 <?php
-function echoPracticeHtml ($critetrion, $specify = '')
+function echoPracticeHtml ($critetrion, $specify = '', $parent = '')
 {
 	// from where
-	$backtrace = debug_backtrace();
-	$path = explode('/', $backtrace[0]['file']);
-	$file = array_pop($path);
-	$file = substr($file, 0, strrpos($file, '.'));
+	if (empty($parent))
+	{
+		$backtrace = debug_backtrace();
+		$path = explode('/', $backtrace[0]['file']);
+		$file = array_pop($path);
+		$file = substr($file, 0, strrpos($file, '.'));
+	}
+	else
+	{
+		$file = $parent;
+	}
 
 	$test_pattern_code = \Kontiki\Input::cookie('test_pattern_code');
 	if (empty($test_pattern_code))
@@ -27,16 +34,21 @@ function echoPracticeHtml ($critetrion, $specify = '')
 	$html = '';
 	if (file_exists($partfile))
 	{
-		ob_start();
-
-		// use $file to judge condition
-		include($partfile);
-
-		$levels = ob_get_level();
-
-		for ($i = 0; $i < $levels; $i++)
+		if (empty($parent))
 		{
-			$html .= ob_get_clean();
+			ob_start();
+
+			// use $file to judge condition
+			include($partfile);
+
+			$levels = ob_get_level();
+
+			for ($i = 0; $i < $levels; $i++)
+			{
+				$html .= ob_get_clean();
+			}
+		}else{
+			include($partfile);
 		}
 	}
 

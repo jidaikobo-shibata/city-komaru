@@ -20,18 +20,7 @@
 <h2>問い合わせフォーム</h2>
 <p>駒留市の温暖化防止の取り組みについてのお問い合わせはこちらのフォームからお寄せください。</p>
 
-<form action="./do-not-test.php" method="POST">
-<p><label for="shimei">お名前</label><br />
-<input type="text" name="shimei" id="shimei" size="20" value="" /></p>
-
-<p><label for="email">メールアドレス</label><br />
-<input type="text" name="email" id="email" size="20" value="" /></p>
-
-<p><label for="content">お問い合わせ内容</label><br />
-<textarea name="content" id="content" cols="35" rows="7"></textarea></p>
-
-<input type="submit" value="送信" />
-</form>
+<?php echoPracticeHtml('3.3.2') ?>
 
 <aside>
 <h1>駒留市の本日のCO<sub>2</sub>排出量</h1>
