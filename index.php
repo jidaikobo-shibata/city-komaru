@@ -24,7 +24,6 @@
 	<li><a href="./config.php">試験の設定を行う</a></li>
 </ul>
 
-
 <footer>
 <a href="https:/www.jidaikobo.com">有限会社時代工房</a>
 </footer>
