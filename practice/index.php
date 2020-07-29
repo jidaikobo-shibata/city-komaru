@@ -8,8 +8,9 @@
 	</style>
 </head>
 <body>
+<div id="outer-wrapper">
 <div id="wrapper">
-<div class="inner-wrapper">
+<div>
 	<div id="utilities">
 	<?php echoPracticeHtml('2.4.1') ?>
 	<?php echoPracticeHtml('2.1.2') ?>
@@ -17,16 +18,16 @@
 	<h1><?php echoPracticeHtml('1.1.1b') ?> 地球温暖化防止課</h1>
 	<?php echoPracticeHtml('3.2.3') ?>
 </div>
-
+<div id="toppage-image" class="full-width">
 <p>カルーセルだったり、なかったり</p>
-
+</div>
 <main id="main">
-<div id="toppage-top" class="inner-wrapper">
+<div id="toppage-top">
 	<p>駒留市は、持続可能な社会の実現に向け、気候変動問題への対応、廃棄物対策、生物多様性の保全などさまざまな取組を行っています。</p>
 	<?php echoPracticeHtml('1.3.1c') ?>
 </div>
 
-<div id="toppage-bottom" class="clearfix">
+<div id="toppage-bottom" class="full-width">
 	<div id="toppage-bottom-inner" class="inner-wrapper">
 		<section id="contact-us-area">
 		<h2>問い合わせフォーム</h2>
@@ -39,8 +40,7 @@
 		<?php echoPracticeHtml('2.2.2') ?>
 		<?php echoPracticeHtml('1.4.5') ?>
 		</section>
-	<div>
 	</div>
+</div>
 </main>
-
 <?php include(__DIR__.'/inc_footer.php'); ?>
