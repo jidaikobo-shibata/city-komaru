@@ -10,17 +10,26 @@ body
 body * {
 	box-sizing: border-box;
 }
+img,
+iframe,
+figure {
+	max-width: 100%;
+}
+img {
+	height: auto;
+}
+
 /* wrapper */
 #wrapper
 {
-	width: 980px;
+	width: 1000px;
 	padding: 10px 20px;
 	margin: 0 auto;
 	color: #000;
 	background-color: #fff;
 }
 .inner-wrapper {
-	width: 980px;
+	width: 1000px;
 	margin: 0 auto;
 	padding: 0 20px;
 }
@@ -129,18 +138,54 @@ footer p
 /* toppage */
 #toppage-image {
 	height: 520px;
-	height: 200px;
 	text-align: center;
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	background-color: #f0f0f0;
+	background-color: #FFF;
+	overflow: hidden;
 }
-
+#toppage-image .main-image {
+	height: 100%;
+	width: 100%;
+	max-width: 1350px;
+	object-fit: cover;
+}
+#toppage-message {
+	display: flex;
+	align-items: flex-end;
+	margin-top: -111px;
+}
+#toppage-message > .image {
+}
+#toppage-message > .text {
+	position: relative;
+	flex: 1;
+	background-color: #F0F0F0;
+	border-radius: 50px;
+	margin: 0 15px 12px;
+	padding: 7px 20px 7px;
+/* okのときは右端にボタンがつく。padding-right:40px */
+	overflow: hidden;
+}
+#toppage-message .inner-text {
+		display: block;
+		overflow: hidden;
+    white-space: nowrap;
+		margin: 0;
+}
+#toppage-message .inner-text {
+		display: block;
+		overflow: hidden;
+    white-space: nowrap;
+		margin: 0;
+}
+#toppage-message .inner-text {
+	marquee-style: scroll;
+}
 #toppage-bottom
 {
 	background-color: #fff0ef;
-	margin: 0 -20px;
 	padding: 40px 0;
 }
 #toppage-bottom-inner {
@@ -219,11 +264,14 @@ footer p
 
 #your-effort-table
 {
+	width: 100%;
 	font-size: 150%;
 	background-color: #e83828;
 	color: #fff;
 	border-spacing: 20px;
 	margin: 50px auto;
+	border: 10px solid transparent;
+	border-top: none;
 }
 
 #your-effort-table td img
@@ -332,12 +380,21 @@ h1 img
 
 #co2aday-button
 {
-	display: inline-block;
+	position: relative;
+	display: block;
+	width: 30px;
+	height: 30px;
 	color: #fff;
 	background-color: #4d4d4d;
 	padding: 5px;
 	margin: 5px;
 	border-radius: 5px;
+}
+#co2aday-button > * {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translateY( -50% ) translateX( -50% );
 }
 
 /* visually hidden */
@@ -361,13 +418,23 @@ h1 img
 	height: 0;
 }
 
-@media all and ( min-width: 996px ) {
+@media all and ( min-width: 981px ) {
 	#outer-wrapper {
 		overflow: hidden;
 	}
-	.full-width
-	{
+	.full-width {
 		width: 100vw;
 		margin : 0 calc(50% - 50vw) !important;
+	}
+}
+@media all and ( max-width: 980px ) {
+	.full-width {
+		width: 1000px;
+		margin: 0 -20px;
+		left: 0;
+		transform: none;
+	}
+	.innner_wrapper {
+		width: 100%;
 	}
 }
