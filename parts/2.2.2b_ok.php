@@ -31,7 +31,7 @@
 		margin-left: 100%;
 	}
 	to {
-		margin-left: -150%;
+		margin-left: -63em;
 	}
 }
 #toppage-message .text.pause .marquee {
