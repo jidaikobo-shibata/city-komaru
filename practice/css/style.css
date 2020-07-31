@@ -10,6 +10,12 @@ body
 body * {
 	box-sizing: border-box;
 }
+/* font */
+.lato,
+#co2aday-wrapper {
+	font-family: 'Lato', sans-serif;
+}
+
 img,
 iframe,
 figure {
@@ -17,6 +23,12 @@ figure {
 }
 img {
 	height: auto;
+}
+/* parts */
+.bttn {
+	-webkit-appearance: none;
+	border: none;
+	border-radius: 5px;
 }
 
 /* wrapper */
@@ -124,8 +136,8 @@ footer p
 #main-menu a::before {
 	content: '';
 	display: block;
-	width: 8px;
-	height: 8px;
+	width: 7px;
+	height: 7px;
 	border: 2px solid rgba(0, 0, 0, .4);
 	border-left-width: 0;
 	border-bottom-width: 0;
@@ -164,25 +176,16 @@ footer p
 	background-color: #F0F0F0;
 	border-radius: 50px;
 	margin: 0 15px 12px;
-	padding: 7px 20px 7px;
-/* okのときは右端にボタンがつく。padding-right:40px */
+	padding: 7px calc( 1em + 24px ) 7px 20px;
 	overflow: hidden;
 }
 #toppage-message .inner-text {
-		display: block;
-		overflow: hidden;
-    white-space: nowrap;
-		margin: 0;
+	display: block;
+	overflow: hidden;
+	white-space: nowrap;
+	margin: 0;
 }
-#toppage-message .inner-text {
-		display: block;
-		overflow: hidden;
-    white-space: nowrap;
-		margin: 0;
-}
-#toppage-message .inner-text {
-	marquee-style: scroll;
-}
+
 #toppage-bottom
 {
 	background-color: #fff0ef;
@@ -356,28 +359,26 @@ h1 img
 {
 	background-color: #f3f3f3;
 	padding: 30px 40px;
+	display: flex;
+	align-items: baseline;
+/*	font-family: Verdana; */
+	font-weight: 600;
 }
-
 .unit
 {
 	display: inline-block;
-	font-weight: bold;
-	font-size: 150%;
+	font-size: 1.875rem;
 	color: #df201e;
-	margin: 5px;
+	margin: 0;
 }
-
 #co2aday
 {
+	flex: 1;
+	font-size: 2.8125rem;
 	text-align: right;
-	display: inline-block;
-	width: calc(100% - 3em);
-	font-weight: bold;
-	margin-right: 10px;
-	font-size: 200%;
-	padding: 20px;
+	margin-right: 20px;
+	padding: 13px 17px;
 }
-
 #co2aday-button
 {
 	position: relative;
@@ -387,7 +388,7 @@ h1 img
 	color: #fff;
 	background-color: #4d4d4d;
 	padding: 5px;
-	margin: 5px;
+	margin: 10px 0 0;
 	border-radius: 5px;
 }
 #co2aday-button > * {
@@ -418,7 +419,7 @@ h1 img
 	height: 0;
 }
 
-@media all and ( min-width: 981px ) {
+@media all and ( min-width: 1001px ) {
 	#outer-wrapper {
 		overflow: hidden;
 	}
@@ -427,7 +428,7 @@ h1 img
 		margin : 0 calc(50% - 50vw) !important;
 	}
 }
-@media all and ( max-width: 980px ) {
+@media all and ( max-width: 1000px ) {
 	.full-width {
 		width: 1000px;
 		margin: 0 -20px;

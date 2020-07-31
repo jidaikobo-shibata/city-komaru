@@ -18,15 +18,15 @@
 	<h1><?php echoPracticeHtml('1.1.1b') ?> 地球温暖化防止課</h1>
 	<?php echoPracticeHtml('3.2.3') ?>
 </div>
-<p>カルーセルだったり、なかったり</p>
+<p>カルーセルだったり、なかったり。</p>
 <main id="main">
 <div id="toppage-image" class="full-width">
 	<img src="./images/main-image1-alt.jpg" class="main-image" alt="〜すべての人にやさしいまちづくりを〜 持続可能な社会の実現に向け、気候変動問題への対応、廃棄物対策、生物多様性の保全などさまざまな取組を行っています。">
 </div>
 <div id="toppage-message">
-<div class="image"><img src="./images/mascot-chikyu-kun.png" width="153" alt="ちきゅうくん"></div>
-<div class="text"><p class="inner-text">こんにちは！駒留市の地球温暖化防止課のこまるだよ！駒留市では2020年7月1日からレジ袋有料サービスがスタートしたよ！</p></div>
-<div class="image"><img src="./images/mascot-komaru-kun.png" width="138" alt="こまるくん"></div>
+	<div class="image"><img src="./images/mascot-chikyu-kun.png" width="153" alt="ちきゅうくん"></div>
+	<?php echoPracticeHtml('2.2.2b') ?>
+ 	<div class="image"><img src="./images/mascot-komaru-kun.png" width="138" alt="こまるくん"></div>
 </div>
 <div id="toppage-top">
 	<?php echoPracticeHtml('1.3.1c') ?>
