@@ -18,7 +18,6 @@
 	<h1><?php echoPracticeHtml('1.1.1b') ?> 地球温暖化防止課</h1>
 	<?php echoPracticeHtml('3.2.3') ?>
 </div>
-<p>カルーセルだったり、なかったり。</p>
 <main id="main">
 <div id="toppage-image" class="full-width">
 	<img src="./images/main-image1-alt.jpg" class="main-image" alt="〜すべての人にやさしいまちづくりを〜 持続可能な社会の実現に向け、気候変動問題への対応、廃棄物対策、生物多様性の保全などさまざまな取組を行っています。">
