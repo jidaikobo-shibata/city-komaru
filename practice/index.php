@@ -28,6 +28,13 @@
 	<?php echoPracticeHtml('2.2.2b') ?>
  	<div class="image"><img src="./images/mascot-komaru-kun.png" width="138" alt="こまるくん"></div>
 </div>
+
+<div id="toppage-news">
+<ul>
+	<li><?php echoPracticeHtml('1.3.1d') ?></li>
+</ul>
+</div>
+
 <div id="toppage-top">
 	<?php echoPracticeHtml('1.3.1c') ?>
 </div>

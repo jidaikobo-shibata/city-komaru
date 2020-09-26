@@ -57,7 +57,7 @@
 }
 </style>
  	<div class="text">
-			<p class="inner-text"><span class="marquee">こんにちは！駒留市の地球温暖化防止課のこまるだよ！駒留市では2020年7月1日からレジ袋有料サービスがスタートしたよ！</span></p>
+			<p class="inner-text"><span class="marquee">こんにちは！ 駒留市の地球温暖化防止課のこまるだよ！ 駒留市では2020年7月1日からレジ袋有料サービスがスタートしたよ！</span></p>
 			<button type="button" id="message-bttn" class="bttn"><span aria-hidden="true" class="fa"></span><span class="visually-hidden">スクロール</span><span class="visually-hidden stop">一時停止</span><span class="visually-hidden play">再開</span></button>
 		</div>
 <script>
