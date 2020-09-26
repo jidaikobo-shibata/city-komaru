@@ -6,15 +6,15 @@ ini_set('display_errors', "On");
 error_reporting(E_ALL);
 
 //class
-require(__dir__.'/classes/util.php');
-require(__dir__.'/classes/input.php');
-require(__dir__.'/classes/session.php');
+require(dirname(__dir__).'/classes/util.php');
+require(dirname(__dir__).'/classes/input.php');
+require(dirname(__dir__).'/classes/session.php');
 
 //function
-require(__dir__.'/functions/main.php');
+require(__dir__.'/main.php');
 
 //constant
-define('CPATH', __dir__.'/parts/');
+define('CPATH', dirname(__dir__).'/parts/');
 
 //session
 \Kontiki\Session::forge();

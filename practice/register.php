@@ -1,4 +1,4 @@
-<?php require ('../init.php'); ?><!DOCTYPE html>
+<?php require ('../functions/init.php'); ?><!DOCTYPE html>
 <?php echoPracticeHtml('3.1.1') ?>
 <head>
 <?php include(__DIR__.'/inc_header.php'); ?>

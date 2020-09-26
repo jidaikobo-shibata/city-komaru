@@ -1,55 +1,9 @@
 <?php
-require (__dir__.'/init.php');
+require (__dir__.'/functions/init.php');
+require (__dir__.'/functions/config.php');
 
-// generate test pattern code
-$test_pattern_str = '';
-if (\Kontiki\Input::post('gen_test_pattern_code'))
-{
-	$test_pattern = array(
-		'index'    => array(),
-		'fact'     => array(),
-		'register' => array(),
-	);
-	$code_pattern = array();
-
-	// prepare errors
-	foreach (glob(CPATH.'*.php') as $v)
-	{
-		$pathes = explode('/', $v);
-		$file = array_pop($pathes);
-		$codes = explode('_', substr($file, 0, strrpos($file, '.')));
-		$critetrion = $codes[0];
-		$error = $codes[1];
-		if ( ! isset($code_pattern[$critetrion])) $code_pattern[$critetrion] = array();
-
-		$code_pattern[$critetrion][] = $error;
-	}
-
-	// set errors
-	foreach ($code_pattern as $criterion => $errors)
-	{
-		foreach (array_keys($test_pattern) as $page)
-		{
-			shuffle($errors);
-			$test_pattern[$page][$criterion] = $errors[0];
-		}
-	}
-
-	// generate test pattern strings
-	$json = json_encode($test_pattern);
-	$test_pattern_str = base64_encode($json);
-}
-
-// set test pattern code
-if (\Kontiki\Input::post('test_pattern_code'))
-{
-	$path = explode('/', $_SERVER['REQUEST_URI']);
-	array_pop($path);
-	$path_str = join('/', $path).'/practice/';
-	setcookie('test_pattern_code', \Kontiki\Input::post('test_pattern_code'), time()+86400*7, '/');
-	header('location: '.$path_str);
-	exit();
-}
+$test_pattern_str = generateTestPatternCode();
+setTestPatternCode(\Kontiki\Input::post('test_pattern_code', ''));
 
 ?><!DOCTYPE html>
 <html lang="ja">
@@ -69,9 +23,17 @@ if (\Kontiki\Input::post('test_pattern_code'))
 
 <h2>試験パターンコードを生成</h2>
 <form action="" method="POST">
+<?php
+$ng_checked = $ok_checked = ' checked="checked"';
+if (\Kontiki\Input::post('code_type') == 'ok'):
+	$ng_checked = '';
+else:
+	$ok_checked = '';
+endif;
+?>
 <ul>
-	<li><label><input type="radio" name="code_type" value="ng" checked="checked"> アクセシビリティ上の問題を含んだ試験パターンコードを生成</label></li>
-	<li><label><input type="radio" name="code_type" value="ok"> アクセシビリティ上の問題を解消した試験パターンコードを生成</label></li>
+	<li><label><input type="radio" name="code_type" value="ng"<?php echo $ng_checked ?>> アクセシビリティ上の問題を含んだ試験パターンコードを生成</label></li>
+	<li><label><input type="radio" name="code_type" value="ok"<?php echo $ok_checked ?>> アクセシビリティ上の問題を解消した試験パターンコードを生成</label></li>
 </ul>
 <p><input type="submit" name="gen_test_pattern_code" value="試験パターンコードを生成"></p>
 </form>

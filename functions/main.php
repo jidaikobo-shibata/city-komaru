@@ -1,4 +1,11 @@
 <?php
+/*
+ * echo practice HTML
+ * param String $critetrion
+ * param String $specify
+ * param String $parent
+ * return Void
+ */
 function echoPracticeHtml ($critetrion, $specify = '', $parent = '')
 {
 	// from where
