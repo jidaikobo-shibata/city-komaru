@@ -25,7 +25,7 @@
 
 <footer>
 制作：<a href="https:/www.jidaikobo.com">有限会社時代工房</a><br>
-ライセンス：MIT<br>
+ライセンス：<a href="https://github.com/jidaikobo-shibata/city-komaru/blob/master/LICENSE.txt">MIT</a><br>
 使っている音源は<a href="https://www.zapsplat.com">https://www.zapsplat.com</a>で取得しました。
 </footer>
 </body>
