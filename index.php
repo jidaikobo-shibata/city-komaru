@@ -9,7 +9,7 @@
 <ul>
 	<li>JIS X 8341-3:2016で求められているアクセシビリティの試験を練習するためのサイトです。</li>
 	<li>サイトには意図的にアクセシビリティ上の問題が仕込んであります。</li>
-	<li>以下の「試験の練習を行う」から、練習サイトに入ることができます。</li>
+	<li>以下の「試験の設定を行い試験する」から、練習を行うことができます。</li>
 	<li>フォームの送信後のページなど、試験対象外の箇所には「試験対象外」というテキストが付与されています。</li>
 </ul>
 
@@ -20,12 +20,13 @@
 
 <h2>実行</h2>
 <ul>
-	<li><a href="./practice">試験の練習を行う</a></li>
-	<li><a href="./config.php">試験の設定を行う</a></li>
+	<li><a href="./config.php">試験の設定を行い試験する</a></li>
 </ul>
 
 <footer>
-<a href="https:/www.jidaikobo.com">有限会社時代工房</a>
+制作：<a href="https:/www.jidaikobo.com">有限会社時代工房</a><br>
+ライセンス：MIT<br>
+使っている音源は<a href="https://www.zapsplat.com">https://www.zapsplat.com</a>で取得しました。
 </footer>
 </body>
 </html>

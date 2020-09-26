@@ -5,6 +5,7 @@
 <?php echoPracticeHtml('2.4.2') ?>
 </head>
 <body>
+<?php echoPracticeHtml('1.4.2') ?>
 <div id="wrapper">
 <div class="inner-wrapper">
 	<div id="utilities">

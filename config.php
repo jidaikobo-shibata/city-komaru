@@ -61,7 +61,7 @@ if (\Kontiki\Input::post('test_pattern_code'))
 <h1>アクセシビリティ試験練習用サイト設定</h1>
 
 <ul>
-	<li>試験パターンコードを設定します</li>
+	<li>試験パターンコードを生成します</li>
 	<li>試験パターンコードは1週間Cookieに保存されます</li>
 	<li>試験パターンコードを保存しておくと、あとで同じ状態のサイトで試験できます</li>
 	<li>現在は試験パターンコードの生成はランダム生成のみです</li>
@@ -69,6 +69,10 @@ if (\Kontiki\Input::post('test_pattern_code'))
 
 <h2>試験パターンコードを生成</h2>
 <form action="" method="POST">
+<ul>
+	<li><label><input type="radio" name="code_type" value="ng" checked="checked"> アクセシビリティ上の問題を含んだ試験パターンコードを生成</label></li>
+	<li><label><input type="radio" name="code_type" value="ok"> アクセシビリティ上の問題を解消した試験パターンコードを生成</label></li>
+</ul>
 <p><input type="submit" name="gen_test_pattern_code" value="試験パターンコードを生成"></p>
 </form>
 
