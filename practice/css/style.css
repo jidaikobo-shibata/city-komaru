@@ -130,8 +130,13 @@ footer p
 	text-decoration: none;
 	transition: .3s;
 }
-#main-menu a:hover {
-	opacity: .6;
+#main-menu a:hover,
+#main-menu a:focus {
+	background-color: #FDD6D6;
+}
+#main-menu a:hover::before,
+#main-menu a:focus::before {
+	border-color: #E83828;
 }
 #main-menu a::before {
 	content: '';

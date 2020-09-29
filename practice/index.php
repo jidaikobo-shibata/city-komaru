@@ -18,6 +18,8 @@
 	</div>
 	<h1><?php echoPracticeHtml('1.1.1b') ?> 地球温暖化防止課</h1>
 	<?php echoPracticeHtml('3.2.3') ?>
+	<?php echoPracticeHtml('2.1.1a') ?>
+	<?php echoPracticeHtml('2.4.3') ?>
 </div>
 <main id="main">
 <div id="toppage-image" class="full-width">
