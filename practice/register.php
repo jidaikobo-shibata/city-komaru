@@ -4,8 +4,9 @@
 <?php include(__DIR__.'/inc_header.php'); ?>
 <?php echoPracticeHtml('2.4.2') ?>
 </head>
-<body>
+<body class="register">
 <?php echoPracticeHtml('1.4.2') ?>
+<div id="outer-wrapper">
 <div id="wrapper">
 <div class="inner-wrapper">
 	<div id="utilities">
@@ -13,13 +14,20 @@
 	<?php echoPracticeHtml('2.4.5') ?>
 	<?php echoPracticeHtml('2.1.2') ?>
 	</div>
-	<h1><?php echoPracticeHtml('1.1.1b') ?> 地球温暖化防止課 | 会員登録</h1>
+	<div id="logo"><?php echoPracticeHtml('1.1.1b') ?> 地球温暖化防止課</div>
 	<?php echoPracticeHtml('3.2.3') ?>
 	<?php echoPracticeHtml('2.1.1a') ?>
 	<?php echoPracticeHtml('2.4.3') ?>
 </div>
 
 <main id="main">
+<div id="page-header" class="full-width">
+	<div class="inner-wrapper">
+		<h1 class="heading">会員登録</h1>
+	</div>
+</div>
+
+
 <div class="inner-wrapper">
 <p>「駒留市エコサポーター」に登録いただくと、駒留市の環境教育イベントの開催のお知らせや会員限定のイベントへの参加をできるようになります。</p>
 <p>収集する個人情報は、駒留市エコサポーターの活動の目的以外では利用されません。駒留市の<a href="./do-not-test.php">個人情報保護方針</a>をご覧ください。</p>
