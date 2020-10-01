@@ -75,6 +75,9 @@ body:not(.toppage) #site-footer {
 	width: 50%;
 	float: right;
 }
+#utilities > * {
+	vertical-align: middle;
+}
 #utilities a {
 	position: relative;
 	display: inline-block;
@@ -115,9 +118,11 @@ body:not(.toppage) #site-footer {
 	border: none;
 	border-radius: 0;
 	margin-left: 1px;
-	padding: 1px 4px 2px;
+	padding: 4px 4px 4px;
 	min-width: 24px;
 	text-align: center;
+	font-size: .875rem;
+	line-height: 1.2;
 }
 
 /* logo */
@@ -237,7 +242,12 @@ textarea {
 	border: 1px solid #ccc;
 	vertical-align: middle;
 }
-
+button,
+input[type=submit],
+input[type=button] {
+	line-height: 1.5;
+	margin: 0 auto;
+}
 /* toppage */
 #toppage-image {
 	height: 520px;
