@@ -32,7 +32,6 @@
 <p>「駒留市エコサポーター」に登録いただくと、駒留市の環境教育イベントの開催のお知らせや会員限定のイベントへの参加をできるようになります。</p>
 <p>収集する個人情報は、駒留市エコサポーターの活動の目的以外では利用されません。駒留市の<a href="./do-not-test.php">個人情報保護方針</a>をご覧ください。</p>
 
-<?php echoPracticeHtml('2.2.1a') ?>
 <form action="./do-not-test.php" method="POST" name="registration">
 
 <label><input type="radio" name="type" value="new" checked="checked" /> 新規登録</label>
@@ -65,6 +64,7 @@ $('input[name=type]').change(function(){
 	}
 });
 </script>
+<?php echoPracticeHtml('2.2.1a') ?>
 
 </div>
 </main>
