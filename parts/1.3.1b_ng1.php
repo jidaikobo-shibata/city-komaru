@@ -1,3 +1,4 @@
+<?php /* thであるべきtable */ ?>
 <style>
 table
 {

@@ -1,3 +1,4 @@
+<?php /* <label>を用いた情報の関連付けのないラベル */ ?>
 <form action="./do-not-test.php" method="POST">
 <?php echoPracticeHtml('3.3.2b', '', 'index') ?>
 

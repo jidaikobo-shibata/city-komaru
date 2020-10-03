@@ -1,3 +1,4 @@
+<?php /* NG？ 番号をコピーアンドペーストしたかったんかな */ ?>
 <style type="text/css">
 #process li
 {

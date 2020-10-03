@@ -1,3 +1,4 @@
+<?php /* role="presentation"でありながらデータテーブル構造を用いている */ ?>
 <table role="presentation" id="your-effort-table">
 <thead>
 <tr>

@@ -1,3 +1,4 @@
+<?php /* 簡単な方法で制限時間を延長できるフォーム */ ?>
 <script>
 const timeout_val = 10000,
 			new_area = $('#new-area'),

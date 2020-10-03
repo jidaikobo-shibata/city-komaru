@@ -1,3 +1,4 @@
+<?php /* placeholderによるラベルの提供 */ ?>
 <form action="./do-not-test.php" method="POST">
 <?php echoPracticeHtml('3.3.2b', '', 'index') ?>
 

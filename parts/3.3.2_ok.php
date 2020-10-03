@@ -1,3 +1,4 @@
+<?php /* <label>による適切な関係付けのできているフォーム */ ?>
 <form action="./do-not-test.php" method="POST">
 <?php echoPracticeHtml('3.3.2b', '', 'index') ?>
 

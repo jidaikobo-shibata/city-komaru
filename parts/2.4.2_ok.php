@@ -1,4 +1,5 @@
 <?php
+/* 妥当なtitle要素を提供 */
 $html = '';
 switch ($file)
 {

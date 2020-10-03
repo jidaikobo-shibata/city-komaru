@@ -1,3 +1,4 @@
+<?php /* 停止できるマーキー */ ?>
 <style>
 #toppage-message .text .marquee {
 	display: block;

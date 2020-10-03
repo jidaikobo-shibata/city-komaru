@@ -1,3 +1,4 @@
+<?php /* キーボードのフォーカス順序が妥当なドロップダウン */ ?>
 <script>
 	 jQuery (function($){
 		 const bttn = $('#bttn-nav'),

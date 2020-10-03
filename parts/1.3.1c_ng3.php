@@ -1,3 +1,4 @@
+<?php /* OK事例？ */ ?>
 <section id="your-effort">
 <h2>あなたにもできる取り組み</h2>
 <ul>

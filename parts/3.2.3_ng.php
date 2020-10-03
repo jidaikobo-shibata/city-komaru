@@ -1,3 +1,4 @@
+<?php /* メニュー項目の順序が一貫していない実装 */ ?>
 <nav id="global-nav">
 <button type="button" id="bttn-nav">メニュー</button>
 <div id="wrapper-menu">

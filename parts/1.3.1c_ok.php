@@ -1,3 +1,4 @@
+<?php /* role="presentation"をもちいたレイアウトテーブル */ ?>
 <table role="presentation" id="your-effort-table">
 <tr>
 	<td colspan="4" style="text-align: center;">あなたにもできる取り組み</td>

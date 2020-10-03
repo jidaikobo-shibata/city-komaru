@@ -1,3 +1,4 @@
+<?php /* マーキー */ ?>
 <style>
 #toppage-message .text {
 	padding-right: 20px;

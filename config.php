@@ -34,7 +34,34 @@ endif;
 <ul>
 	<li><label><input type="radio" name="code_type" value="ng"<?php echo $ng_checked ?>> アクセシビリティ上の問題を含んだ試験パターンコードを生成</label></li>
 	<li><label><input type="radio" name="code_type" value="ok"<?php echo $ok_checked ?>> アクセシビリティ上の問題を解消した試験パターンコードを生成</label></li>
+<li>
+<details>
+<summary><label><input type="radio" name="code_type" value="individual"> バリアを個別に指定する</label></summary>
+<?php
+$html = '';
+$html.= '<ul>';
+$patterns = \Kontiki\Util::s(getCodePatternMessages());
+foreach ($patterns as $cat => $messages):
+	$html.= '<li>'.$cat.'<ul>';
+	$messages = array_reverse($messages); //ファイル名の並びはOKが最後になっているので
+	$n = 0;
+	foreach ($messages as $file => $message):
+		$checked = $n == 0 ? ' checked="checked"' : '';
+		$n++;
+		$cat4post = str_replace('.', '_', $cat);
+		$html.= '<li><label><input'.$checked.' type="radio" name="'.$cat4post.'" value="'.$file.'">';
+		$status = strpos($file, 'ok') !== false ? 'OK' : 'NG';
+		$html.= $status.': '.$message.'</label></li>';
+	endforeach;
+	$html.= '</ul></li>';
+endforeach;
+$html.= '</ul>';
+echo $html;
+?>
+</details>
+</li>
 </ul>
+
 <p><input type="submit" name="gen_test_pattern_code" value="試験パターンコードを生成"></p>
 </form>
 

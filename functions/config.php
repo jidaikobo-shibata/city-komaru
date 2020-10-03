@@ -16,17 +16,7 @@ function generateTestPatternCode ()
 		$code_pattern = array();
 
 		// prepare errors
-		foreach (glob(CPATH.'*.php') as $v)
-		{
-			$pathes = explode('/', $v);
-			$file = array_pop($pathes);
-			$codes = explode('_', substr($file, 0, strrpos($file, '.')));
-			$critetrion = $codes[0];
-			$error = $codes[1];
-			if ( ! isset($code_pattern[$critetrion])) $code_pattern[$critetrion] = array();
-
-			$code_pattern[$critetrion][] = $error;
-		}
+		$code_pattern = getCodePatterns();
 
 		// set errors
 		foreach ($code_pattern as $criterion => $errors)
@@ -37,6 +27,11 @@ function generateTestPatternCode ()
 				{
 					$okkey = array_search('ok', $errors);
 					$test_pattern[$page][$criterion] = $errors[$okkey];
+				}
+				elseif (\Kontiki\Input::post('code_type') == 'individual')
+				{
+					$criterion4post = str_replace('.', '_', $criterion);
+					$test_pattern[$page][$criterion] = \Kontiki\Input::post($criterion4post);
 				}
 				else
 				{
@@ -67,4 +62,47 @@ function setTestPatternCode ($test_pattern_str)
 	setcookie('test_pattern_code', $test_pattern_str, time()+86400*7, '/');
 	header('location: '.$path_str);
 	exit();
+}
+
+/*
+ * get code patterns
+ * return Array
+ */
+function getCodePatterns ()
+{
+	foreach (glob(CPATH.'*.php') as $v)
+	{
+		$pathes = explode('/', $v);
+		$file = array_pop($pathes);
+		$codes = explode('_', substr($file, 0, strrpos($file, '.')));
+		$critetrion = $codes[0];
+		$error = $codes[1];
+		if ( ! isset($code_pattern[$critetrion])) $code_pattern[$critetrion] = array();
+
+		$code_pattern[$critetrion][] = $error;
+	}
+	return $code_pattern;
+}
+
+/*
+ * get code pattern messages
+ * return Array
+ */
+function getCodePatternMessages ()
+{
+	$code_pattern = getCodePatterns();
+	$messages = array();
+	foreach ($code_pattern as $k => $v)
+	{
+		$messages[$k] = array();
+		foreach ($v as $vv)
+		{
+			$str = file_get_contents(CPATH.$k.'_'.$vv.'.php');
+			if ($str === false) continue;
+			if ( ! preg_match('/\/\*(.+?)\*\//is', $str, $ms)) continue;
+			$messages[$k][$vv] = trim($ms[1]);
+		}
+	}
+
+	return $messages;
 }

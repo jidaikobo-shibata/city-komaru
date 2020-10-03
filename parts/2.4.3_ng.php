@@ -1,3 +1,4 @@
+<?php /* フォーカス順序？ */ ?>
 <script>
 jQuery (function($){
 	const wrapper = $('#wrapper-menu'),

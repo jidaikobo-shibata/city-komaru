@@ -1,3 +1,4 @@
+<?php /* altと重複したキャプションの提供 */ ?>
 <table role="presentation" id="your-effort-table" class="alt-out">
 <thead>
 <tr>
