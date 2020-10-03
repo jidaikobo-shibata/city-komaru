@@ -22,7 +22,16 @@
 	<?php echoPracticeHtml('2.4.3') ?>
 <main id="main">
 <div id="toppage-image" class="full-width">
-	<img src="./images/main-image1-alt.jpg" class="main-image" alt="〜すべての人にやさしいまちづくりを〜 持続可能な社会の実現に向け、気候変動問題への対応、廃棄物対策、生物多様性の保全などさまざまな取組を行っています。">
+<?php // echoPracticeHtml('2.1.1b') ?>
+	<div id="main-slide">
+		<div id="slide-utilities">
+			<button type="button" id="slide-prev" class="bttn"><span class="visually-hidden">前のスライド</span></button>
+			<button type="button" id="slide-next" class="bttn"><span class="visually-hidden">次のスライド</span></button>
+		</div>
+		<img src="./images/main-image-2_a.jpg" alt="画像１">
+		<img src="./images/main-image-2_b.jpg" alt="画像２">
+		<img src="./images/main-image-2_c.jpg" alt="画像３">
+	</div>
 </div>
 <div id="toppage-message">
 	<div class="image"><img src="./images/mascot-chikyu-kun.png" width="153" alt="ちきゅうくん"></div>
