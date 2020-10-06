@@ -28,15 +28,55 @@
 			<button type="button" id="slide-prev" class="bttn"><span class="visually-hidden">前のスライド</span></button>
 			<button type="button" id="slide-next" class="bttn"><span class="visually-hidden">次のスライド</span></button>
 		</div>
-		<img src="./images/main-image-2_a.jpg" alt="画像１">
-		<img src="./images/main-image-2_b.jpg" alt="画像２">
-		<img src="./images/main-image-2_c.jpg" alt="画像３">
+		<div id="slide-wrapper">
+			<img src="./images/main-image-2_a.jpg" class="main-image" alt="スライド１：「すべての人にやさしいまちづくりを」持続可能な社会の実現に向け、気候変動問題への対応、廃棄物対策、生物多様性の保全など、さまざまな取組を行っています。" width="1366" height="520">
+			<img src="./images/main-image-2_b.jpg" class="main-image" alt="画像２" width="1366" height="520">
+			<img src="./images/main-image-2_c.jpg" class="main-image" alt="画像３" width="1366" height="520">
+		</div>
 	</div>
+<script>
+jQuery(function($){
+	const speed = 500,
+				slide_wrapper = $('#slide-wrapper'),
+				bttn = $('#slide-utilities').find('.bttn');
+	let slides = slide_wrapper.find('.main-image'),
+			current = slides.eq(0),
+			flg = false;
+	slide_wrapper.prepend(slides.not(current).clone()).append(current.clone());
+	slides = slide_wrapper.find('.main-image');
+	slides.not(current).attr({'aria-hidden':true});
+	slide_wrapper.addClass('on');
+
+	bttn.on('click', function(){
+		if(flg) return;
+		flg = true;
+		const dir = this.id == 'slide-prev';
+// 自動再生して、再生・停止ボタンをつける
+		slides.css({
+			transform : 'translate3d('+(dir ? '' : '-')+'100%, 0, 0) ',
+			transition: 'transform '+speed+'ms ease-out'
+		});
+		setTimeout(function(){
+			slides.css({transition: 'transform 0s'})
+			if(dir){
+				slides.eq(-1).prependTo(slide_wrapper);
+				current = slides.eq(slides.index(current)-1);
+			}else{
+				slides.eq(0).appendTo(slide_wrapper);
+				current = slides.eq(slides.index(current)+1);
+			}
+			slides = slide_wrapper.find('.main-image').css({transform: 'translate3d(0,0,0)'}).attr({'aria-hidden':true});
+			current.removeAttr('aria-hidden');
+			flg = false;
+		}, speed);
+	});
+});
+</script>
 </div>
 <div id="toppage-message">
-	<div class="image"><img src="./images/mascot-chikyu-kun.png" width="153" alt="ちきゅうくん"></div>
+	<div class="image"><img src="./images/mascot-chikyu-kun.png" width="153" height="184" alt="ちきゅうくん"></div>
 	<?php echoPracticeHtml('2.2.2b') ?>
- 	<div class="image"><img src="./images/mascot-komaru-kun.png" width="138" alt="こまるくん"></div>
+ 	<div class="image"><img src="./images/mascot-komaru-kun.png" width="138" height="184" alt="こまるくん"></div>
 </div>
 
 <div id="toppage-news">
