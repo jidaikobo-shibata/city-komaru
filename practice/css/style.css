@@ -326,11 +326,11 @@ input[type=button] {
 	margin-right: 12px;
 }
 #slide-play {
-	width: 44px;
-	height: 44px;
-	line-height: 44px;
-	font-size: 20px;
-	right: calc( 2.928% - 1px );
+	width: 36px;
+	height: 36px;
+	line-height: 36px;
+	font-size: 15px;
+	right: calc( 2.928% + 5px );
 	bottom: 35px;
 }
 #slide-play.bttn-pause .visually-hidden.play,
