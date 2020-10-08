@@ -8,6 +8,7 @@
 <?php echoPracticeHtml('1.4.2') ?>
 <div id="outer-wrapper">
 <div id="wrapper">
+<header id="site-header">
 <div class="inner-wrapper">
 	<div id="utilities">
 	<?php echoPracticeHtml('2.4.1') ?>
@@ -19,7 +20,7 @@
 	<?php echoPracticeHtml('2.1.1a') ?>
 	<?php echoPracticeHtml('2.4.3') ?>
 </div>
-
+</header>
 <main id="main">
 <div id="page-header" class="full-width">
 	<div class="inner-wrapper">

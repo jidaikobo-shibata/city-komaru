@@ -11,7 +11,7 @@
 <?php echoPracticeHtml('1.4.2') ?>
 <div id="outer-wrapper">
 <div id="wrapper">
-<div>
+<header id="site-header">
 	<div id="utilities">
 	<?php echoPracticeHtml('2.4.1') ?>
 	<?php echoPracticeHtml('2.1.2') ?>
@@ -20,6 +20,7 @@
 	<?php echoPracticeHtml('3.2.3') ?>
 	<?php echoPracticeHtml('2.1.1a') ?>
 	<?php echoPracticeHtml('2.4.3') ?>
+</header>
 <main id="main">
 <div id="toppage-image" class="full-width">
 <?php echoPracticeHtml('2.1.1b') ?>
@@ -31,9 +32,12 @@
 </div>
 
 <div id="toppage-news">
-<ul>
-	<li><?php echoPracticeHtml('1.3.1d') ?></li>
-</ul>
+<h2 class="heading">お知らせ</h2>
+<div class="content">
+	<ul class="news-list">
+		<li><?php echoPracticeHtml('1.3.1d') ?></li>
+	</ul>
+</div>
 </div>
 
 <div id="toppage-top">
