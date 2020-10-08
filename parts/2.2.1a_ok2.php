@@ -1,6 +1,6 @@
 <?php /* 簡単な方法で制限時間を延長できるフォーム */ ?>
 <script>
-const timeout_val = 10000,
+const timeout_val = 2 * 60 * 1000,
 			new_area = $('#new-area'),
 			renew_area = $('#renew-area');
 var timeout = function() {
