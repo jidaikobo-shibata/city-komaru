@@ -1,6 +1,6 @@
 <?php /* むりやり時間切れするフォーム */ ?>
 <script>
-const timeout_val = 10000;
+const timeout_val = 2 * 60 * 1000;
 var timeout = function() {
 				alert('入力時間が切れました');
 				document.registration.reset();
