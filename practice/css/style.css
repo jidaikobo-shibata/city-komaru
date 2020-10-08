@@ -149,6 +149,7 @@ body:not(.toppage) #site-footer {
 /* menu */
 #global-nav {
 	position: relative;
+	clear: both;
 	float: right;
 }
 #bttn-nav {
@@ -182,7 +183,7 @@ body:not(.toppage) #site-footer {
 	right: 0;
 	width: 250px;
 	margin: 0;
-	padding: 0;
+	padding: 0 !important;
 	border-top: 3px solid #E83828;
 }
 #main-menu li {
@@ -202,7 +203,7 @@ body:not(.toppage) #site-footer {
 }
 #main-menu a:hover,
 #main-menu a:focus {
-	background-color: #FDD6D6;
+	background-color: #FEF2F1;
 }
 #main-menu a:hover::before,
 #main-menu a:focus::before {
@@ -288,19 +289,21 @@ ul ul ul > li::before {
 	top: calc( .875em - 1px );
 }
 header ul,
-footer ul {
+footer ul,
+#main-menu {
 	list-style: disc;
 	list-style: unset;
 	padding-left: 40px;
 }
 header ul > li,
-footer ul > li {
+footer ul > li,
+#main-menu > li {
 	position: static;
 	padding-left: 0;
 	margin-top: 0;
 }
 header ul > li::before,
-footer ul > li::before {
+#main-menu > li::before {
 	content: none;
 }
 ol {
@@ -322,7 +325,7 @@ table caption {
 .table th,
 .table td,
 .table .header {
-	padding: 8px 15px;
+	padding: 8px 13px;
 	border-top: 1px solid #ccc;
 	text-align: left;
 }

@@ -19,7 +19,8 @@
 	<?php echoPracticeHtml('3.2.3') ?>
 	<?php echoPracticeHtml('2.1.1a') ?>
 	<?php echoPracticeHtml('2.4.3') ?>
-</div></header>
+</div>
+</header>
 <main id="main">
 <div id="page-header" class="full-width">
 	<div class="inner-wrapper">
