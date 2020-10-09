@@ -185,6 +185,7 @@ body:not(.toppage) #site-footer {
 	margin: 0;
 	padding: 0 !important;
 	border-top: 3px solid #E83828;
+	z-index: 100000;
 }
 #main-menu li {
 	display: block;
@@ -246,6 +247,7 @@ h1, h2, h3, h4, h5, h6,
 }
 #page-header .heading {
 	margin: 0 auto;
+	font-size: 1em;
 }
 body:not(.toppage) h2,
 body:not(.toppage) .h2 {
@@ -380,6 +382,7 @@ input[type=button] {
 	line-height: 1.5;
 	margin: 0 auto;
 }
+
 /* toppage */
 #toppage-image {
 	position: relative;
@@ -557,17 +560,6 @@ input[type=button] {
 	margin: 0 auto;
 }
 
-#toppage-bottom section#co2aday-area #co2aday-button-area a
-{
-	float: right;
-}
-
-#toppage-bottom section#co2aday-area img
-{
-	display: block;
-	margin: 10px auto;
-}
-
 #toppage-bottom section#contact-us-area form
 {
 	background-color: #f3f3f3;
@@ -599,8 +591,6 @@ input[type=button] {
 	border-radius: 5px;
 	border: none;
 }
-
-
 #toppage-bottom h2
 {
 	padding: 0 0 12px;
@@ -688,22 +678,10 @@ input[type=button] {
 	display: block;
 }
 
-/* heading */
-
-h1
-{
-	font-size: 100%;
-}
-
-h1 img
-{
-	vertical-align: middle;
-	display: inline-block;
-	margin-right: 20px;
-}
-
 /* CO2 a day */
-
+#co2aday-area {
+	position: relative;
+}
 #co2aday-wrapper
 {
 	background-color: #f3f3f3;
@@ -713,13 +691,6 @@ h1 img
 /*	font-family: Verdana; */
 	font-weight: 600;
 }
-.unit
-{
-	display: inline-block;
-	font-size: 1.875rem;
-	color: #df201e;
-	margin: 0;
-}
 #co2aday
 {
 	flex: 1;
@@ -727,6 +698,17 @@ h1 img
 	text-align: right;
 	margin-right: 20px;
 	padding: 13px 17px;
+}
+#co2aday-wrapper .unit
+{
+	display: inline-block;
+	font-size: 1.875rem;
+	color: #df201e;
+	margin: 0;
+}
+#toppage-bottom section#co2aday-area #co2aday-button-area a
+{
+	float: right;
 }
 #co2aday-button
 {
@@ -746,6 +728,11 @@ h1 img
 	left: 50%;
 	transform: translateY( -50% ) translateX( -50% );
 }
+#co2aday-area .komaru {
+	float: right;
+	margin: auto 15px auto 0;
+}
+
 
 /* visually hidden */
 
