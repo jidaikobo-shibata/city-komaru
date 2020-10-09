@@ -306,6 +306,12 @@ header ul > li::before,
 #main-menu > li::before {
 	content: none;
 }
+ul.nomarker > li {
+	padding-left: 0;
+}
+ul.nomarker > li::before {
+	content: none;
+}
 ol {
 	padding-left: 2em;
 }
