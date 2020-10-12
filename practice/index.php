@@ -13,7 +13,7 @@
 <div id="wrapper">
 <header id="site-header">
 	<div id="utilities">
-	<?php echoPracticeHtml('2.4.1') ?>
+	<?php echoPracticeHtml('2.4.1b') ?>
 	<?php echoPracticeHtml('2.1.2') ?>
 	</div>
 	<h1 id="logo"><?php echoPracticeHtml('1.1.1b') ?> 地球温暖化防止課</h1>
