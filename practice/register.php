@@ -16,9 +16,19 @@
 	<?php echoPracticeHtml('2.1.2') ?>
 	</div>
 	<div id="logo"><a href="./"><?php echoPracticeHtml('1.1.1b') ?> 地球温暖化防止課</a></div>
-	<?php echoPracticeHtml('3.2.3') ?>
-	<?php echoPracticeHtml('2.1.1a') ?>
-	<?php echoPracticeHtml('2.4.3') ?>
+	<div id="menu">
+		<?php echoPracticeHtml('3.2.3') ?>
+		<nav id="langage-nav">
+			<button type="button" class="bttn-menu bttn" id="bttn-lang" aria-expanded="false" aria-controls="lang-menu" title="Language"><span class="fa fa-globe" aria-hidden="true"></span><span class="visually-hidden" lang="en">Language</span></button>
+			<div id="wrapper-lang-menu" class="wrapper-menu">
+				<ul id="lang-menu" class="menu-list" style="display:none">
+					<?php echoPracticeHtml('3.1.2a') ?>
+				</ul>
+			</div>
+		</nav>
+		<?php echoPracticeHtml('2.1.1a') ?>
+		<?php echoPracticeHtml('2.4.3') ?>
+	</div>
 </div>
 </header>
 <main id="main">

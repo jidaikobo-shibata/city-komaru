@@ -1,17 +1,18 @@
 <?php /* キーボードのフォーカス順序が妥当なドロップダウン */ ?>
 <script>
 	 jQuery (function($){
-		 const bttn = $('#bttn-nav'),
-					 menu = $('#main-menu');
-		 if(! bttn[0] || ! menu[0] ) return;
+		 const bttn = $('.bttn-menu');
+		 if(! bttn[0] ) return;
 
 		 bttn.attr({
 		 	"aria-expanded" : false,
-				"aria-controls" : "main-menu"
 		});
 		 bttn.on('click', function(){
-			 menu.slideToggle(function(){
-				 bttn.attr('aria-expanded', $(this).is(':visible') );
+			 let $current_bttn = $(this);
+			 bttn.not($current_bttn).attr('aria-expanded', false);
+			 $('#'+bttn.not($current_bttn).attr('aria-controls')).hide();
+			 $('#'+$current_bttn.attr('aria-controls')).slideToggle(function(){
+				 $current_bttn.attr('aria-expanded', $(this).is(':visible') );
 			 });
 		 });
 	 });
