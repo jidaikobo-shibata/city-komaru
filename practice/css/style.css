@@ -25,6 +25,11 @@ figure {
 img {
 	height: auto;
 }
+
+strong, em {
+	color: #E83828;
+	font-style: normal;
+}
 /* parts */
 
 /* wrapper */

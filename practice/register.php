@@ -47,17 +47,7 @@
 
 <label><input type="radio" name="type" value="new" checked="checked" /> 新規登録</label>
 <label><input type="radio" name="type" value="renew" /> 登録内容変更</label>
-
-<p id="renew-area"><label for="your-id">ID※</label><br />
-<input type="text" name="your-id" id="your-id" size="20" value="" /></p>
-
-<div id="new-area">
-<p><label for="shimei">お名前※</label><br />
-<input type="text" name="shimei" id="shimei" size="20" value="" /></p>
-
-<p><label for="email">メールアドレス※</label><br />
-<input type="text" name="email" id="email" size="20" value="" /></p>
-</div>
+<?php echoPracticeHtml('1.4.1a') ?>
 
 <?php echoPracticeHtml('3.2.1', '', 'register') ?>
 
