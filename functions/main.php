@@ -51,7 +51,7 @@ function echoPracticeHtml ($critetrion, $parent = '')
 			{
 				$html .= ob_get_clean();
 			}
-		}else{
+		} else {
 			include($partfile);
 		}
 	}
