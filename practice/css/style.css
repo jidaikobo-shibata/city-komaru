@@ -771,6 +771,34 @@ input[type=button],
 	margin: auto 15px auto 0;
 }
 
+/* resister */
+#form-registration {
+	margin-top: calc( 1.5rem + 20px + 30px );
+	position: relative;
+	border: 1px solid #ccc;
+	border-top: 2px solid #E83828;
+}
+#select-registration-type {
+	border: none;
+	padding: 0;
+	position: absolute;
+	top:  calc( -1.75rem - 22px );
+	left: -1px;
+	margin: 0;
+}
+#select-registration-type label {
+	display: inline-block;
+	min-width: 150px;
+	padding: 10px 15px;
+}
+#select-registration-type :checked + label {
+	color: #fff;
+	background-color: #E83828;
+}
+#select-registration-type :not(:checked) + label:hover {
+	background-color: #FDD6D6;
+	color: #E83828;
+}
 
 /* visually hidden */
 

@@ -1,4 +1,4 @@
-<?php /* OK事例？ */ ?>
+<?php /* tableを用いない実装 */ ?>
 <section id="your-effort">
 <h2>あなたにもできる取り組み</h2>
 <ul>

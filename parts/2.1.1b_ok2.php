@@ -3,7 +3,7 @@
 		<div id="slide-utilities">
 			<button type="button" id="slide-prev" class="bttn slide-ctrl"><span class="visually-hidden">前のスライド</span></button>
 			<button type="button" id="slide-next" class="bttn slide-ctrl"><span class="visually-hidden">次のスライド</span></button>
-<?php echoPracticeHtml('2.2.2c', '', 'index') ?>
+<?php echoPracticeHtml('2.2.2c', 'index') ?>
 		</div>
 		<div id="slide-wrapper">
 			<img src="./images/main-image-2_a.jpg" class="main-image" alt="スライド１：「すべての人にやさしいまちづくりを」持続可能な社会の実現に向け、気候変動問題への対応、廃棄物対策、生物多様性の保全など、さまざまな取組を行っています。" width="1366" height="520">

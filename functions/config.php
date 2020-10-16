@@ -23,12 +23,7 @@ function generateTestPatternCode ()
 		{
 			foreach (array_keys($test_pattern) as $page)
 			{
-				if (\Kontiki\Input::post('code_type') == 'ok')
-				{
-					$okkey = array_search('ok', $errors);
-					$test_pattern[$page][$criterion] = $errors[$okkey];
-				}
-				elseif (\Kontiki\Input::post('code_type') == 'individual')
+				if (\Kontiki\Input::post('code_type') == 'individual')
 				{
 					$criterion4post = str_replace('.', '_', $criterion);
 					$test_pattern[$page][$criterion] = \Kontiki\Input::post($criterion4post);

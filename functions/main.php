@@ -2,11 +2,10 @@
 /*
  * echo practice HTML
  * param String $critetrion
- * param String $specify
  * param String $parent
  * return Void
  */
-function echoPracticeHtml ($critetrion, $specify = '', $parent = '')
+function echoPracticeHtml ($critetrion, $parent = '')
 {
 	// from where
 	if (empty($parent))
@@ -34,9 +33,7 @@ function echoPracticeHtml ($critetrion, $specify = '', $parent = '')
 		echo '';
 		return;
 	}
-	$partfile = empty($specify) ?
-						  CPATH.$critetrion.'_'.$set->$file->$critetrion.'.php' :
-						  CPATH.$critetrion.'_'.$specify.'.php';
+	$partfile = CPATH.$critetrion.'_'.$set->$file->$critetrion.'.php';
 
 	$html = '';
 	if (file_exists($partfile))

@@ -3,4 +3,4 @@
 <p class="has_image"><img src="./images/anti-co2-komaru.png" alt="" width="130" height="167" class="komaru">
 こうした制度も踏まえつつ、昨今、脱炭素社会に向けて、2050年二酸化炭素排出実質ゼロに取り組むことを表明した地方公共団体が増えつつあります。</p>
 <p>（環境省ウェブサイトより）</p>
-<?php echoPracticeHtml('1.4.4a', '', 'index') ?>
+<?php echoPracticeHtml('1.4.4a', 'index') ?>

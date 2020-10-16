@@ -38,18 +38,20 @@
 	</div>
 </div>
 
-
 <div class="inner-wrapper">
 <p>「駒留市エコサポーター」に登録いただくと、駒留市の環境教育イベントの開催のお知らせや会員限定のイベントへの参加をできるようになります。</p>
 <p>収集する個人情報は、駒留市エコサポーターの活動の目的以外では利用されません。駒留市の<a href="./do-not-test.php">個人情報保護方針</a>をご覧ください。</p>
 
-<form action="./do-not-test.php" method="POST" name="registration">
+<form action="./do-not-test.php" method="POST" name="registration" id="form-registration">
 
-<label><input type="radio" name="type" value="new" checked="checked" /> 新規登録</label>
-<label><input type="radio" name="type" value="renew" /> 登録内容変更</label>
+<fieldset id="select-registration-type">
+<legend class="visually-hidden">種別の選択</legend>
+<input type="radio" name="type" id="registration-new" value="new" checked="checked" class="visually-hidden" /><label for="registration-new">新規登録</label>
+<input type="radio" name="type" id="registration-renew" value="renew" class="visually-hidden" /><label for="registration-renew">登録内容変更</label>
+</fieldset>
 <?php echoPracticeHtml('1.4.1a') ?>
 
-<?php echoPracticeHtml('3.2.1', '', 'register') ?>
+<?php echoPracticeHtml('3.2.1', 'register') ?>
 
 <input type="submit" value="送信" />
 </form>
