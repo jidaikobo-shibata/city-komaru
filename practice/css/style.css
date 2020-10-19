@@ -111,20 +111,6 @@ body:not(.toppage) #site-footer {
 {
 	display: inline-block;
 }
-#utilities #search,
-#utilities [type=submit] {
-	-webkit-appearance: none;
-	color: #fff;
-	background-color: #000;
-	border: none;
-	border-radius: 0;
-	margin-left: 1px;
-	padding: 4px 4px 4px;
-	min-width: 24px;
-	text-align: center;
-	font-size: .875rem;
-	line-height: 1.2;
-}
 
 /* logo */
 #logo {
@@ -401,13 +387,25 @@ textarea {
 	vertical-align: middle;
 }
 button,
-input[type=submit],
-input[type=button],
+[type=submit],
+[type=button],
 .bttn {
+	-webkit-appearance: none;
+	padding: 12px 35px 11px;
+	font-size: 1.125em;
 	line-height: 1.5;
 	margin: 0 auto;
+	border-radius: 5px;
+	border: none;
 }
-
+input[type=submit],
+button:not([type=button]) {
+	display: block;
+	min-width: 127px;
+	margin: 23px auto 0;
+	color: #fff;
+	background-color: #EA1905;
+}
 .bttn {
 	-webkit-appearance: none;
 	border-radius: 5px;
@@ -417,6 +415,26 @@ input[type=button],
 	background-color: #575757;
 	font-size: 1em;
 	padding: 15px;
+}
+#utilities #search,
+#utilities [type=submit] {
+	display: inline-block;
+	color: #fff;
+	background-color: #000;
+	border: none;
+	border-radius: 0;
+	margin-top: 0;
+	margin-left: 1px;
+	padding: 4px 4px 4px;
+	min-width: 24px;
+	text-align: center;
+	font-size: .875rem;
+	line-height: 1.2;
+}
+
+form em,
+form strong {
+	color: #de1300;
 }
 
 /* toppage */
@@ -617,18 +635,6 @@ input[type=button],
 	height: 8rem;
 }
 
-#toppage-bottom section#contact-us-area form input[type=submit]
-{
-	display: block;
-	padding: 14px 35px;
-	margin: 0 auto;
-	line-height: 1;
-	font-size: 1em;
-	color: #fff;
-	background-color: #e83828;
-	border-radius: 5px;
-	border: none;
-}
 #toppage-bottom h2
 {
 	padding: 0 0 12px;
@@ -649,6 +655,7 @@ input[type=button],
 	margin: 50px auto;
 	border: 10px solid transparent;
 	border-top: none;
+	table-layout: fixed;
 }
 
 #your-effort-table td img
@@ -757,7 +764,7 @@ input[type=button],
 	color: #fff;
 	background-color: #4d4d4d;
 	padding: 5px;
-	margin: 10px 0 0;
+	margin: 10px 0;
 	border-radius: 5px;
 }
 #co2aday-button > * {
@@ -774,30 +781,43 @@ input[type=button],
 /* resister */
 #form-registration {
 	margin-top: calc( 1.5rem + 20px + 30px );
+	padding: 12px 40px 32px;
 	position: relative;
-	border: 1px solid #ccc;
-	border-top: 2px solid #E83828;
+	border-top: 2px solid #EA1905;
+	background-color: #F5F5F5;
 }
 #select-registration-type {
 	border: none;
 	padding: 0;
 	position: absolute;
 	top:  calc( -1.75rem - 22px );
-	left: -1px;
+	left: 0;
 	margin: 0;
 }
+#select-registration-type input {
+	position: absolute;
+	top: calc( 50% - .65em );
+	margin-left: 12px;
+}
 #select-registration-type label {
-	display: inline-block;
+	display: block;
+	float: left;
 	min-width: 150px;
 	padding: 10px 15px;
+	padding-left: calc( 20px + .8em );
 }
 #select-registration-type :checked + label {
 	color: #fff;
-	background-color: #E83828;
+	background-color: #EA1905;
 }
 #select-registration-type :not(:checked) + label:hover {
 	background-color: #FDD6D6;
-	color: #E83828;
+}
+#form-registration [type=submit] {
+	margin-left: 0;
+}
+#form-registration #renew-area {
+	display: none;
 }
 
 /* visually hidden */

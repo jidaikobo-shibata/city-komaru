@@ -44,10 +44,10 @@
 
 <form action="./do-not-test.php" method="POST" name="registration" id="form-registration">
 
-<fieldset id="select-registration-type">
+<fieldset id="select-registration-type" class="clearfix">
 <legend class="visually-hidden">種別の選択</legend>
-<input type="radio" name="type" id="registration-new" value="new" checked="checked" class="visually-hidden" /><label for="registration-new">新規登録</label>
-<input type="radio" name="type" id="registration-renew" value="renew" class="visually-hidden" /><label for="registration-renew">登録内容変更</label>
+<input type="radio" name="type" id="registration-new" value="new" data-target="new-area" checked="checked" /><label for="registration-new">新規登録</label>
+<input type="radio" name="type" id="registration-renew" value="renew" data-target="renew-area" /><label for="registration-renew">登録内容変更</label>
 </fieldset>
 <?php echoPracticeHtml('1.4.1a') ?>
 
@@ -56,14 +56,22 @@
 <input type="submit" value="送信" />
 </form>
 <script>
-$('#renew-area').hide();
-$('input[name=type]').change(function(){
-	if ($(this).attr('value') == 'renew') {
-		$('#renew-area').show();
-		$('#new-area').hide();
-	} else {
-		$('#renew-area').hide();
-		$('#new-area').show();
+jQuery (function($){
+	let area_show = $('#new-area'),
+			area_hide = $('#renew-area');
+	const areas = area_show.add(area_hide);
+	toggle_area();
+	$('input[name=type]').change(function(){
+		toggle_area($('#'+$(this).data('target')));
+	});
+
+	function toggle_area(target){
+		if( target ) {
+			area_show = target;
+			area_hide = areas.not(target);
+		}
+		area_show.show().find(':input').removeAttr('disabled');
+		area_hide.hide().find(':input').attr('disabled', true);
 	}
 });
 </script>

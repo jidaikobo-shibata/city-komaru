@@ -1,5 +1,5 @@
 <?php /* 必須項目を適切に通知しているフォーム */ ?>
-<p><em>※印のある赤字の項目</em>は必須です。</p>
+<p><em>※印のついた赤字の項目</em>は必須入力です。</p>
 
 <div id="renew-area">
 <p><label for="your-id"><em>ID※</em></label><br />

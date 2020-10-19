@@ -38,13 +38,19 @@
 #toppage-message .text.pause .marquee {
   animation-play-state: paused;
 }
-
+#toppage-message > .text {
+	padding-right: calc( 1em + 29px );
+}
 #toppage-message .bttn {
 	position: absolute;
 	right: 14px;
 	top: 50%;
 	transform: translateY(-50%);
 	padding: 6px 8px;
+	line-height: 1;
+	margin: 0;
+	background-color: inherit;
+	color: inherit;
 }
 #toppage-message .fa::before {
 	content: "\f04c";
