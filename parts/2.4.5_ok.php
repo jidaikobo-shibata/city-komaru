@@ -1,2 +1,2 @@
-<?php /* 妥当なリンク文字列 */ ?>
-<a href="./do-not-test.php">サイトマップ</a>
+<?php /* ウェブページを見つける手段の一つとしての検索機能の提供 */ ?>
+<?php echoPracticeHtml('2.1.2', $file) ?>

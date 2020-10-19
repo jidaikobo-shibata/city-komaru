@@ -12,7 +12,6 @@
 	<div id="utilities">
 	<?php echoPracticeHtml('2.4.1') ?>
 	<?php echoPracticeHtml('2.4.5') ?>
-	<?php echoPracticeHtml('2.1.2') ?>
 	</div>
 	<div id="logo"><a href="./"><?php echoPracticeHtml('1.1.1b') ?> 地球温暖化防止課</a></div>
 	<div id="menu">
