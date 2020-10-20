@@ -38,7 +38,7 @@
 </div>
 
 <div class="inner-wrapper">
-<p>「駒留市エコサポーター」に登録いただくと、駒留市の環境教育イベントの開催のお知らせや会員限定の	イベントへの参加をできるようになります。</p>
+<p>「駒留市エコサポーター」に登録いただくと、駒留市の環境教育イベントの開催のお知らせや会員限定のイベントへの参加ができるようになります。</p>
 <p>収集する個人情報は、駒留市エコサポーターの活動の目的以外では利用されません。駒留市の<a href="./do-not-test.php">個人情報保護方針</a>をご覧ください。</p>
 
 <form action="./do-not-test.php" method="POST" name="registration" id="form-registration">
@@ -60,14 +60,16 @@
 </form>
 <script>
 jQuery (function($){
+	// toggle area
 	let area_show = $('#new-area'),
-			area_hide = $('#renew-area');
+			area_hide = $('#renew-area'),
+			flg = false;
+<?php echoPracticeHtml('3.2.2a') ?>
 	const areas = area_show.add(area_hide);
 	toggle_area();
 	$('input[name=type]').change(function(){
 		toggle_area($('#'+$(this).data('target')));
 	});
-
 	function toggle_area(target){
 		if( target ) {
 			area_show = target;
@@ -75,6 +77,10 @@ jQuery (function($){
 		}
 		area_show.show().find(':input').removeAttr('disabled');
 		area_hide.hide().find(':input').attr('disabled', true);
+
+		if(flg){
+			area_show.find(':input:visible').eq(0).focus();
+		}
 	}
 });
 </script>
