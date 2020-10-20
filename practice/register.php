@@ -38,7 +38,7 @@
 </div>
 
 <div class="inner-wrapper">
-<p>「駒留市エコサポーター」に登録いただくと、駒留市の環境教育イベントの開催のお知らせや会員限定のイベントへの参加をできるようになります。</p>
+<p>「駒留市エコサポーター」に登録いただくと、駒留市の環境教育イベントの開催のお知らせや会員限定の	イベントへの参加をできるようになります。</p>
 <p>収集する個人情報は、駒留市エコサポーターの活動の目的以外では利用されません。駒留市の<a href="./do-not-test.php">個人情報保護方針</a>をご覧ください。</p>
 
 <form action="./do-not-test.php" method="POST" name="registration" id="form-registration">
@@ -49,9 +49,13 @@
 <input type="radio" name="type" id="registration-renew" value="renew" data-target="renew-area" /><label for="registration-renew">登録内容変更</label>
 </fieldset>
 <?php echoPracticeHtml('1.4.1a') ?>
-
+<hr>
 <?php echoPracticeHtml('3.2.1', 'register') ?>
 
+<p><label for="registration-captcha">画像に表示されている文字を入力してください。</label><br>
+<img src="./images/captcha.png" width="300" height="80" alt="画像"><br>
+<input type="text" size="12" id="registration-captcha" aria-describedby="registration-captcha-description"> <span id="registration-captcha-description"><br>大文字小文字は区別されません。</span>
+</p>
 <input type="submit" value="送信" />
 </form>
 <script>

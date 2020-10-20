@@ -9,7 +9,7 @@ var timeout = function() {
 					document.registration.reset();
 					if( $(new_area, renew_area).is(':hidden') ){
 						renew_area.hide();
-						new_area.show();
+						new_area.show().find(':input').removeAttr('disabled');
 					}
 				}
 				setTimeout(timeout, timeout_val);

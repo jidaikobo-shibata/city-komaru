@@ -30,7 +30,11 @@ strong, em {
 	color: #E83828;
 	font-style: normal;
 }
-/* parts */
+
+hr {
+	border-top: 1px solid rgba(100, 100, 100, .3);
+	margin: 2em 0;
+}
 
 /* wrapper */
 #wrapper
