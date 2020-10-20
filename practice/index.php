@@ -57,15 +57,19 @@
 <div id="toppage-bottom" class="full-width">
 	<div id="toppage-bottom-inner" class="inner-wrapper">
 		<section id="contact-us-area">
-		<h2>問い合わせフォーム</h2>
-		<p>駒留市の温暖化防止の取り組みについてのお問い合わせはこちらのフォームからお寄せください。</p>
+			<div class="content">
+				<h2>問い合わせフォーム</h2>
+			 	<p>駒留市の温暖化防止の取り組みについてのお問い合わせはこちらのフォームからお寄せください。</p>
 		<?php echoPracticeHtml('3.3.2') ?>
+			 </div>
 		</section>
 
 		<section id="co2aday-area">
-		<h2>駒留市の本日のCO<sub>2</sub>排出量</h2>
-		<?php echoPracticeHtml('2.2.2') ?>
-		<?php echoPracticeHtml('1.4.5') ?>
+			<div class="content">
+				<h2>駒留市の本日のCO<sub>2</sub>排出量</h2>
+				<?php echoPracticeHtml('2.2.2') ?>
+				<?php echoPracticeHtml('1.4.5') ?>
+			</div>
 		</section>
 	</div>
 </div>
