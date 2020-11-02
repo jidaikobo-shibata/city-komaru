@@ -3,9 +3,6 @@
 <head>
 <?php include(__DIR__.'/inc_header.php'); ?>
 <?php echoPracticeHtml('2.4.2') ?>
-	<style>
-<?php echoPracticeHtml('2.4.7') ?>
-	</style>
 </head>
 <body class="toppage">
 <?php echoPracticeHtml('1.4.2') ?>

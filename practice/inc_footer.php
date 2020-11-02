@@ -13,7 +13,7 @@ City of Komaru. All rights reserved.</p>
 </div>
 <div class="content">
 <?php echoPracticeHtml('1.1.1a', 'index') ?>
-<?php echoPracticeHtml('2.4.7b', $file) ?>
+<?php echoPracticeHtml('2.4.7', $file) ?>
 
 </div>
 </div>
