@@ -1,4 +1,4 @@
-<?php /* thであるべきtable */ ?>
+<?php /* データテーブルで、thを用いるべき箇所でtdを用いている */ ?>
 <table class="table auto odd">
 <caption>各地の気温の上昇</caption>
 <tr>

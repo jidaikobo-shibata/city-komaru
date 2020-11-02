@@ -43,13 +43,19 @@
 
 <h2><?php echoPracticeHtml('2.4.6a') ?></h2>
 
-<?php echoPracticeHtml('1.3.1a') ?>
+<?php echoPracticeHtml('1.2.1b') ?>
 
 <p><img src="./images/mechanism_gif_small.gif" alt="温暖化のメカニズムを説明したGIFアニメ"></p>
 
 <h2>各地の気温の上昇</h2>
 <p>温暖化対策をとらないまま、現在のペースで温暖化が進むと、日本の各都市の真夏日の日数が増加することが予測されています。東京では、現在、年間約46日の真夏日がありますが、21世紀末には年間約103日が真夏日になると言われています。</p>
 <?php echoPracticeHtml('1.3.1b') ?>
+
+<h2>教材の貸し出し</h2>
+
+<p>学校、企業などで地球温暖化について学ぶための資料の貸出を行っております。以下手順で申請してください。</p>
+<?php echoPracticeHtml('1.3.1a') ?>
+
 </main>
 
 <?php include(__DIR__.'/inc_footer.php'); ?>
