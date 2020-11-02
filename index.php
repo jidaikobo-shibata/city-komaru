@@ -28,6 +28,18 @@
 			padding: 25px 0 0;
 		}
 	</style>
+
+	<!--Google analytics-->
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+		ga('create', 'UA-2627567-53', 'auto');
+		ga('send', 'pageview');
+	</script>
+
 </head>
 <body>
 <h1>駒瑠市〜アクセシビリティ上の問題の体験サイト〜</h1>
@@ -49,6 +61,7 @@
 	<li>現時点では、障壁はWCAG 2.0 AA（ダブルA）までの問題を実装しています</li>
 	<li>意図的にアクセシビリティ上の問題を生成するため、HTMLの文法に誤った箇所が含まれている場合があります。「4.1.1 構文解析」に関しては、対象としないようにしてください</li>
 	<li>いくつかの達成基準の項目について、障壁が実装されていないものがありますが、「2.3.1 3回の閃光又は閾値以下」の障壁については、将来的にも実装の予定はありません</li>
+	<li>現在も制作を続けておりますので、バグが含まれている可能性があることをご了承ください</li>
 </ul>
 
 <h2>障壁の設定へ</h2>
@@ -61,6 +74,9 @@
 	<li><a href="http://www.jidaikobo.com"><img src="./images/logo_author.png" class="a11yc_logo_author" alt="ロゴマーク">有限会社時代工房</a></li>
 	<li><a href="https://twitter.com/jidaikobo"><img src="./images/Twitter_Logo_Blue.png" class="a11yc_logo_author" alt="Twitter Logo">時代工房のTwitter</a></li>
 </ul>
+
+<h2>Google Analyticsについて</h2>
+<p>このページのみ、<a href="https://marketingplatform.google.com/intl/ja/about/analytics/">Google Analytics</a>をつかってアクセス解析を行っています</p>
 
 <footer>
 制作：<a href="https:/www.jidaikobo.com">有限会社時代工房</a><br>

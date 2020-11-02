@@ -72,9 +72,9 @@ jQuery (function($){
 	let area_show = $('#new-area'),
 			area_hide = $('#renew-area'),
 			flg = false;
-<?php echoPracticeHtml('3.2.2a') ?>
 	const areas = area_show.add(area_hide);
 	toggle_area();
+<?php echoPracticeHtml('3.2.2a') ?>
 	$('input[name=type]').change(function(){
 		toggle_area($('#'+$(this).data('target')));
 	});
