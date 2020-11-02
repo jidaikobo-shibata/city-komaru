@@ -612,7 +612,7 @@ form strong {
 	background-color: #fff;
 	width: calc( 50% - 20px );
 	margin: 20px 0;
-	padding: 10px 30px;
+	padding: 10px 30px 30px;
 }
 #toppage-bottom section .content {
 	position: relative;

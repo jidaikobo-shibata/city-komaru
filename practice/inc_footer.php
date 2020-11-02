@@ -2,7 +2,7 @@
 <footer id="site-footer" class="clearfix">
 <div class="inner-wrapper col">
 <div class="content">
-<p>駒留市 地球温暖化防止課<br>
+<p>駒瑠市 地球温暖化防止課<br>
 City of Komaru. All rights reserved.</p>
 </div>
 <div class="content">

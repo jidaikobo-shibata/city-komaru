@@ -44,6 +44,9 @@
 <h2><?php echoPracticeHtml('2.4.6a') ?></h2>
 
 <?php echoPracticeHtml('1.3.1a') ?>
+
+<p><img src="./images/mechanism_gif_small.gif" alt="温暖化のメカニズムを説明したGIFアニメ"></p>
+
 <h2>各地の気温の上昇</h2>
 <p>温暖化対策をとらないまま、現在のペースで温暖化が進むと、日本の各都市の真夏日の日数が増加することが予測されています。東京では、現在、年間約46日の真夏日がありますが、21世紀末には年間約103日が真夏日になると言われています。</p>
 <?php echoPracticeHtml('1.3.1b') ?>
