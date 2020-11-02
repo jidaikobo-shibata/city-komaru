@@ -8,10 +8,13 @@ body
 	-webkit-text-size-adjust: 100%;
 	line-height: 1.75;
 }
+
 body * {
 	box-sizing: border-box;
 }
+
 /* font */
+
 .lato,
 #co2aday-wrapper {
 	font-family: 'Lato', sans-serif;
@@ -37,6 +40,7 @@ hr {
 }
 
 /* wrapper */
+
 #wrapper
 {
 	width: 1000px;
@@ -117,6 +121,7 @@ body:not(.toppage) #site-footer {
 }
 
 /* logo */
+
 #logo {
 	font-size: 1.25rem;
 	font-weight: 600;
@@ -238,10 +243,13 @@ body:not(.toppage) #site-footer {
 }
 
 /* main */
+
 #main {
 	clear: both;
 }
+
 /* heading */
+
 h1, h2, h3, h4, h5, h6,
 .heading {
 	line-height: 1.5;
@@ -274,6 +282,7 @@ body:not(.toppage) .h2 {
 }
 
 /* list */
+
 ul {
 	list-style: none;
 	padding-left: 0;
@@ -380,8 +389,8 @@ table caption {
 	background: #fff;
 }
 
-
 /* form */
+
 input[type=text],
 textarea {
 	-webkit-appearance: none;
@@ -443,6 +452,7 @@ form strong {
 }
 
 /* toppage */
+
 #toppage-image {
 	position: relative;
 	text-align: center;
@@ -551,6 +561,7 @@ form strong {
 }
 
 /* -- message */
+
 #toppage-message {
 	position: relative;
 	z-index: 0;
@@ -648,6 +659,14 @@ form strong {
 	margin-bottom: 30px;
 	font-size: 1.2em;
 	border-bottom: 1px #ccc solid;
+}
+
+/* movie */
+
+.movie
+{
+	text-align: center;
+	padding: 0 0 25px;
 }
 
 /* your-effort-table */
@@ -787,6 +806,7 @@ form strong {
 }
 
 /* resister */
+
 #form-registration {
 	margin-top: calc( 1.5rem + 20px + 30px );
 	padding: 12px 40px 32px;
@@ -826,6 +846,13 @@ form strong {
 }
 #form-registration #renew-area {
 	display: none;
+}
+
+/* signature */
+
+.sig
+{
+	text-align: right;
 }
 
 /* visually hidden */

@@ -54,7 +54,7 @@
 	<?php echoPracticeHtml('1.3.1c') ?>
 </div>
 
-<?php echoPracticeHtml('1.2') ?>
+<div class="movie"><?php echoPracticeHtml('1.2') ?></div>
 
 <div id="toppage-bottom" class="full-width">
 	<div id="toppage-bottom-inner" class="inner-wrapper">
@@ -70,7 +70,7 @@
 			<div class="content">
 				<h2>駒瑠市の本日のCO<sub>2</sub>排出量</h2>
 				<?php echoPracticeHtml('2.2.2') ?>
-				<?php echoPracticeHtml('1.4.5') ?>
+				<?php echoPracticeHtml('1.4.5a') ?>
 			</div>
 		</section>
 	</div>

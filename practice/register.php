@@ -42,6 +42,8 @@
 <h2>駒瑠市市長からのご挨拶</h2>
 
 <audio src="./audio/greeting.mp3" controls></audio>
+<?php echoPracticeHtml('1.2.1') ?>
+<?php echoPracticeHtml('1.4.5b') ?>
 
 <h2>駒瑠市エコサポーター</h2>
 
