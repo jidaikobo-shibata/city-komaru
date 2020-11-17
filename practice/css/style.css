@@ -198,6 +198,9 @@ body:not(.toppage) #site-footer {
 	border-bottom: 1px solid #CCCCCC;
 	background-color: #fff;
 }
+.menu-list > li::before {
+	content: none !important;
+}
 .menu-list a {
 	position: relative;
 	display: block;
@@ -251,8 +254,9 @@ body:not(.toppage) #site-footer {
 /* heading */
 
 h1, h2, h3, h4, h5, h6,
-.heading {
+.h1, .h2, .h3, .h4, .h5, .h6 {
 	line-height: 1.5;
+	font-weight: 600;
 }
 #page-header {
 	padding: 66px 0;
@@ -270,6 +274,7 @@ h1, h2, h3, h4, h5, h6,
 #page-header .heading {
 	margin: 0 auto;
 	font-size: 1em;
+	font-weight: bold;
 }
 body:not(.toppage) h2,
 body:not(.toppage) .h2 {
@@ -277,7 +282,6 @@ body:not(.toppage) .h2 {
 	padding: 10px 20px 10px 30px;
 	color: #fff;
 	background-color: #E83828;
-	font-weight: 600;
 	font-size: 1.25rem;
 }
 
@@ -294,7 +298,7 @@ ul > li {
 ul > li + li {
 	margin-top: .375em;
 }
-ul > li::before {
+ul:not(.nomarker) > li::before {
 	content: '';
 	display: block;
 	width: 0;
@@ -305,10 +309,10 @@ ul > li::before {
 	left: 0;
 	top: calc( .875em - 4px );
 }
-ul ul > li::before {
+ul:not(.nomarker) ul:not(.nomarker) > li::before {
 	border-color: #ccc;
 }
-ul ul ul > li::before {
+ul:not(.nomarker) ul:not(.nomarker) ul:not(.nomarker) > li::before {
 	border-radius: 0;
 	border-width: 2px 4px;
 	top: calc( .875em - 1px );
@@ -337,6 +341,22 @@ ul.nomarker > li {
 ul.nomarker > li::before {
 	content: none;
 }
+ul#process {
+	counter-reset: process;
+}
+ul#process > li {
+	padding-left: 2em;
+	text-indent: -2.2em;
+}
+ul#process > li::before {
+	counter-increment: process;
+  content: counter(process)".";
+	display: inline-block;
+	min-width: 2em;
+	margin-right: .2em;
+	text-align: right;
+}
+
 ol {
 	padding-left: 2em;
 }

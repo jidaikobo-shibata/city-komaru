@@ -3,6 +3,7 @@
 <head>
 <?php include(__DIR__.'/inc_header.php'); ?>
 <?php echoPracticeHtml('2.4.2') ?>
+<?php echoPracticeHtml('1.3.1e')?>
 </head>
 <body class="fact">
 <div id="outer-wrapper">
@@ -32,26 +33,26 @@
 <main id="main">
 <div id="page-header" class="full-width">
 	<div class="inner-wrapper">
-		<h1 class="heading">温暖化の状況</h1>
+		<<?php echo isset($h_element) ? $h_element : 'h1' ?> class="heading">温暖化の状況</<?php echo isset($h_element) ? $h_element : 'h1' ?>>
 	</div>
 </div>
 
-<h2>世界の平均気温の上昇</h2>
+<<?php echo isset($h_element) ? $h_element.' class="h2"' : 'h2' ?>>世界の平均気温の上昇</<?php echo isset($h_element) ? $h_element : 'h2' ?>>
 <p>気候変動に関する政府間パネル（IPCC）の第5次評価報告書によると、世界の平均気温は、1880年から2012年にかけて、0.85℃上昇しています。</p>
 
 <?php echoPracticeHtml('1.1.1c') ?>
 
-<h2><?php echoPracticeHtml('2.4.6a') ?></h2>
+<<?php echo isset($h_element) ? $h_element.' class="h2"' : 'h2' ?>><?php echoPracticeHtml('2.4.6a') ?></<?php echo isset($h_element) ? $h_element : 'h2' ?>>
 
 <?php echoPracticeHtml('1.2.1b') ?>
 
 <p><img src="./images/mechanism_gif_small.gif" alt="温暖化のメカニズムを説明したGIFアニメ"></p>
 
-<h2>各地の気温の上昇</h2>
+<<?php echo isset($h_element) ? $h_element.' class="h2"' : 'h2' ?>>各地の気温の上昇</<?php echo isset($h_element) ? $h_element : 'h2' ?>>
 <p>温暖化対策をとらないまま、現在のペースで温暖化が進むと、日本の各都市の真夏日の日数が増加することが予測されています。東京では、現在、年間約46日の真夏日がありますが、21世紀末には年間約103日が真夏日になると言われています。</p>
 <?php echoPracticeHtml('1.3.1b') ?>
 
-<h2>教材の貸し出し</h2>
+<<?php echo isset($h_element) ? $h_element.' class="h2"' : 'h2' ?>>教材の貸し出し</<?php echo isset($h_element) ? $h_element : 'h2' ?>>
 
 <p>学校、企業などで地球温暖化について学ぶための資料の貸出を行っております。以下手順で申請してください。</p>
 <?php echoPracticeHtml('1.3.1a') ?>
