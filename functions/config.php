@@ -73,8 +73,14 @@ function getCodePatterns ()
 		$critetrion = $codes[0];
 		$error = $codes[1];
 		if ( ! isset($code_pattern[$critetrion])) $code_pattern[$critetrion] = array();
-
 		$code_pattern[$critetrion][] = $error;
+	}
+	foreach($code_pattern as $k => $v)
+	{
+		usort($v, function($a, $b){
+			return strnatcmp(str_replace('ok', '_ok', $a), str_replace('ok', '_ok', $b));
+		});
+		$code_pattern[$k] = $v;
 	}
 	return $code_pattern;
 }
@@ -98,6 +104,5 @@ function getCodePatternMessages ()
 			$messages[$k][$vv] = trim($ms[1]);
 		}
 	}
-
 	return $messages;
 }

@@ -43,7 +43,6 @@ $html.= '<ul>';
 $patterns = \Kontiki\Util::s(getCodePatternMessages());
 foreach ($patterns as $cat => $messages):
 	$html.= '<li>'.$cat.'<ul>';
-	$messages = array_reverse($messages); //ファイル名の並びはOKが最後になっているので
 	$n = 0;
 	foreach ($messages as $file => $message):
 		$checked = $n == 0 ? ' checked="checked"' : '';
