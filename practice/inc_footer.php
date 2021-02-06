@@ -14,6 +14,8 @@ City of Komaru. All rights reserved.</p>
 <div class="content">
 <?php echoPracticeHtml('1.1.1a', 'index') ?>
 <?php echoPracticeHtml('2.4.7', $file) ?>
+<?php echoPracticeHtml('1.4.1b', $file) ?>
+<?php echoPracticeHtml('1.4.3c', $file) ?>
 
 </div>
 </div>

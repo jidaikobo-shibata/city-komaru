@@ -46,7 +46,10 @@
 
 <?php echoPracticeHtml('1.2.1b') ?>
 
-<p><img src="./images/mechanism_gif_small.gif" alt="温暖化のメカニズムを説明したGIFアニメ"></p>
+<details open="open">
+<summary>アニメーション表示切り替え</summary>
+<img src="./images/mechanism_gif_small.gif" alt="温暖化のメカニズムを説明したGIFアニメ">
+</details>
 
 <<?php echo isset($h_element) ? $h_element.' class="h2"' : 'h2' ?>>各地の気温の上昇</<?php echo isset($h_element) ? $h_element : 'h2' ?>>
 <p>温暖化対策をとらないまま、現在のペースで温暖化が進むと、日本の各都市の真夏日の日数が増加することが予測されています。東京では、現在、年間約46日の真夏日がありますが、21世紀末には年間約103日が真夏日になると言われています。</p>
