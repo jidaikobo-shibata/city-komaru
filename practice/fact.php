@@ -38,7 +38,7 @@
 </div>
 
 <<?php echo isset($h_element) ? $h_element.' class="h2"' : 'h2' ?>>世界の平均気温の上昇</<?php echo isset($h_element) ? $h_element : 'h2' ?>>
-<p>気候変動に関する政府間パネル（IPCC）の第5次評価報告書によると、世界の平均気温は、1880年から2012年にかけて、0.85℃上昇しています。</p>
+<p>気候変動に関する政府間パネル（<abbr title="Intergovernmental Panel on Climate Change">IPCC</abbr>）の第5次評価報告書によると、世界の平均気温は、1880年から2012年にかけて、0.85℃上昇しています。</p>
 
 <?php echoPracticeHtml('1.1.1c') ?>
 
