@@ -259,9 +259,9 @@ h1, h2, h3, h4, h5, h6,
 	font-weight: 600;
 }
 #page-header {
-	padding: 66px 0;
+	padding: 20px 0;
 	text-align: center;
-	color: #fff;
+	color: #1f1f1f;
 	font-size: 2.5rem;
 	background-color: #4CC2EE;
 	background-image: url(../images/bg_pageheader.jpg);
@@ -270,6 +270,30 @@ h1, h2, h3, h4, h5, h6,
 	background-position: center center;
 	-webkit-font-smoothing: antialiased;
 	line-height: 1.2;
+	display: flex;
+}
+#page-header .inner-wrapper {
+	padding-top: 46px;
+	padding-bottom: 46px;
+	position: relative;
+	z-index: 0;
+	height: 100%;
+}
+#page-header .inner-wrapper::before {
+	content: '';
+	display: block;
+	background-color: rgba( 255, 255, 255, .7 );
+	border-radius: 10px ;
+	width: calc( 100% - 33px );
+	height: calc( 100% - 33px );
+	max-width: 750px;
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	margin: auto;
+	z-index: -1;
 }
 #page-header .heading {
 	margin: 0 auto;
@@ -695,7 +719,7 @@ form strong {
 {
 	width: 100%;
 	font-size: 150%;
-	background-color: #e83828;
+	background-color: #de201e;
 	color: #fff;
 	border-spacing: 20px;
 	margin: 50px auto;
@@ -721,6 +745,17 @@ form strong {
 #your-effort-table.alt-out td img
 {
 	margin: 0 0 10px 0;
+}
+
+/* your-effort-table[role=grid] */
+#your-effort-table[role=grid] {
+	margin: 0;
+}
+#your-effort-table[role=grid] tr {
+	display: grid;
+	grid-template-columns: repeat(4, auto);
+	grid-template-rows: 100%;
+	grid-gap: 17px;
 }
 
 /* your-effort */

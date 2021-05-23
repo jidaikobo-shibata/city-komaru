@@ -1,0 +1,476 @@
+{
+	"1.1.1" : {
+		"level" : "A",
+		"name"  : "非テキストコンテンツ",
+		"url20" : "text-equiv-all",
+		"url21" : "non-text-content"
+	},
+	"1.2" : {
+		"level" : "A",
+		"name"  : "時間依存メディア",
+		"url20" : "",
+		"url21" : ""
+	},
+	"1.2.1" : {
+		"level" : "A",
+		"name"  : "音声のみ及び映像のみ (収録済)",
+		"url20" : "media-equiv-av-only-alt",
+		"url21" : "audio-only-and-video-only-prerecorded"
+	},
+	"1.2.2" : {
+		"level" : "A",
+		"name"  : "キャプション (収録済)",
+		"url20" : "media-equiv-captions",
+		"url21" : "captions-prerecorded"
+	},
+	"1.2.3" : {
+		"level" : "A",
+		"name"  : "音声解説、又はメディアに対する代替 (収録済)",
+		"url20" : "media-equiv-audio-desc",
+		"url21" : "audio-description-or-media-alternative-prerecorded"
+	},
+	"1.2.4" : {
+		"level" : "AA",
+		"name"  : "キャプション (ライブ)",
+		"url20" : "media-equiv-real-time-captions",
+		"url21" : "captions-live"
+	},
+	"1.2.5" : {
+		"level" : "AA",
+		"name"  : "音声解説 (収録済)",
+		"url20" : "media-equiv-audio-desc-only",
+		"url21" : "audio-description-prerecorded"
+	},
+	"1.2.6" : {
+		"level" : "AAA",
+		"name"  : "手話 (収録済)",
+		"url20" : "media-equiv-sign",
+		"url21" : "sign-language-prerecorded"
+	},
+	"1.2.7" : {
+		"level" : "AAA",
+		"name"  : "拡張音声解説 (収録済)",
+		"url20" : "media-equiv-extended-ad",
+		"url21" : "extended-audio-description-prerecorded"
+	},
+	"1.2.8" : {
+		"level" : "AAA",
+		"name"  : "メディアに対する代替 (収録済)",
+		"url20" : "media-equiv-text-doc",
+		"url21" : "media-alternative-prerecorded"
+	},
+	"1.2.9" : {
+		"level" : "AAA",
+		"name"  : "音声のみ (ライブ)",
+		"url20" : "media-equiv-live-audio-only",
+		"url21" : "audio-only-live"
+	},
+	"1.3.1" : {
+		"level" : "A",
+		"name"  : "情報及び関係性",
+		"url20" : "content-structure-separation-programmatic",
+		"url21" : "info-and-relationships"
+	},
+	"1.3.2" : {
+		"level" : "A",
+		"name"  : "意味のある順序",
+		"url20" : "content-structure-separation-sequence",
+		"url21" : "meaningful-sequence"
+	},
+	"1.3.3" : {
+		"level" : "A",
+		"name"  : "感覚的な特徴",
+		"url20" : "content-structure-separation-understanding",
+		"url21" : "sensory-characteristics"
+	},
+	"1.3.4" : {
+		"level" : "AA",
+		"name"  : "表示の向き",
+		"url20" : "visual-audio-contrast",
+		"url21" : "orientation"
+	},
+	"1.3.5" : {
+		"level" : "AA",
+		"name"  : "入力目的の特定",
+		"url20" : "",
+		"url21" : "identify-input-purpose"
+	},
+	"1.3.6" : {
+		"level" : "AAA",
+		"name"  : "目的の特定",
+		"url20" : "",
+		"url21" : "identify-purpose"
+	},
+	"1.4.1" : {
+		"level" : "A",
+		"name"  : "色の使用",
+		"url20" : "visual-audio-contrast-without-color",
+		"url21" : "use-of-color"
+	},
+	"1.4.2" : {
+		"level" : "A",
+		"name"  : "音声の制御",
+		"url20" : "visual-audio-contrast-dis-audio",
+		"url21" : "audio-control"
+	},
+	"1.4.3" : {
+		"level" : "AA",
+		"name"  : "コントラスト (最低限)",
+		"url20" : "visual-audio-contrast-contrast",
+		"url21" : "contrast-minimum"
+	},
+	"1.4.4" : {
+		"level" : "AA",
+		"name"  : "テキストのサイズ変更",
+		"url20" : "visual-audio-contrast-scale",
+		"url21" : "resize-text"
+	},
+	"1.4.5" : {
+		"level" : "AA",
+		"name"  : "文字画像",
+		"url20" : "visual-audio-contrast-text-presentation",
+		"url21" : "images-of-text"
+	},
+	"1.4.6" : {
+		"level" : "AAA",
+		"name"  : "コントラスト (高度)",
+		"url20" : "visual-audio-contrast7",
+		"url21" : "contrast-enhanced"
+	},
+	"1.4.7" : {
+		"level" : "AAA",
+		"name"  : "小さな背景音、又は背景音なし",
+		"url20" : "visual-audio-contrast-noaudio",
+		"url21" : "low-or-no-background-audio"
+	},
+	"1.4.8" : {
+		"level" : "AAA",
+		"name"  : "視覚的提示",
+		"url20" : "visual-audio-contrast-visual-presentation",
+		"url21" : "visual-presentation"
+	},
+	"1.4.9" : {
+		"level" : "AAA",
+		"name"  : "文字画像 (例外なし)",
+		"url20" : "visual-audio-contrast-text-images",
+		"url21" : "images-of-text-no-exception"
+	},
+	"1.4.10" : {
+		"level" : "AA",
+		"name"  : "リフロー",
+		"url20" : "",
+		"url21" : "reflow"
+	},
+	"1.4.11" : {
+		"level" : "AA",
+		"name"  : "非テキストのコントラスト",
+		"url20" : "",
+		"url21" : "non-text-contrast"
+	},
+	"1.4.12" : {
+		"level" : "AA",
+		"name"  : "テキストの間隔",
+		"url20" : "",
+		"url21" : "text-spacing"
+	},
+	"1.4.13" : {
+		"level" : "AA",
+		"name"  : "ホバー又はフォーカスで表示されるコンテンツ",
+		"url20" : "",
+		"url21" : "content-on-hover-or-focus"
+	},
+	"2.1.1" : {
+		"level" : "A",
+		"name"  : "キーボード",
+		"url20" : "keyboard-operation-keyboard-operable",
+		"url21" : "keyboard"
+	},
+	"2.1.2" : {
+		"level" : "A",
+		"name"  : "キーボードトラップなし",
+		"url20" : "keyboard-operation-trapping",
+		"url21" : "no-keyboard-trap"
+	},
+	"2.1.3" : {
+		"level" : "AAA",
+		"name"  : "キーボード (例外なし)",
+		"url20" : "keyboard-operation-all-funcs",
+		"url21" : "keyboard-no-exception"
+	},
+	"2.1.4" : {
+		"level" : "A",
+		"name"  : "文字キーのショートカット",
+		"url20" : "",
+		"url21" : "character-key-shortcuts"
+	},
+	"2.2.1" : {
+		"level" : "A",
+		"name"  : "タイミング調整可能",
+		"url20" : "time-limits-required-behaviors",
+		"url21" : "timing-adjustable"
+	},
+	"2.2.2" : {
+		"level" : "A",
+		"name"  : "一時停止、停止、非表示",
+		"url20" : "time-limits-pause",
+		"url21" : "pause-stop-hide"
+	},
+	"2.2.3" : {
+		"level" : "AAA",
+		"name"  : "タイミング非依存",
+		"url20" : "time-limits-no-exceptions",
+		"url21" : "no-timing"
+	},
+	"2.2.4" : {
+		"level" : "AAA",
+		"name"  : "割り込み",
+		"url20" : "time-limits-postponed",
+		"url21" : "interruptions"
+	},
+	"2.2.5" : {
+		"level" : "AAA",
+		"name"  : "再認証",
+		"url20" : "time-limits-server-timeout",
+		"url21" : "re-authenticating"
+	},
+	"2.2.6" : {
+		"level" : "AAA",
+		"name"  : "タイムアウト",
+		"url20" : "",
+		"url21" : "timeouts"
+	},
+	"2.3.1" : {
+		"level" : "A",
+		"name"  : "3回の閃光、又は閾値以下",
+		"url20" : "seizure-does-not-violate",
+		"url21" : "three-flashes-or-below-threshold"
+	},
+	"2.3.2" : {
+		"level" : "AAA",
+		"name"  : "3回の閃光",
+		"url20" : "seizure-three-times",
+		"url21" : "three-flashes"
+	},
+	"2.3.3" : {
+		"level" : "AAA",
+		"name"  : "インタラクションによるアニメーション",
+		"url20" : "",
+		"url21" : "animation-from-interactions"
+	},
+	"2.4.1" : {
+		"level" : "A",
+		"name"  : "ブロックスキップ",
+		"url20" : "navigation-mechanisms-skip",
+		"url21" : "bypass-blocks"
+	},
+	"2.4.2" : {
+		"level" : "A",
+		"name"  : "ページタイトル",
+		"url20" : "navigation-mechanisms-title",
+		"url21" : "page-titled"
+	},
+	"2.4.3" : {
+		"level" : "A",
+		"name"  : "フォーカス順序",
+		"url20" : "navigation-mechanisms-focus-order",
+		"url21" : "focus-order"
+	},
+	"2.4.4" : {
+		"level" : "A",
+		"name"  : "リンクの目的 (コンテキスト内)",
+		"url20" : "navigation-mechanisms-refs",
+		"url21" : "link-purpose-in-context"
+	},
+	"2.4.5" : {
+		"level" : "AA",
+		"name"  : "複数の手段",
+		"url20" : "navigation-mechanisms-mult-loc",
+		"url21" : "multiple-ways"
+	},
+	"2.4.6" : {
+		"level" : "AA",
+		"name"  : "見出し及びラベル",
+		"url20" : "navigation-mechanisms-descriptive",
+		"url21" : "headings-and-labels"
+	},
+	"2.4.7" : {
+		"level" : "AA",
+		"name"  : "フォーカスの可視化",
+		"url20" : "navigation-mechanisms-focus-visible",
+		"url21" : "focus-visible"
+	},
+	"2.4.8" : {
+		"level" : "AAA",
+		"name"  : "現在位置",
+		"url20" : "navigation-mechanisms-location",
+		"url21" : "location"
+	},
+	"2.4.9" : {
+		"level" : "AAA",
+		"name"  : "リンクの目的 (リンクのみ)",
+		"url20" : "navigation-mechanisms-link",
+		"url21" : "link-purpose-link-only"
+	},
+	"2.4.10" : {
+		"level" : "AAA",
+		"name"  : "セクション見出し",
+		"url20" : "navigation-mechanisms-headings",
+		"url21" : "section-headings"
+	},
+	"2.5.1" : {
+		"level" : "A",
+		"name"  : "ポインタのジェスチャ",
+		"url20" : "",
+		"url21" : "pointer-gestures"
+	},
+	"2.5.2" : {
+		"level" : "A",
+		"name"  : "ポインタのキャンセル",
+		"url20" : "",
+		"url21" : "pointer-cancellation"
+	},
+	"2.5.3" : {
+		"level" : "A",
+		"name"  : "名前 (name) のラベル",
+		"url20" : "",
+		"url21" : "label-in-name"
+	},
+	"2.5.4" : {
+		"level" : "A",
+		"name"  : "動きによる起動",
+		"url20" : "",
+		"url21" : "motion-actuation"
+	},
+	"2.5.5" : {
+		"level" : "AAA",
+		"name"  : "ターゲットのサイズ",
+		"url20" : "",
+		"url21" : "target-size"
+	},
+	"2.5.6" : {
+		"level" : "AAA",
+		"name"  : "入力メカニズム非依存",
+		"url20" : "",
+		"url21" : "concurrent-input-mechanisms"
+	},
+	"3.1.1" : {
+		"level" : "A",
+		"name"  : "ページの言語",
+		"url20" : "meaning-doc-lang-id",
+		"url21" : "language-of-page"
+	},
+	"3.1.2" : {
+		"level" : "AA",
+		"name"  : "一部分の言語",
+		"url20" : "meaning-other-lang-id",
+		"url21" : "language-of-parts"
+	},
+	"3.1.3" : {
+		"level" : "AAA",
+		"name"  : "一般的ではない用語",
+		"url20" : "meaning-idioms",
+		"url21" : "unusual-words"
+	},
+	"3.1.4" : {
+		"level" : "AAA",
+		"name"  : "略語",
+		"url20" : "meaning-located",
+		"url21" : "abbreviations"
+	},
+	"3.1.5" : {
+		"level" : "AAA",
+		"name"  : "読解レベル",
+		"url20" : "meaning-supplements",
+		"url21" : "reading-level"
+	},
+	"3.1.6" : {
+		"level" : "AAA",
+		"name"  : "発音",
+		"url20" : "meaning-pronunciation",
+		"url21" : "pronunciation"
+	},
+	"3.2.1" : {
+		"level" : "A",
+		"name"  : "フォーカス時",
+		"url20" : "consistent-behavior-receive-focus",
+		"url21" : "on-focus"
+	},
+	"3.2.2" : {
+		"level" : "A",
+		"name"  : "入力時",
+		"url20" : "consistent-behavior-unpredictable-change",
+		"url21" : "on-input"
+	},
+	"3.2.3" : {
+		"level" : "AA",
+		"name"  : "一貫したナビゲーション",
+		"url20" : "consistent-behavior-consistent-locations",
+		"url21" : "consistent-navigation"
+	},
+	"3.2.4" : {
+		"level" : "AA",
+		"name"  : "一貫した識別性",
+		"url20" : "consistent-behavior-consistent-functionality",
+		"url21" : "consistent-identification"
+	},
+	"3.2.5" : {
+		"level" : "AAA",
+		"name"  : "要求による変化",
+		"url20" : "consistent-behavior-no-extreme-changes-context",
+		"url21" : "change-on-request"
+	},
+	"3.3.1" : {
+		"level" : "A",
+		"name"  : "エラーの特定",
+		"url20" : "minimize-error-identified",
+		"url21" : "error-identification"
+	},
+	"3.3.2" : {
+		"level" : "A",
+		"name"  : "ラベル又は説明",
+		"url20" : "minimize-error-cues",
+		"url21" : "labels-or-instructions"
+	},
+	"3.3.3" : {
+		"level" : "AA",
+		"name"  : "エラー修正の提案",
+		"url20" : "minimize-error-suggestions",
+		"url21" : "error-suggestion"
+	},
+	"3.3.4" : {
+		"level" : "AA",
+		"name"  : "エラー回避 (法的、金融、データ)",
+		"url20" : "minimize-error-reversible",
+		"url21" : "error-prevention-legal-financial-data"
+	},
+	"3.3.5" : {
+		"level" : "AAA",
+		"name"  : "ヘルプ",
+		"url20" : "minimize-error-context-help",
+		"url21" : "help"
+	},
+	"3.3.6" : {
+		"level" : "AAA",
+		"name"  : "エラー回避 (すべて)",
+		"url20" : "minimize-error-reversible-all",
+		"url21" : "error-prevention-all"
+	},
+	"4.1.1" : {
+		"level" : "A",
+		"name"  : "構文解析",
+		"url20" : "ensure-compat-parses",
+		"url21" : "parsing"
+	},
+	"4.1.2" : {
+		"level" : "A",
+		"name"  : "名前 (name) ・役割 (role) 及び値 (value)",
+		"url20" : "ensure-compat-rsv",
+		"url21" : "name-role-value"
+	},
+	"4.1.3" : {
+		"level" : "AA",
+		"name"  : "ステータスメッセージ",
+		"url20" : "",
+		"url21" : "status-messages"
+	}
+}

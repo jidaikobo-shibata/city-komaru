@@ -1,32 +1,32 @@
-<?php require ('../functions/init.php'); ?><!DOCTYPE html>
-<?php echoPracticeHtml('3.1.1') ?>
+<?php require ('../system/init.php'); ?><!DOCTYPE html>
+<?php komaruHtml('3.1.1') ?>
 <head>
 <?php include(__DIR__.'/inc_header.php'); ?>
-<?php echoPracticeHtml('2.4.2') ?>
+<?php komaruHtml('2.4.2') ?>
 </head>
 <body class="register">
-<?php echoPracticeHtml('1.4.2') ?>
+<?php komaruHtml('1.4.2') ?>
 <div id="outer-wrapper">
 <div id="wrapper">
 <header id="site-header">
 <div class="inner-wrapper">
 	<div id="utilities">
-	<?php echoPracticeHtml('2.4.1') ?>
-	<?php echoPracticeHtml('2.4.5') ?>
+	<?php komaruHtml('2.4.1') ?>
+	<?php komaruHtml('2.4.5') ?>
 	</div>
-	<div id="logo"><a href="./"><?php echoPracticeHtml('1.1.1b') ?> 地球温暖化防止課</a></div>
+	<div id="logo"><a href="./<?php echo \Komarushi\Main::modeString() ?>"><?php komaruHtml('1.1.1b') ?> 地球温暖化防止課</a></div>
 	<div id="menu">
-		<?php echoPracticeHtml('3.2.3') ?>
+		<?php komaruHtml('3.2.3') ?>
 		<nav id="langage-nav">
 			<button type="button" class="bttn-menu bttn" id="bttn-lang" aria-expanded="false" aria-controls="lang-menu" title="Language"><span class="fa fa-globe" aria-hidden="true"></span><span class="visually-hidden" lang="en">Language</span></button>
 			<div id="wrapper-lang-menu" class="wrapper-menu">
 				<ul id="lang-menu" class="menu-list" style="display:none">
-					<?php echoPracticeHtml('3.1.2a') ?>
+					<?php komaruHtml('3.1.2') ?>
 				</ul>
 			</div>
 		</nav>
-		<?php echoPracticeHtml('2.1.1a') ?>
-		<?php echoPracticeHtml('2.4.3') ?>
+		<?php komaruHtml('2.1.1a') ?>
+		<?php komaruHtml('2.4.3') ?>
 	</div>
 </div>
 </header>
@@ -42,8 +42,8 @@
 <h2>駒瑠市市長からのご挨拶</h2>
 
 <audio src="./audio/greeting.mp3" controls></audio>
-<?php echoPracticeHtml('1.2.1a') ?>
-<?php echoPracticeHtml('1.4.5b') ?>
+<?php komaruHtml('1.2.1a') ?>
+<?php komaruHtml('1.4.5b') ?>
 
 <h2>駒瑠市エコサポーター</h2>
 
@@ -57,8 +57,8 @@
 <input type="radio" name="type" id="registration-new" value="new" data-target="new-area" checked="checked" /><label for="registration-new">新規登録</label>
 <input type="radio" name="type" id="registration-renew" value="renew" data-target="renew-area" /><label for="registration-renew">登録内容変更</label>
 </fieldset>
-<?php echoPracticeHtml('1.4.1a') ?>
-<?php echoPracticeHtml('3.2.1', 'register') ?>
+<?php komaruHtml('1.4.1a') ?>
+<?php komaruHtml('3.2.1', 'register') ?>
 
 <p><label for="registration-captcha">画像に表示されている文字を入力してください。</label><br>
 <img src="./images/captcha.png" width="300" height="80" alt="画像"><br>
@@ -74,7 +74,7 @@ jQuery (function($){
 			flg = false;
 	const areas = area_show.add(area_hide);
 	toggle_area();
-<?php echoPracticeHtml('3.2.2a') ?>
+<?php komaruHtml('3.2.2a') ?>
 	$('input[name=type]').change(function(){
 		toggle_area($('#'+$(this).data('target')));
 	});
@@ -92,7 +92,7 @@ jQuery (function($){
 	}
 });
 </script>
-<?php echoPracticeHtml('2.2.1a') ?>
+<?php komaruHtml('2.2.1a') ?>
 
 </div>
 </main>
