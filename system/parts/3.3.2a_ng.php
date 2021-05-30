@@ -8,7 +8,7 @@
 
 <p><textarea name="content" id="content" cols="35" rows="7" placeholder="お問い合わせ内容※"></textarea></p>
 
-<?php komaruHtml('3.2.1') ?>
+<?php komaruHtml('3.2.1a') ?>
 
 <input type="submit" value="送信" />
 </form>

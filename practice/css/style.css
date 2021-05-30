@@ -495,6 +495,14 @@ form strong {
 	color: #de1300;
 }
 
+/* error_exists */
+
+#error_exists
+{
+	border:1px #de1300 solid;
+	padding: 30px;
+}
+
 /* toppage */
 
 #toppage-image {

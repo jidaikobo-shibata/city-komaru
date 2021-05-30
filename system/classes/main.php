@@ -23,7 +23,7 @@ class Main
 	/**
 	 * construct
 	 * set constant:
-	 * KOMARUSHI_PARTS_PATH, KOMARUSHI_PRESETS_PATH, KOMARUSHI_PRESET
+	 * KOMARUSHI_PARTS_PATH, KOMARUSHI_PRESETS_PATH, KOMARUSHI_PRESET, KOMARUSHI_CRITERIA
 	 * @return Void
 	 */
 	public static function forge()
@@ -46,12 +46,16 @@ class Main
 			if ($str = file_get_contents($v))
 			{
 				if ( ! preg_match('/\/\*(.+?)\*\//is', $str, $ms)) continue;
-				static::$message_presets[$presetname] = trim($ms[1]);
+				static::$message_presets[$presetname] = explode("::", trim($ms[1]));
 			};
 		}
-		$preset = \kontiki\Input::get('preset');
+		$preset = \kontiki\Input::get('preset', \kontiki\Input::post('preset')); // post or get
 		$preset = in_array($preset, $presets) ? $preset : '' ;
 		define('KOMARUSHI_PRESET', $preset);
+
+		// criteria
+		$criteria = \kontiki\Input::get('criteria', \kontiki\Input::post('criteria')); // post or get
+		define('KOMARUSHI_CRITERIA', $criteria);
 
 		// current test pattern
 		$test_pattern_code = \Kontiki\Input::cookie('test_pattern_code');
@@ -187,7 +191,21 @@ class Main
 	 */
 	public static function modeString()
 	{
-		return empty(KOMARUSHI_PRESET) ? '' : '?preset='.KOMARUSHI_PRESET;
+		$mode_strings = [];
+		$mode_string = '';
+		if ( ! empty(KOMARUSHI_PRESET))
+		{
+			$mode_strings[] = 'preset='.KOMARUSHI_PRESET;
+		}
+		if ( ! empty(KOMARUSHI_CRITERIA))
+		{
+			$mode_strings[] = 'criteria='.KOMARUSHI_CRITERIA;
+		}
+		if ( ! empty($mode_strings))
+		{
+			$mode_string = '?'.join('&amp;', $mode_strings);
+		}
+		return $mode_string;
 	}
 
 	/**
@@ -208,6 +226,35 @@ class Main
 		if ( ! empty(KOMARUSHI_PRESET))
 		{
 			$retval = include(KOMARUSHI_PRESETS_PATH.KOMARUSHI_PRESET.'.php');
+		}
+
+		// criteria overwrite
+		if ( ! empty(KOMARUSHI_CRITERIA))
+		{
+			$criteria = [];
+			$given_criteria = explode(',', KOMARUSHI_CRITERIA);
+			foreach ($given_criteria as $criterion)
+			{
+				// アンダーバーがある時はエラーまで特定したい時
+				$each_criterions = explode('_', $criterion);
+				if (count($each_criterions) >= 2)
+				{
+					if ( ! isset(self::getCodePatterns()[$each_criterions[0]])) continue;
+					if ( ! in_array($each_criterions[1], self::getCodePatterns()[$each_criterions[0]])) continue;
+					$retval[$each_criterions[0]] = $each_criterions[1];
+					continue;
+				}
+				else
+				{
+					// アンダーバーがないので、達成基準をまとめて指定したいパターン。最初のNGのみ
+					foreach (self::getCodePatterns() as $k => $v)
+					{
+						if (strpos($k, $each_criterions[0]) === false) continue;
+						if ( ! isset($v[1])) continue;
+						$retval[$k] = $v[1];
+					}
+				}
+			}
 		}
 
 		$oks = array();

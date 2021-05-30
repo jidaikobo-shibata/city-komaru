@@ -1,6 +1,6 @@
 <?php /* CO₂カウンタの自動更新を止めるボタンがあり機能する */ ?>
 <?php
-komaruHtml('1.4.3'); // コントラスト問題
+komaruHtml('1.4.3a'); // コントラスト問題
 ?>
 <div id="co2aday-wrapper">
 <span id="co2aday"></span><span class="unit">t</span>

@@ -19,7 +19,7 @@ endforeach;;
 </div>
 <div class="content">
 <?php komaruHtml('1.1.1a') ?>
-<?php komaruHtml('2.4.7') ?>
+<?php komaruHtml('2.4.7a') ?>
 <?php komaruHtml('1.4.1b') ?>
 <?php komaruHtml('1.4.3c') ?>
 <?php komaruHtml('1.4.3d') ?>

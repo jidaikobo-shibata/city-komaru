@@ -4,7 +4,8 @@
 	max-width: 90vw;
 }
 #co2aday-area .has_image {
-	width: 16.875rem;
+/*	width: 16.875rem;*/
+	width: 14rem;
 }
 #co2aday-area .komaru {
 	position: absolute;

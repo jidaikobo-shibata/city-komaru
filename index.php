@@ -10,6 +10,11 @@ $test_pattern_str = \Komarushi\Main::generateTestPatternCode();
 	<meta charset="utf-8">
 	<title>駒瑠市〜アクセシビリティ上の問題の体験サイト〜</title>
 	<style type="text/css">
+		#preset li p
+		{
+			margin: 0 0 0.8em;
+		}
+
 		#readme_vendor li
 		{
 			margin: 0;
@@ -64,15 +69,15 @@ $test_pattern_str = \Komarushi\Main::generateTestPatternCode();
 <h2>障壁（バリア）の設定</h2>
 
 <h3>プリセット版 駒瑠市</h3>
-<p>問題をあらかじめ設定（プリセット）した駒瑠市サイトです。これから数を増やしていきますが、しばらくはカスタマイズ版のほうが使いやすいです。</p>
+<p>問題をあらかじめ設定（プリセット）した駒瑠市サイトです。カスタマイズ版にのみ存在する障壁もあります。</p>
 
 <?php
 $presets = \Kontiki\Util::s(\Komarushi\Main::$message_presets);
 $preset_html = '';
-$preset_html.= '<ul>';
+$preset_html.= '<ul id="preset">';
 foreach ($presets as $k => $v):
 	if ($k[0] == '_') continue;
-	$preset_html.= '<li><a href="practice/?preset='.\Kontiki\Util::s($k).'">'.$v.'</a></li>';
+	$preset_html.= '<li><a href="practice/?preset='.\Kontiki\Util::s($k).'">'.$v[0].'</a><p>'.$v[1].'</p></li>';
 endforeach;
 $preset_html.= '</ul>';
 echo $preset_html;
@@ -127,7 +132,8 @@ foreach ($patterns as $cat => $messages):
 		$n++;
 		$cat4post = str_replace('.', '_', $cat);
 		$html.= '<li><label><input'.$checked.' type="radio" name="'.$cat4post.'" value="'.$file.'">';
-		$status = strpos($file, 'ok') !== false ? 'OK' : 'NG';
+//		$status = strpos($file, 'ok') !== false ? 'OK' : 'NG';
+		$status = \Kontiki\Util::s(strtoupper($file));
 		$html.= $status.': '.$message.'</label></li>';
 	endforeach;
 	$html.= '</ul></li>';
@@ -147,7 +153,7 @@ echo $html;
 <p><input type="submit" name="gen_test_pattern_code" value="障壁パターンコードを生成"></p>
 </form>
 
-<h4>障壁パターンコードがある場合</h4>
+<h4 id="test-pattern-str-exists">障壁パターンコードがある場合</h4>
 <form action="" method="POST">
 <?php if (empty($test_pattern_str)): ?>
 <p><label for="test_pattern_code">障壁パターンコードを入力してください</label></p>
@@ -186,6 +192,16 @@ $(function() {
 	}
 });
 </script>
+
+<h2 id="customize-by-url">URLによるカスタマイズ</h2>
+
+<p><code>?criteria=</code>の形式のURLを使うことで、個別に障壁や達成事例を設定できます。<code>criteria</code>が受け付けるのは、以下のような形式です。</p>
+
+<ul>
+	<li><a href="./practice/?criteria=2.2.2">2.2.2全般の不具合を確認する（?criteria=2.2.2）</a></li>
+	<li><a href="./practice/register.php?criteria=2.2.1a_ok2">簡単な操作で制限時間を延長できる（?criteria=2.2.1a_ok2）</a></li>
+	<li><a href="./practice/register.php?criteria=3.3.1a_ok,3.3.3a_ng">エラーの特定ができるが、エラー修正の提案ができていない（?criteria=3.3.1a_ok,3.3.3a_ng）</a></li>
+</ul>
 
 <h2>注意事項</h2>
 <ul>
