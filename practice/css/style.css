@@ -28,7 +28,16 @@ figure {
 img {
 	height: auto;
 }
-
+iframe {
+	border: none;
+	margin: auto;
+}
+audio {
+	display: block;
+	width: 345px;
+	max-width: 100%;
+	margin: 1em 0;
+}
 strong, em {
 	color: #E83828;
 	font-style: normal;
@@ -64,6 +73,9 @@ hr {
 }
 body:not(.toppage) #site-footer {
 	margin-top: 100px;
+}
+#site-footer a {
+	color: #3838BF;
 }
 #site-footer .col {
 	display: flex;
@@ -384,6 +396,50 @@ ul#process > li::before {
 ol {
 	padding-left: 2em;
 }
+
+.toc {
+	display: flex;
+	padding: 0;
+	align-items: stretch;
+	flex-wrap: wrap;
+	margin: 38px 0 50px -8px;
+}
+.toc > * {
+	margin: 12px 0 0 8px ;
+	width: calc( 25% - 8px );
+}
+.toc a {
+	position: relative;
+	display: block;
+	padding: 14px 10px 38px;
+	background-color: #fef2f1;
+	border-radius: 5px;
+	text-align: center;
+	color: inherit;
+	font-weight: 600;
+	text-decoration: none;
+}
+.toc a::after {
+	content: '';
+	display: block;
+	width: 6px;
+	height: 6px;
+	border: 2px solid #E83828;
+	border-top: none;
+	border-left: none;
+	margin: auto auto 0;
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 18px;
+	transform: rotate(45deg) ;
+	transition: bottom .2s;
+}
+.toc a:hover::after,
+.toc a:focus::after {
+	bottom: 14px;
+}
+
 /* table */
 table caption {
 	font-weight: bold;
@@ -443,6 +499,10 @@ textarea {
 	border: 1px solid #ccc;
 	vertical-align: middle;
 	max-width: 100%;
+	tab-size: 4;
+}
+textarea {
+	resize: vertical;
 }
 button,
 [type=submit],
@@ -493,6 +553,66 @@ button:not([type=button]) {
 form em,
 form strong {
 	color: #de1300;
+}
+
+#feedback {
+	margin-top: 5em;
+}
+#feedback form {
+	padding: 30px;
+	background-color: #f3f3f3;
+}
+#feedback form .heading {
+	display: block;
+	margin: 20px 0 18px;
+	background: none;
+	color: inherit;
+	font-size: 1.25rem;
+	line-height: 1;
+	font-weight: 600;
+}
+#feedback form .heading:first-child {
+	margin-top: 0;
+}
+#feedback fieldset {
+	border: none;
+	padding: 0;
+}
+#feedback .choice {
+	display: inline-block;
+	width: 21.67em;
+	max-width: 100%;
+	margin-right: 8px;
+	margin-bottom: 8px;
+	padding: 17px 24px;
+	font-size: .9375rem ;
+	background-color: #fff;
+	border-radius: 5px;
+}
+#feedback .choice input {
+	margin: 0 2px 0 0;
+}
+#feedback textarea {
+	width: 100%;
+	height: 95px;
+}
+#feedback-button {
+	display: inline-block;
+	margin: 30px 0 0;
+	padding: 14px 50px 14px 80px;
+	font-size: 1.125rem;
+	background-color: #575757;
+	background-image: url(../../images/icon_send.svg);
+	background-position: 40px center;
+	background-repeat: no-repeat;
+	color: #fff;
+	line-height: 1.25;
+	border-radius: 5px;
+}
+#feedback-button:hover,
+#feedback-button:focus,
+#feedback-button:active {
+	background-color: #000;
 }
 
 /* error_exists */
@@ -719,6 +839,15 @@ form strong {
 {
 	text-align: center;
 	padding: 0 0 25px;
+}
+
+.movie details
+{
+	margin: -25px auto 25px;
+	padding: 20px 40px;
+	border: 1px #aaa solid;
+	text-align: left;
+	width: 580px;
 }
 
 /* your-effort-table */

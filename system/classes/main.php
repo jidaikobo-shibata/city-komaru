@@ -19,6 +19,7 @@ class Main
 	public static $test_pattern = array();
 	public static $message_patterns = array();
 	public static $message_presets = array();
+	public static $is_test_pattern_code_failed = false;
 
 	/**
 	 * construct
@@ -262,6 +263,13 @@ class Main
 		{
 			$oks[$k] = $v[0];
 		}
+		if ( ! is_array($retval))
+		{
+			static::$is_test_pattern_code_failed = TRUE;
+			setcookie('test_pattern_code', base64_encode(json_encode(array())), time()+86400*7, '/');
+			return $oks;
+		}
+
 		$retval = array_merge($oks, $retval);
 		return $retval;
 	}
@@ -283,6 +291,7 @@ class Main
 			return;
 		}
 		$partfile = KOMARUSHI_PARTS_PATH.$critetrion.'_'.static::$test_pattern[$critetrion].'.php';
+
 
 		// is normal or internal call
 		$backtrace = debug_backtrace();
@@ -313,4 +322,35 @@ class Main
 		echo $html;
 	}
 
+	/**
+	 * get barrier status
+	 * @param String $barrier_id
+	 * @return String [ok, ng1...] | Bool
+	 */
+	public static function getBarrierStatus($barrier_id)
+	{
+		if ( ! isset(static::$test_pattern[$barrier_id])) return false;
+		return static::$test_pattern[$barrier_id];
+	}
+
+	/**
+	 * get preset messages
+	 * @param String $preset_id
+	 * @return Array
+	 */
+	public static function getPresetMessages($preset_id = '')
+	{
+		$message = array(
+			'title' => '',
+			'description' => '',
+		);
+		$preset_id = empty($preset_id) ? \Kontiki\Input::get('preset', '') : $preset_id;
+		$message['title'] = isset(static::$message_presets[$preset_id][0]) ?
+											  static::$message_presets[$preset_id][0] :
+											  '';
+		$message['description'] = isset(static::$message_presets[$preset_id][1]) ?
+											  static::$message_presets[$preset_id][1] :
+											  '';
+		return $message;
+	}
 }

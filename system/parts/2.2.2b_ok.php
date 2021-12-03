@@ -2,38 +2,51 @@
 <style>
 #toppage-message .text .marquee {
 	display: block;
-	animation-name: marquee;
-	animation-duration: 12s;
-	animation-timing-function: linear;
-	animation-iteration-count: infinite;
 
 	-webkit-animation-name: marquee;
 	-webkit-animation-duration: 12s;
 	-webkit-animation-timing-function: linear;
 	-webkit-animation-iteration-count: infinite;
 
-	-ms-animation-name: marquee;
-	-ms-animation-duration: 12s;
-	-ms-animation-timing-function: linear;
-	-ms-animation-iteration-count: infinite;
-
 	-moz-animation-name: marquee;
 	-moz-animation-duration: 12s;
 	-moz-animation-timing-function: linear;
 	-moz-animation-iteration-count: infinite;
 
+	-ms-animation-name: marquee;
+	-ms-animation-duration: 12s;
+	-ms-animation-timing-function: linear;
+	-ms-animation-iteration-count: infinite;
+
 	-o-animation-name: marquee;
 	-o-animation-duration: 12s;
 	-o-animation-timing-function: linear;
 	-o-animation-iteration-count: infinite;
+
+	animation-name: marquee;
+	animation-duration: 12s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+}
+@-webkit-keyframes marquee {
+  from { transform: translate(100%);}
+  to   { transform: translateX(-200%);}
+}
+@-moz-keyframes marquee {
+  from { transform: translate(100%);}
+  to   { transform: translateX(-200%);}
+}
+@-ms-keyframes marquee {
+  from { transform: translate(100%);}
+  to   { transform: translateX(-200%);}
+}
+@-o-keyframes marquee {
+  from { transform: translate(100%);}
+  to   { transform: translateX(-200%);}
 }
 @keyframes marquee {
-	from {
-		margin-left: 100%;
-	}
-	to {
-		margin-left: -63em;
-	}
+  from { transform: translate(100%);}
+  to   { transform: translateX(-200%);}
 }
 #toppage-message .text.pause .marquee {
   animation-play-state: paused;

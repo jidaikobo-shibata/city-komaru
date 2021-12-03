@@ -1,6 +1,6 @@
 <?php /* コントラストに問題があるリンクテキスト */ ?>
 <style>
-a {
+a,.toc a {
   color: #67d6ff;
 }
 </style>

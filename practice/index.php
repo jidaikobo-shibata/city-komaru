@@ -5,6 +5,7 @@
 <?php komaruHtml('2.4.2a') ?>
 </head>
 <body class="toppage">
+<?php include(__DIR__.'/inc_error.php'); ?>
 <?php komaruHtml('1.4.2a') ?>
 <div id="outer-wrapper">
 <div id="wrapper">
@@ -51,7 +52,26 @@
 	<?php komaruHtml('1.3.1c') ?>
 </div>
 
-<div class="movie"><?php komaruHtml('1.2a') ?></div>
+<div class="movie">
+	<iframe<?php komaruHtml('2.4.1c') ?> width="600" height="370" src="./inc_movie.php<?php echo \Komarushi\Main::modeString() ?>"></iframe>
+	<?php if (\Komarushi\Main::getBarrierStatus('1.2a') == 'ok3'): ?>
+	<details>
+		<summary>動画「地球温暖が防止のためにあなたができること」テキスト</summary>
+		<p>ナレータ：家庭から出る二酸化炭素の3割は照明や家電製品を使う時の電気です。</p>
+		<p>（画面には、照明器具、電子レンジ、冷蔵庫、エアコンなどの家電製品）</p>
+		<p>ナレータ：家電製品の付けっ放しを止めることから始めましょう。</p>
+		<p>（画面では、人のいない部屋の照明の消灯、エアコンのスイッチオフ。テロップでは「エアコンの利用は気温に注意し無理な我慢をしないようにしてください」）</p>
+		<p>ナレータ：自家用車からの持参か炭素の排出量は2割程度です。</p>
+		<p>（画面には、空ぶかししている乗用車。エンジンキーを回し、空ぶかしを止める様子）</p>
+		<p>ナレータ：公共交通機関の利用や、近場は自家用車を使わないなどの取り組みをしてみましょう</p>
+		<p>（画面には、車を使わず、歩いている人の様子）</p>
+		<p>ナレータ：お風呂の給湯は家庭から排出される二酸化炭素のうち2割程度です。節約を心がけましょう。</p>
+		<p>（画面には、十分にお湯の溜まったお風呂。キュッと蛇口を閉じる音がして給湯が止まる）</p>
+		<p>ナレータ：身近なことから始めましょう 駒瑠市。</p>
+		<p>（画面には、駒瑠市のロゴ、身近なことから始めましょうのテロップ）</p>
+	</details>
+	<?php endif; ?>
+</div>
 
 <div id="toppage-bottom" class="full-width">
 	<div id="toppage-bottom-inner" class="inner-wrapper">

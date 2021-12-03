@@ -1,4 +1,4 @@
-<?php /* placeholderによるラベルの提供 */ ?>
+<?php /* placeholderによるラベルの提供（トップページ問い合わせ） */ ?>
 <form action="./do-not-test.php" method="POST">
 <?php komaruHtml('3.3.2b') ?>
 

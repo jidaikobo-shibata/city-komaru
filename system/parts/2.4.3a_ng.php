@@ -1,4 +1,4 @@
-<?php /* フォーカス順序？ */ ?>
+<?php /* グローバルナビゲーションを開いたあと、展開したメニューにフォーカス移動しない */ ?>
 <script>
 jQuery (function($){
 	const wrapper = $('#wrapper-menu'),
