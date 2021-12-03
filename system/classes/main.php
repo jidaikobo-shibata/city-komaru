@@ -325,11 +325,11 @@ class Main
 	/**
 	 * get barrier status
 	 * @param String $barrier_id
-	 * @return String [ok, ng1...] | Bool
+	 * @return String [ok, ng1...]
 	 */
 	public static function getBarrierStatus($barrier_id)
 	{
-		if ( ! isset(static::$test_pattern[$barrier_id])) return false;
+		if ( ! isset(static::$test_pattern[$barrier_id])) return '';
 		return static::$test_pattern[$barrier_id];
 	}
 
