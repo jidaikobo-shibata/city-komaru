@@ -14,7 +14,7 @@
 	<?php komaruHtml('2.4.1a') ?>
 	<?php komaruHtml('2.4.5a') ?>
 	</div>
-	<div id="logo"><a href="./<?php echo \Komarushi\Main::modeString() ?>"><?php komaruHtml('1.1.1b') ?> 地球温暖化防止課</a></div>
+	<div id="logo"><a href="./<?php echo \Komarushi\Main::modeString() ?>"><?php komaruHtml('1.1.1b') ?></a> 地球温暖化防止課</div>
 	<div id="menu">
 		<?php komaruHtml('3.2.3a') ?>
 		<nav id="langage-nav">

@@ -40,6 +40,7 @@ endforeach;;
 <?php komaruHtml('1.4.1b') ?>
 <?php komaruHtml('1.4.3c') ?>
 <?php komaruHtml('1.4.3d') ?>
+<?php komaruHtml('1.4.3e') ?>
 </div>
 </div>
 </footer>

@@ -232,7 +232,6 @@ class Main
 		// criteria overwrite
 		if ( ! empty(KOMARUSHI_CRITERIA))
 		{
-			$criteria = [];
 			$given_criteria = explode(',', KOMARUSHI_CRITERIA);
 			foreach ($given_criteria as $criterion)
 			{

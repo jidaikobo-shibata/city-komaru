@@ -48,6 +48,16 @@ hr {
 	margin: 2em 0;
 }
 
+#bttn-nav,
+#your-effort,
+input[type=submit],
+button:not([type=button]),
+body:not(.toppage) h2,
+body:not(.toppage) .h2 {
+	background-color: #de201e;
+	color: #fff;
+}
+
 /* wrapper */
 
 #wrapper
@@ -163,7 +173,6 @@ body:not(.toppage) #site-footer {
 	position: relative;
 }
 #bttn-nav {
-	background-color: #E83828;
 	background-image: url( ../images/icon_menu.svg );
 	background-position: 29px center;
 	padding-left: 70px;
@@ -173,7 +182,7 @@ body:not(.toppage) #site-footer {
 #bttn-nav[aria-expanded=true],
 #bttn-nav.on {
 	background-color: #FDD6D6;
-	color: #E83828;
+	color: #C71100;
 	background-image: url( ../images/icon_menu_open.svg );
 }
 #bttn-lang {
@@ -317,7 +326,6 @@ body:not(.toppage) .h2 {
 	margin: 50px auto 24px;
 	padding: 10px 20px 10px 30px;
 	color: #fff;
-	background-color: #E83828;
 	font-size: 1.25rem;
 }
 
@@ -522,7 +530,6 @@ button:not([type=button]) {
 	min-width: 127px;
 	margin: 23px auto 0;
 	color: #fff;
-	background-color: #EA1905;
 }
 .bttn {
 	-webkit-appearance: none;
@@ -907,7 +914,6 @@ form strong {
 {
 	text-align: center;
 	font-size: 90%;
-	background-color: #e83828;
 	color: #fff;
 	padding: 0 0 20px;
 	margin: 0 0 50px;
@@ -995,6 +1001,11 @@ form strong {
 #co2aday-area .komaru {
 	float: right;
 	margin: auto 15px auto 0;
+}
+#co2aday
+{
+	background-color: #fefefe;
+	color: #df201e;
 }
 
 /* resister */
