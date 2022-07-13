@@ -27,14 +27,18 @@ $is_331_ok = isset(\Komarushi\Main::$test_pattern['3.3.1a']) && \Komarushi\Main:
 $is_333_ok = isset(\Komarushi\Main::$test_pattern['3.3.3a']) && \Komarushi\Main::$test_pattern['3.3.3a'] == 'ok';
 
 //if (filter_input(INPUT_POST, 'captcha') !== 'uRab4?p')
-if (strtolower(filter_input(INPUT_POST, 'captcha')) !== 'urab4?p')
+if ( ! is_null(filter_input(INPUT_POST, 'captcha')))
 {
-	$errors['registration-captcha'] = $is_331_ok ?
-						'画像に表示されている文字を確認してください' :
-						'入力内容が間違っています';
-	$errors['registration-captcha'].= $is_333_ok ? '。文字と一致していません' : '';
-	$is_error = true;
+	if (strtolower(filter_input(INPUT_POST, 'captcha')) !== 'urab4?p')
+	{
+		$errors['registration-captcha'] = $is_331_ok ?
+							'画像に表示されている文字を確認してください' :
+							'入力内容が間違っています';
+		$errors['registration-captcha'].= $is_333_ok ? '。文字と一致していません' : '';
+		$is_error = true;
+	}
 }
+
 if ( ! strpos(filter_input(INPUT_POST, 'email'), '@'))
 {
 	$errors['email'] = $is_331_ok ?
@@ -77,6 +81,8 @@ if (isset($is_334_ok))
 }
 
 // 入力内容が正しいので、行為の成功を伝える
+setcookie('vals', '');
+setcookie('errors', '');
 ?><!DOCTYPE html>
 <html lang="ja">
 <head>

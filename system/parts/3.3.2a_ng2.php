@@ -3,13 +3,13 @@
 <?php komaruHtml('3.3.2b') ?>
 
 お名前※
-<p><input type="text" name="shimei" id="shimei" size="20" value="" /></p>
+<p><input type="text" name="shimei" id="shimei" size="20" value="" required /></p>
 
 メールアドレス※
-<p><input type="text" name="email" id="email" size="20" value="" /></p>
+<p><input type="text" name="email" id="email" size="20" value="" required /></p>
 
 お問い合わせ内容※
-<p><textarea name="content" id="content" cols="35" rows="7"></textarea></p>
+<p><textarea name="content" id="content" cols="35" rows="7" required></textarea></p>
 
 <?php komaruHtml('3.2.1a') ?>
 

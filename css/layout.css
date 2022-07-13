@@ -25,7 +25,7 @@ h1 rt {
 	font-weight: 500;
 	-webkit-font-smoothing: antialiased;
 }
-html[lang=ja] rt[translate] {
+html[lang=ja] [translate=no][lang=en] {
 	display: none;
 }
 html:not([lang=ja]) rt:not([translate]) {
@@ -119,12 +119,15 @@ h1 rt {
 	right: 0;
 	transform: translateY(50%);
 }
-
 h2 {
 	font-size: 2.5rem;
 	line-height: 1.45;
 	margin-top: 50px;
 	margin-bottom: 30px;
+}
+#setting section + section h2 {
+	border-top: 3px solid #1F1F1F;
+	padding-top: 21px;
 }
 h3 {
 	border-top: 3px solid #1F1F1F;
@@ -205,6 +208,17 @@ footer .inner::after {
 	margin-left: auto;
 	margin-right: auto;
 }
+.cmt {
+	background: #F0F0F0;
+	padding: 20px 24px;
+	border-radius: 5px;
+	margin: 50px auto;
+	font-size: .875rem;
+	width: 100%;
+}
+#setting .cmt {
+	background-color: #FFF;
+}
 
 /* list */
 li {
@@ -278,29 +292,34 @@ ul > li::before {
 	border-color: #ccc;
 }
 #setting_preset .list > li::before,
+.box_list > li::before,
 #individual_set .list > li::before,
 #readme_vendor li::before /*,
 fieldset > ul > li li::before*/ {
 	border: none;
 }
-#setting_preset .list {
+#setting_preset .list,
+.box_list {
 	padding-left: 0;
 	list-style: none;
 	margin: 20px 0 50px;
 }
-#setting_preset .list > li {
+#setting_preset .list > li,
+.box_list > li {
 	background: #fff;
 	padding: 20px 24px;
 	border-radius: 5px;
 	margin: 10px 0;
 	font-size: .875rem;
 }
-#setting_preset .list a {
+#setting_preset .list a,
+.box_list a {
 	position: relative;
 	font-size: 1.25rem;
 	margin-left: 39px;
 }
-#setting_preset .list a::before {
+#setting_preset .list a::before,
+.box_list a::before {
 	content: '';
 	position: absolute;
 	left: -39px;
@@ -314,7 +333,8 @@ fieldset > ul > li li::before*/ {
 	background-position: center center;
 	background-repeat: no-repeat;
 }
-#setting_preset .list p {
+#setting_preset .list p,
+.box_list p {
 	margin: .65em 0 0;
 	line-height: 1.857;
 }

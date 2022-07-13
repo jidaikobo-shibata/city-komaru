@@ -7,9 +7,17 @@ $test_pattern_str = \Komarushi\Main::generateTestPatternCode();
 ?><!DOCTYPE html>
 <html lang="ja">
 <head>
-	<meta charset="utf-8">
-	<title>駒瑠市〜アクセシビリティ上の問題の体験サイト〜</title>
-	<!--Google analytics-->
+	<!-- Global site tag (gtag.js) - Google Analytics 4 -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-DHXC51JFPG"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+
+		gtag('config', 'G-DHXC51JFPG');
+	</script>
+
+	<!-- Google analytics 3 -->
 	<script>
 		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -19,6 +27,9 @@ $test_pattern_str = \Komarushi\Main::generateTestPatternCode();
 		ga('create', 'UA-2627567-53', 'auto');
 		ga('send', 'pageview');
 	</script>
+
+	<meta charset="utf-8">
+	<title>駒瑠市〜アクセシビリティ上の問題の体験サイト〜</title>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -51,7 +62,7 @@ $share_url = (empty($_SERVER['HTTPS']) ? 'http://' : 'https://').$_SERVER['HTTP_
 <div class="header">
 	<div class="wrapper">
 		<h1>
-			 <ruby>駒瑠市<rp>（</rp><rt>こまるし</rt><rt lang="en" translate="no">Komaru City</rt><rp>）</rp></ruby>
+			 <ruby>駒瑠市<rp>（</rp><rt>こまるし<span lang="en" translate="no">Komaru City</span></rt><rp>）</rp></ruby>
 			 <span class="sub">アクセシビリティ上の問題の体験サイト</span>
 		</h1>
 		<img src="images/site_image.png" alt="体験サイトのイメージ画像" width="600" height="333">
@@ -77,6 +88,7 @@ $share_url = (empty($_SERVER['HTTPS']) ? 'http://' : 'https://').$_SERVER['HTTP_
 		$preset_html.= '<ul id="preset" class="list">';
 		foreach ($presets as $k => $v):
 			if ($k[0] == '_') continue;
+			if (strpos($k, 'story') !== false) continue;
 			$preset_html.= '<li><a href="practice/?preset='.\Kontiki\Util::s($k).'">'.$v[0].'</a><p>'.$v[1].'</p></li>';
 		endforeach;
 		$preset_html.= '</ul>';
@@ -98,7 +110,7 @@ $share_url = (empty($_SERVER['HTTPS']) ? 'http://' : 'https://').$_SERVER['HTTP_
 			<label class="block"><input type="radio" name="code_type" value="ng"<?php echo $ng_checked ?>> ランダムな問題を含んだ障壁パターンコードを生成</label>
 
 			<details id="individual_set" class="block">
-				<summary tabindex="-1"><label><input type="radio" name="code_type" value="individual"> 障壁を個別に指定</label><span id="summary_desc" class="description">設定項目を表示します<span></summary>
+				<summary tabindex="-1"><label><input type="radio" name="code_type" value="individual"> 障壁を個別に指定</label><span id="summary_desc" class="description">設定項目を表示します</span></summary>
 				<?php
 
 				$criteria_path = __DIR__.'/system/resources/criteria.json';
@@ -109,7 +121,7 @@ $share_url = (empty($_SERVER['HTTPS']) ? 'http://' : 'https://').$_SERVER['HTTP_
 				$html = '';
 				$patterns = \Kontiki\Util::s(\Komarushi\Main::$message_patterns);
 				$prev_criterion = '';
-				$html.= '<ul class="list">';
+				$html.= '<ul class="list">'."\n";
 				foreach ($patterns as $cat => $messages):
 					$criterion = preg_replace("/[a-z]/", "", $cat);
 					$is_critreion_open = $prev_criterion != $criterion;
@@ -120,13 +132,13 @@ $share_url = (empty($_SERVER['HTTPS']) ? 'http://' : 'https://').$_SERVER['HTTP_
 							$html.= '</li>';
 						endif;
 
-						$html.= '<li>';
-						$html.= '<fieldset>';
+						$html.= "\t\t\t\t\t".'<li>';
+						$html.= '<!-- f2 --><fieldset>';
 						$html.= '<legend>'.$criterion.' '.$criteria[$criterion]['name'].'</legend>';
-						$html.= '<ul>';
+						$html.= '<!-- 2 --><ul>';
 					endif;
 
-					$html.= '<li>'.$cat.'<ul>';
+					$html.= '<li>'.$cat."\n\t\t\t\t\t\t".'<ul>';
 					$n = 0;
 					foreach ($messages as $file => $message):
 						$checked = $n == 0 ? ' checked="checked"' : '';
@@ -135,23 +147,24 @@ $share_url = (empty($_SERVER['HTTPS']) ? 'http://' : 'https://').$_SERVER['HTTP_
 						$html.= '<li><input'.$checked.' type="radio" name="'.$cat4post.'" value="'.$file.'" id="'.$cat4post.'_'.$file.'"><label for="'.$cat4post.'_'.$file.'">';
 				//		$status = strpos($file, 'ok') !== false ? 'OK' : 'NG';
 						$status = \Kontiki\Util::s(strtoupper($file));
-						$html.= $status.': '.$message.'</label></li>';
+						$html.= $status.': '.$message.'</label></li>'."\n";
 					endforeach;
-					$html.= '</ul></li>';
+					$html.= '</ul><!-- /2 -->'."\t\t\t\t\t".'</li>'."\n";
 
 					$prev_criterion = $criterion;
 
 				endforeach;
-
-				$html.= '</ul>';
-				$html.= '</fieldset>';
+				$html.= '</ul><!-- /1 -->'."\n";
 
 				echo $html;
 				?>
+				</fieldset>
+				</li>
+				</ul><!-- class="list" -->
 			</details>
 			<p><input type="submit" name="gen_test_pattern_code" value="障壁パターンコードを生成"></p>
 		</form>
-<section id="">
+<section id="pattern-code-form">
 		<form action="./" method="POST">
 		<h4 id="test-pattern-str-exists"><label for="test_pattern_code">障壁パターンコード</label></h4>
 		<p id="test_pattern_code_description">※設定した障壁を使いまわしたい時には、障壁パターンコードを保存しておいてください。ふたたびこのtextareaに貼付することで、おなじ障壁を再現できます<br>
@@ -166,14 +179,9 @@ $share_url = (empty($_SERVER['HTTPS']) ? 'http://' : 'https://').$_SERVER['HTTP_
 			<textarea name="test_pattern_code" id="test_pattern_code" aria-describedby="test_pattern_code_description" cols="35" rows="8"><?php echo $test_pattern_str ?></textarea>
 			<p><input type="submit" value="サイトを生成する"></p>
 		</form>
-</section>
-</section>
-	</div>
-</section>
-<div class="wrapper">
-	<div class="inner">
-	<section>
-		<h2 id="customize-by-url">URLによるカスタマイズ</h2>
+
+	<section class="cmt">
+		<h4 id="customize-by-url">URLによるカスタマイズ</h4>
 
 		<p><code>?criteria=</code>の形式のURLを使うことで、個別に障壁や達成事例を設定できます。<code>criteria</code>が受け付けるのは、以下のような形式です。</p>
 
@@ -183,6 +191,34 @@ $share_url = (empty($_SERVER['HTTPS']) ? 'http://' : 'https://').$_SERVER['HTTP_
 			<li><a href="./practice/register.php?criteria=3.3.1a_ok,3.3.3a_ng">エラーの特定ができるが、エラー修正の提案ができていない（?criteria=3.3.1a_ok,3.3.3a_ng）</a></li>
 		</ul>
 	</section>
+
+</section>
+
+</section>
+
+		<section id="setting_story">
+			<h2>ストーリー版</h2>
+			<p class="ac">駒瑠市地球温暖化防止課の過去4年を振り返り、改善されていく様子をみてみましょう。<br />また、それぞれの年に存在するバリアに対応した試験結果を用意しているので、あわせて参考にしてください。</p>
+
+		<?php
+		$presets = \Kontiki\Util::s(\Komarushi\Main::$message_presets);
+		$preset_html = '';
+		$preset_html.= '<ul class="box_list">';
+		foreach (array_reverse($presets) as $k => $v):
+			if (strpos($k, 'story') === false) continue;
+			if ($k[0] == '_') continue;
+			$preset_html.= '<li><a href="practice/accessibility.php?preset='.\Kontiki\Util::s($k).'">'.$v[0].'</a><p>'.$v[1].'</p></li>';
+		endforeach;
+		$preset_html.= '</ul>';
+		echo $preset_html;
+		?>
+		</section>
+
+	</div>
+
+</section>
+<div class="wrapper">
+	<div class="inner">
 	<section>
 		<h2>注意事項</h2>
 		<ul>
@@ -219,7 +255,7 @@ $share_url = (empty($_SERVER['HTTPS']) ? 'http://' : 'https://').$_SERVER['HTTP_
 ライセンス：<a href="https://github.com/jidaikobo-shibata/city-komaru/blob/master/LICENSE.txt">MIT</a><br>
 動画・GIFアニメ作成協力：<a href="http://functiontales.com">FUNCTION TALES</a><br>
 使っている音源は<a href="https://www.zapsplat.com">https://www.zapsplat.com</a>で取得しました。<br>
-ご協力：<a href="https://twitter.com/momdo_">@momdo_</a>, <a href="https://twitter.com/securecat">@securecat</a>, <a href="https://twitter.com/yocco405">@yocco405</a>, naiki
+ご協力：<a href="https://twitter.com/momdo_">@momdo_</a>, <a href="https://twitter.com/securecat">@securecat</a>, <a href="https://twitter.com/yocco405">@yocco405</a>, naiki, <a href="https://twitter.com/masuP9">@masuP9</a>
 
 </div>
 	</div>

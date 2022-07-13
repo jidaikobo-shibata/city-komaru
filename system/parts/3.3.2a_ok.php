@@ -13,13 +13,13 @@ endif;
 ?>
 
 <p><?php echo $label_onamae ?><br />
-<input type="text" name="shimei" id="shimei" size="20" value="" /></p>
+<input type="text" name="shimei" id="shimei" size="20" value="" required /></p>
 
 <p><?php echo $label_email ?><br />
-<input type="text" name="email" id="email" size="20" value="" /></p>
+<input type="text" name="email" id="email" size="20" value="" required /></p>
 
 <p><?php echo $label_content ?><br />
-<textarea name="content" id="content" cols="35" rows="7"></textarea></p>
+<textarea name="content" id="content" cols="35" rows="7" required></textarea></p>
 
 <?php komaruHtml('3.2.1a') ?>
 

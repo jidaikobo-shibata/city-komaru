@@ -1,4 +1,4 @@
-<?php /* 部分的に見えなくなるフォーカスインジケータ */ ?>
+<?php /* 部分的に見えなくなるフォーカスインジケータ */ ?>
 <style>
 #menu :focus, .menu-list :focus {
 	outline: none !important;

@@ -96,10 +96,13 @@ $is_type_renew = $vals['type'] === 'renew' ? $checked : '';
 </fieldset>
 <?php komaruHtml('1.4.1a') ?>
 
+<?php if ( ! in_array(filter_input(INPUT_GET, "preset"), ['ok-a', 'ok-aa', 'story-2years-before', 'story-1years-before'])): ?>
 <p><label for="registration-captcha">画像に表示されている文字を入力してください。</label><br>
 <img src="./images/captcha.png" width="300" height="80" alt="画像"><br>
 <input type="text" name="captcha" size="12" id="registration-captcha" aria-describedby="registration-captcha-description" value="<?php echo $vals['registration-captcha']; ?>"> <span id="registration-captcha-description"><br>大文字小文字は区別されません。</span>
 </p>
+<?php endif; ?>
+
 <input type="hidden" name="preset" value="<?php echo \Kontiki\Util::s(filter_input(INPUT_GET, 'preset')) ?>" />
 <input type="hidden" name="criteria" value="<?php echo \Kontiki\Util::s(filter_input(INPUT_GET, 'criteria')) ?>" />
 

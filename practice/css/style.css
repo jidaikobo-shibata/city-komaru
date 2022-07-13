@@ -361,21 +361,22 @@ ul:not(.nomarker) ul:not(.nomarker) ul:not(.nomarker) > li::before {
 	border-width: 2px 4px;
 	top: calc( .875em - 1px );
 }
-header ul,
-footer ul,
+header ul:not(.nomarker),
+footer ul:not(.nomarker),
 .menu-list {
 	list-style: disc;
 	list-style: unset;
 	padding-left: 40px;
 }
-header ul > li,
-footer ul > li,
+header ul:not(.nomarker) > li,
+footer ul:not(.nomarker) > li,
 .menu-list > li {
 	position: static;
 	padding-left: 0;
 	margin-top: 0;
 }
-header ul > li::before,
+header ul:not(.nomarker) > li::before,
+footer ul:not(.nomarker) > li::before,
 .menu-list > li::before {
 	content: none;
 }
@@ -530,6 +531,11 @@ button:not([type=button]) {
 	min-width: 127px;
 	margin: 23px auto 0;
 	color: #fff;
+}
+input[type=submit][disabled],
+button:not([type=button])[disabled] {
+	background-color: #bbb;
+	color: #eee;
 }
 .bttn {
 	-webkit-appearance: none;
