@@ -19,6 +19,9 @@
 <footer id="site-footer" class="clearfix">
 <div class="inner-wrapper col">
 <div class="content">
+<?php if (strpos(\Kontiki\Input::get('preset', ''), 'story') !== false): ?>
+<nav id="foot-menu"><a href="./accessibility.php<?php echo \Komarushi\Main::modeString() ?>">アクセシビリティ方針</a></nav>
+<?php endif; ?>
 <p>駒瑠市 地球温暖化防止課<br>
 City of Komaru. All rights reserved.<br>
 <a href="../index.php#config">障壁（バリア）の設定</a></p>

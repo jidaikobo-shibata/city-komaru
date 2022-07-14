@@ -255,7 +255,7 @@ $share_url = (empty($_SERVER['HTTPS']) ? 'http://' : 'https://').$_SERVER['HTTP_
 ライセンス：<a href="https://github.com/jidaikobo-shibata/city-komaru/blob/master/LICENSE.txt">MIT</a><br>
 動画・GIFアニメ作成協力：<a href="http://functiontales.com">FUNCTION TALES</a><br>
 使っている音源は<a href="https://www.zapsplat.com">https://www.zapsplat.com</a>で取得しました。<br>
-ご協力：<a href="https://twitter.com/momdo_">@momdo_</a>, <a href="https://twitter.com/securecat">@securecat</a>, <a href="https://twitter.com/yocco405">@yocco405</a>, naiki, <a href="https://twitter.com/masuP9">@masuP9</a>
+ご協力：<a href="https://twitter.com/momdo_">@momdo_</a>, <a href="https://twitter.com/securecat">@securecat</a>, <a href="https://twitter.com/yocco405">@yocco405</a>, naiki, <a href="https://twitter.com/masuP9">@masuP9</a>, <a href="https://twitter.com/_feu_">Koide Junko</a>
 
 </div>
 	</div>
