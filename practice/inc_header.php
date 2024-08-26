@@ -38,6 +38,8 @@ $share_title = $share_strs['title'] ?: '駒瑠市〜アクセシビリティ上�
 $share_desc  = $share_strs['description'] ?: 'アクセシビリティ上の問題を意図的に仕込んだサイトを生成します';
 ?>
 
+<?php komaruHtml('2.1.4a') ?>
+
 	<!-- OGP -->
 	<meta property="og:locale" content="ja_JP" />
 	<meta property="og:title" content="<?php echo $share_title ?>" />

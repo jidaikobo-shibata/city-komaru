@@ -1,6 +1,14 @@
-<?php if (strpos($_SERVER['SCRIPT_FILENAME'], 'index.php') === false): ?>
+<?php
+if (in_array(\Komarushi\Main::whoAmI(), ['fact', 'register', 'information-each1'])): ?>
 <aside id="feedback">
-<h2>よりよい情報提供のために、このページのご感想をお寄せください。</h2>
+
+<?php
+if (\Komarushi\Main::getBarrierStatus('1.3.1e') == 'ng'):
+	$h_element = 'p';
+endif;
+?>
+<<?php echo isset($h_element) ? $h_element.' class="h2"' : 'h2' ?>>よりよい情報提供のために、このページのご感想をお寄せください。</<?php echo isset($h_element) ? $h_element : 'h2' ?>>
+
 <form action="./do-not-test.php" method="POST">
 
 <?php komaruHtml('3.3.2c') ?>

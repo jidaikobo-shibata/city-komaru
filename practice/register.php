@@ -113,23 +113,23 @@ $is_type_renew = $vals['type'] === 'renew' ? $checked : '';
 <script>
 jQuery (function($){
 	// toggle area
-	let area_show = $('#new-area'),
-			area_hide = $('#renew-area'),
+	let area_show = $('#'+$('input[name=type]:checked').data('target')),
+			area_hide = $('#'+$('input[name=type]:not(:checked)').data('target')),
 			flg = false;
 	const areas = area_show.add(area_hide);
 	toggle_area();
-<?php komaruHtml('3.2.2a') ?>
-	$('input[name=type]').change(function(){
-		toggle_area($('#'+$(this).data('target')));
+	$('input[name=type]').change(function(e){
+		toggle_area($('#'+$(e.target).data('target')));
 	});
 	function toggle_area(target){
 		if( target ) {
 			area_show = target;
 			area_hide = areas.not(target);
 		}
-		area_show.show().find(':input').removeAttr('disabled');
 		area_hide.hide().find(':input').attr('disabled', true);
+		area_show.show().find(':input').attr('disabled', false);
 
+<?php komaruHtml('3.2.2a') ?>
 		if(flg){
 			area_show.find(':input:visible').eq(0).focus();
 		}

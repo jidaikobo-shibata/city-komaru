@@ -82,22 +82,59 @@ $share_url = (empty($_SERVER['HTTPS']) ? 'http://' : 'https://').$_SERVER['HTTP_
 			<h3>プリセット版</h3>
 			<p class="ac">問題をあらかじめ設定（プリセット）した駒瑠市サイトです。カスタマイズ版にのみ存在する障壁もあります。</p>
 
-		<?php
-		$presets = \Kontiki\Util::s(\Komarushi\Main::$message_presets);
-		$preset_html = '';
-		$preset_html.= '<ul id="preset" class="list">';
-		foreach ($presets as $k => $v):
-			if ($k[0] == '_') continue;
-			if (strpos($k, 'story') !== false) continue;
-			$preset_html.= '<li><a href="practice/?preset='.\Kontiki\Util::s($k).'">'.$v[0].'</a><p>'.$v[1].'</p></li>';
-		endforeach;
-		$preset_html.= '</ul>';
-		echo $preset_html;
-		?>
+			<form id="selectWcag4preset">
+			<fieldset>
+			<legend>プリセット版で使うWCAGのバージョンを選択してください</legend>
+			<p style="margin: 0;">WCAG 2.0以外のバリアは、まだあまり揃っていません。WCAG 2.2のバリアはまだありません。</p>
+			<ul style="columns: 3;zoom:1.2">
+				<li><input type="radio" id="preset_wcag20" name="wcagver" value="20" checked><label for="preset_wcag20">WCAG 2.0</label></li>
+				<li><input type="radio" id="preset_wcag21" name="wcagver" value="21"><label for="preset_wcag21">WCAG 2.1</label></li>
+				<li><input type="radio" id="preset_wcag22" name="wcagver" value="22"><label for="preset_wcag22">WCAG 2.2</label></li>
+			</ul>
+			</fieldset>
+			</form>
+
+			<?php
+			$presets = \Kontiki\Util::s(\Komarushi\Main::$message_presets);
+			$preset_html = '';
+			$preset_html.= '<ul id="preset" class="list">';
+			foreach ($presets as $k => $v):
+				if ($k[0] == '_') continue;
+				if (strpos($k, 'story') !== false) continue;
+				$preset_html.= '<li><a href="practice/?preset='.\Kontiki\Util::s($k).'&amp;wcagver=22">'.$v[0].'</a><p>'.$v[1].'</p></li>';
+			endforeach;
+			$preset_html.= '</ul>';
+			echo $preset_html;
+			?>
+
+			<script>
+				const selectWcag4preset = document.getElementById('selectWcag4preset');
+				const presetLinks = document.querySelectorAll('#preset a');
+
+				selectWcag4preset.addEventListener('change', function(event) {
+					const selectedValue = document.querySelector('input[name="wcagver"]:checked').value;
+					presetLinks.forEach(link => {
+						link.href = link.href.slice(0, -2) + selectedValue;
+					});
+				});
+			</script>
+
 		</section>
 		<section id="setting_customize">
 			<h3>カスタマイズ版</h3>
 			<p class="ac">パターンコードからサイトを生成します</p>
+
+			<form id="selectWcag4customize">
+			<fieldset>
+			<legend>カスタマイズ版で使うWCAGのバージョンを選択してください（準備中です）</legend>
+			<ul style="columns: 3;zoom:1.2">
+				<li><input type="radio" id="customize_wcag20" name="wcagver" value="20" disabled><label for="customize_wcag20">WCAG 2.0</label></li>
+				<li><input type="radio" id="customize_wcag21" name="wcagver" value="21" disabled><label for="customize_wcag21">WCAG 2.1</label></li>
+				<li><input type="radio" id="customize_wcag22" name="wcagver" value="22" disabled><label for="customize_wcag22">WCAG 2.2</label></li>
+			</ul>
+			</fieldset>
+			</form>
+
 		<ol class="list">
 			<li><strong>障壁の設定</strong> サイトに実装する障壁の設定を行います。ランダムな問題生成か個別指定を選んでください</li>
 			<li><strong>障壁パターンコードの出力</strong> 「障壁パターンコードを生成」のボタンを押すと、障壁パターンコードがこのページのtextareaに出力されます</li>
@@ -183,7 +220,7 @@ $share_url = (empty($_SERVER['HTTPS']) ? 'http://' : 'https://').$_SERVER['HTTP_
 	<section class="cmt">
 		<h4 id="customize-by-url">URLによるカスタマイズ</h4>
 
-		<p><code>?criteria=</code>の形式のURLを使うことで、個別に障壁や達成事例を設定できます。<code>criteria</code>が受け付けるのは、以下のような形式です。</p>
+		<p><code>?criteria=</code>の形式のURLを使うことで、個別に障壁や達成事例を設定できます。<code>criteria</code>が受け付けるのは、以下のような形式です。カンマ区切りで複数指定も可能です（?criteria=2.1.1,2.4.1）</p>
 
 		<ul>
 			<li><a href="./practice/?criteria=2.2.2">2.2.2全般の不具合を確認する（?criteria=2.2.2）</a></li>
@@ -219,7 +256,7 @@ $share_url = (empty($_SERVER['HTTPS']) ? 'http://' : 'https://').$_SERVER['HTTP_
 </section>
 <div class="wrapper">
 	<div class="inner">
-	<section>
+	<section id="ussage">
 		<h2>注意事項</h2>
 		<ul>
 			<li>このサイトは「架空の地方自治体（駒瑠市・こまるし）のとある課のサイト」という設定でできています</li>
@@ -228,22 +265,31 @@ $share_url = (empty($_SERVER['HTTPS']) ? 'http://' : 'https://').$_SERVER['HTTP_
 			<li>PDFによる情報提供が存在します。当然ながらHTMLで情報提供した方が良いのですが、このサイトでは、「『お知らせ』はPDFによる添付しかできない困ったCMSを使っている」というような設定だとご理解ください</li>
 			<li>ブラウザで音声の自動再生をオフにしている場合で、自動再生の不具合を確認したい場合は、ブラウザの設定を調整してください</li>
 			<li>「障壁の設定」では便宜上達成基準の番号ごとのまとまりを持っていますが、システムの都合上、必ずしも障壁の内容と達成基準の番号は一致しません</li>
-			<li>現時点では、障壁はWCAG 2.0 AA（ダブルA）までの問題を実装しています</li>
+<!-- 			<li>現時点では、障壁はWCAG 2.0 AA（ダブルA）までの問題を実装しています</li> -->
 			<li>意図的にアクセシビリティ上の問題を生成するため、HTMLの文法に誤った箇所が含まれている場合があります<!-- 。「4.1.1 構文解析」に関しては、対象としないようにしてください --></li>
 			<li>いくつかの達成基準の項目について、障壁が実装されていないものがありますが、「2.3.1 3回の閃光又は閾値以下」の障壁については、将来的にも実装の予定はありません</li>
 			<li>現在も制作を続けておりますので、バグが含まれている可能性があることをご了承ください</li>
 		</ul>
 	</section>
-	<section>
+	<section id="contact-us">
 		<h2>問い合わせ等</h2>
 		<ul id="readme_vendor">
 			<li><a href="https://www.jidaikobo.com"><img src="./images/logo_author.svg" class="a11yc_logo_author" alt="ロゴマーク" width="140" height="140">有限会社時代工房</a></li>
 			<li><a href="https://twitter.com/jidaikobo"><img src="./images/Twitter_Logo_Blue.png" class="a11yc_logo_author" alt="Twitter Logo" width="140" height="140">時代工房のTwitter</a></li>
 		</ul>
 	</section>
-	<section>
+	<section id="google-analytics">
 		<h2>Google Analyticsについて</h2>
 		<p class="ac"><a href="https://marketingplatform.google.com/intl/ja/about/analytics/">Google Analytics</a>をつかってアクセス解析を行っています。</p>
+	</section>
+	<section>
+		<h2 id="change-log">変更履歴</h2>
+		<ul>
+			<li><time datetime="2024-07-07">2024年7月7日</time><ul>
+				<li>「駒瑠市環境イベント エこ・まるシェ」のページを追加し、「1.1.1 非テキストコンテンツ (A)」の不適合事例として、短い文章で説明できない内容の画像を足しました（<a href="https://a11yc.com/city-komaru/practice/information-each1.php?criteria=1.1.1f">1.1.1f</a>）</li>
+				<li>「駒瑠市環境イベント エこ・まるシェ」のページを追加し、「1.4.3 コントラスト (最低限) (AA)」の不適合事例のチラシ画像を足しました（<a href="https://a11yc.com/city-komaru/practice/information-each1.php?criteria=1.4.3g">1.4.3g</a>）</li>
+			</ul></li>
+		</ul>
 	</section>
 </div>
 </div>
@@ -255,7 +301,7 @@ $share_url = (empty($_SERVER['HTTPS']) ? 'http://' : 'https://').$_SERVER['HTTP_
 ライセンス：<a href="https://github.com/jidaikobo-shibata/city-komaru/blob/master/LICENSE.txt">MIT</a><br>
 動画・GIFアニメ作成協力：<a href="http://functiontales.com">FUNCTION TALES</a><br>
 使っている音源は<a href="https://www.zapsplat.com">https://www.zapsplat.com</a>で取得しました。<br>
-ご協力：<a href="https://twitter.com/momdo_">@momdo_</a>, <a href="https://twitter.com/securecat">@securecat</a>, <a href="https://twitter.com/yocco405">@yocco405</a>, naiki, <a href="https://twitter.com/masuP9">@masuP9</a>, <a href="https://twitter.com/_feu_">Koide Junko</a>
+ご協力：<a href="https://twitter.com/momdo_">@momdo_</a>, <a href="https://twitter.com/securecat">@securecat</a>, <a href="https://twitter.com/yocco405">@yocco405</a>, naiki, <a href="https://twitter.com/masuP9">@masuP9</a>, <a href="https://twitter.com/koide_neko">Koide Junko</a>, kiri
 
 </div>
 	</div>

@@ -14,12 +14,22 @@ class Main
 	public static $files = array(
 		'index',
 		'fact',
-		'register'
+		'register',
+		'information-each1'
 	);
 	public static $test_pattern = array();
 	public static $message_patterns = array();
 	public static $message_presets = array();
 	public static $is_test_pattern_code_failed = false;
+	public static $added_criteria_21 = array(
+		'1.3.4', '1.3.5', '1.3.6', '1.4.10', '1.4.11', '1.4.12', '1.4.13',
+		'2.1.4', '2.2.6', '2.3.3', '2.5.1', '2.5.2', '2.5.3', '2.5.4',
+		'2.5.5', '2.5.6', '4.1.3'
+	);
+	public static $added_criteria_22 = array(
+		'2.4.11', '2.4.12', '2.4.13', '2.5.7', '2.5.8', '3.2.6', '3.3.7',
+		'3.3.8', '3.3.9'
+	);
 
 	/**
 	 * construct
@@ -57,6 +67,11 @@ class Main
 		// criteria
 		$criteria = \kontiki\Input::get('criteria', \kontiki\Input::post('criteria')); // post or get
 		define('KOMARUSHI_CRITERIA', $criteria);
+
+		// wcagver
+		$wcagver = \kontiki\Input::get('wcagver', \kontiki\Input::post('wcagver')); // post or get
+		$wcagver = in_array($wcagver, [20, 21, 22]) ? $wcagver : 22;
+		define('KOMARUSHI_WCAGVER', intval($wcagver));
 
 		// current test pattern
 		$test_pattern_code = \Kontiki\Input::cookie('test_pattern_code');
@@ -188,9 +203,10 @@ class Main
 
 	/**
 	 * modeString
+	 * @param Bool escape
 	 * @return String
 	 */
-	public static function modeString()
+	public static function modeString($escape = true)
 	{
 		$mode_strings = [];
 		$mode_string = '';
@@ -202,9 +218,14 @@ class Main
 		{
 			$mode_strings[] = 'criteria='.KOMARUSHI_CRITERIA;
 		}
+		if ( ! empty(KOMARUSHI_WCAGVER))
+		{
+			$mode_strings[] = 'wcagver='.KOMARUSHI_WCAGVER;
+		}
 		if ( ! empty($mode_strings))
 		{
-			$mode_string = '?'.join('&amp;', $mode_strings);
+			$ampersand = $escape ? '&amp;' : '&';
+			$mode_string = '?'.join($ampersand, $mode_strings);
 		}
 		return $mode_string;
 	}
@@ -276,21 +297,36 @@ class Main
 	/**
 	 * echo practice HTML - komaruHtml
 	 * @param String $critetrion
+	 * @param String $is_include
 	 * @return Void
 	 */
-	public static function komaruHtml($critetrion)
+	public static function komaruHtml($critetrion, $is_include = false)
 	{
 		// test pattern code
-		$test_pattern_code = \Kontiki\Input::cookie('test_pattern_code');
+		// $test_pattern_code = \Kontiki\Input::cookie('test_pattern_code');
+
+		// exlude different version
+		$added_criteria = array();
+		if (KOMARUSHI_WCAGVER != 22)
+		{
+			$added_criteria = static::$added_criteria_22;
+			if (KOMARUSHI_WCAGVER == 20)
+			{
+				$added_criteria = array_merge($added_criteria, static::$added_criteria_21);
+			}
+		}
+		$critetrion_chk = substr($critetrion, 0, -1);
 
 		// each html
-		if ( ! isset(static::$test_pattern[$critetrion]))
+		if (
+			! isset(static::$test_pattern[$critetrion]) ||
+				in_array($critetrion_chk, $added_criteria)
+		)
 		{
 			echo '';
 			return;
 		}
 		$partfile = KOMARUSHI_PARTS_PATH.$critetrion.'_'.static::$test_pattern[$critetrion].'.php';
-
 
 		// is normal or internal call
 		$backtrace = debug_backtrace();
@@ -300,6 +336,13 @@ class Main
 		$html = '';
 		if (file_exists($partfile))
 		{
+			// include and exit
+			if ($is_include)
+			{
+				include($partfile);
+				return;
+			}
+
 			// narmal call
 			if ($is_normal)
 			{

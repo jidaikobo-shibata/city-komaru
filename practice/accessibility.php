@@ -186,6 +186,13 @@ else:
 </ul>
 <? endif; ?>
 
+<?php if ($minus_year == 1): ?>
+<h2>ウェブアクセシビリティ方針取組確認・評価結果</h2>
+<ul>
+	<li><a href="./download/hyoukahyo.pdf">ウェブアクセシビリティ方針取組確認・評価結果（PDF, 73KB）</a></li>
+</ul>
+<? endif; ?>
+
 </div>
 </main>
 

@@ -6,11 +6,12 @@ const timeout_val = 2 * 60 * 1000,
 var timeout = function() {
 				var response = window.confirm('入力時間が切れました。制限時間を延長しますか？');
 				if( ! response ){
-					document.registration.reset();
-					if( $(new_area, renew_area).is(':hidden') ){
-						renew_area.hide();
+//					document.registration.reset();
+ 					$(document.registration).find("textarea, :text, select").val("").end().find(":checked").prop("checked", false);
+
+						$('#registration-new').prop("checked", true);
+						renew_area.hide().find(':input').attr('disabled', true);
 						new_area.show().find(':input').removeAttr('disabled');
-					}
 				}
 				setTimeout(timeout, timeout_val);
 }

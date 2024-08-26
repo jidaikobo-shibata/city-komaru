@@ -43,6 +43,7 @@
 <h2 class="heading">お知らせ</h2>
 <div class="content">
 	<ul class="news-list">
+		<li><a href="./information-each1.php<?php echo \Komarushi\Main::modeString() ?>">「駒瑠市環境イベント エこ・まるシェ」のお知らせ</a></li>
 		<li><?php komaruHtml('1.3.1d') ?></li>
 	</ul>
 </div>

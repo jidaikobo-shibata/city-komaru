@@ -75,10 +75,13 @@ endif;
 
 <?php komaruHtml('1.2.1b') ?>
 
-<details open="open">
-<summary>アニメーション表示切り替え</summary>
-<img src="./images/mechanism_gif_small.gif" alt="温暖化のメカニズムを説明したGIFアニメ">
-</details>
+<?php
+$gif_animation = '<img src="./images/mechanism_gif_small.gif" alt="温暖化のメカニズムを説明したGIFアニメ">';
+if (\Komarushi\Main::getBarrierStatus('2.2.2d') == 'ok'):
+	$gif_animation = '<details open="open"><summary>アニメーション表示オン/オフ切り替え</summary>'.$gif_animation.'</details>';
+endif;
+echo $gif_animation;
+?>
 
 <<?php echo isset($h_element) ? $h_element.' class="h2"' : 'h2' ?> id="<?php echo $id3 ?>">各地の気温の上昇</<?php echo isset($h_element) ? $h_element : 'h2' ?>>
 <?php
@@ -105,7 +108,7 @@ if (\Komarushi\Main::getBarrierStatus('1.3.3f') == 'ng'):
 	$scope_col = '';
 endif;
 ?>
-<h3>教材の貸し出し状況</h3>
+<<?php echo isset($h_element) ? $h_element.' class="h3"' : 'h3' ?> id="<?php echo $id4 ?>">教材の貸し出し状況</<?php echo isset($h_element) ? $h_element : 'h3' ?>>
 
 <?php
 // 感覚的な特徴
@@ -153,6 +156,11 @@ endif;
 	<td><?php echo $sensory2 ?></td>
 </tr>
 </table>
+
+<<?php echo isset($h_element) ? $h_element.' class="h2"' : 'h2' ?> id="<?php echo $id3 ?>">参考資料「2021年度 家庭からの二酸化炭素排出量（燃料種別内訳）」</<?php echo isset($h_element) ? $h_element : 'h2' ?>>
+
+<?php komaruHtml('1.4.1c') ?>
+<?php komaruHtml('1.1.1e') ?>
 
 </main>
 
