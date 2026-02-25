@@ -182,9 +182,11 @@ $share_url = (empty($_SERVER['HTTPS']) ? 'http://' : 'https://').$_SERVER['HTTP_
                         $n++;
                         $cat4post = str_replace('.', '_', $cat);
                         $html.= '<li><input'.$checked.' type="radio" name="'.$cat4post.'" value="'.$file.'" id="'.$cat4post.'_'.$file.'"><label for="'.$cat4post.'_'.$file.'">';
-                //        $status = strpos($file, 'ok') !== false ? 'OK' : 'NG';
                         $status = \Kontiki\Util::s(strtoupper($file));
-                        $html.= $status.': '.$message.'</label></li>'."\n";
+                        $html.= $status.': '.$message.'</label>';
+                        $try = ' [<a href="practice/?criteria='.$cat.'">この実装を試す</a>]';
+                        $html.= $try;
+                        $html.= "</li>\n";
                     endforeach;
                     $html.= '</ul><!-- /2 -->'."\t\t\t\t\t".'</li>'."\n";
 
