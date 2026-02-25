@@ -1,5 +1,5 @@
 <?php /* 可視ラベルがわかりやすい位置に配置されている（トップページ問い合わせ） */ ?>
-<form action="./do-not-test.php" method="POST">
+<form action="./do-not-test.php" method="POST" id="komaru-contact-form">
 <?php
 komaruHtml('3.3.2b');
 

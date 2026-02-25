@@ -1,0 +1,11 @@
+services:
+  web:
+    build:
+      context: .
+    container_name: city-komaru-web
+    ports:
+      - "8091:80"
+    volumes:
+      - ./:/var/www/html
+    environment:
+      - TZ=Asia/Tokyo

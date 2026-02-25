@@ -21,6 +21,14 @@ class Input
 	 */
 	public static function deleteNullByte($str = '')
 	{
+		if (is_array($str))
+		{
+			return array_map([__CLASS__, 'deleteNullByte'], $str);
+		}
+		if ($str === null)
+		{
+			$str = '';
+		}
 		return str_replace("\0", '', $str);
 	}
 

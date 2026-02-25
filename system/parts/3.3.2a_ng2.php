@@ -1,5 +1,5 @@
 <?php /* labelによる関連付けのないラベル（トップページ問い合わせ） */ ?>
-<form action="./do-not-test.php" method="POST">
+<form action="./do-not-test.php" method="POST" id="komaru-contact-form">
 <?php
 // 3.3.2
 komaruHtml('3.3.2b');
