@@ -65,27 +65,59 @@ endif;
 	<li><a href="#<?php echo $id4 ?>">教材の貸し出し</a></li>
 </ul>
 
-<<?php echo isset($h_element) ? $h_element.' class="h2"' : 'h2' ?> id="<?php echo $id1 ?>">世界の平均気温の上昇</<?php echo isset($h_element) ? $h_element : 'h2' ?>>
+<?php
+if (\Komarushi\Main::getBarrierStatus('1.3.1h') == 'ng'):
+?>
+<p id="<?php echo $id1 ?>" style="font-size:160%;font-weight:bold;">【世界の平均気温の上昇】</p>
+<?php
+else:
+?>
+	<<?php echo isset($h_element) ? $h_element.' class="h2"' : 'h2' ?> id="<?php echo $id1 ?>">世界の平均気温の上昇</<?php echo isset($h_element) ? $h_element : 'h2' ?>>
+<?php
+endif;
+?>
 <!-- <p>気候変動に関する政府間パネル（IPCC）の第5次評価報告書によると、世界の平均気温は、1880年から2012年にかけて、0.85℃上昇しています。</p> -->
 <p>気候変動に関する政府間パネル（IPCC）の第5次評価報告書によると、世界の平均気温は、確実に上昇しています。</p>
 
 <?php komaruHtml('1.1.1c') ?>
 
-<<?php echo isset($h_element) ? $h_element.' class="h2"' : 'h2' ?> id="<?php echo $id2 ?>"><?php komaruHtml('2.4.6a') ?></<?php echo isset($h_element) ? $h_element : 'h2' ?>>
+<?php
+if (\Komarushi\Main::getBarrierStatus('1.3.1h') == 'ng'):
+?>
+<p id="<?php echo $id2 ?>" style="font-size:160%;font-weight:bold;">【<?php komaruHtml('2.4.6a') ?>】</p>
+<?php
+else:
+?>
+	<<?php echo isset($h_element) ? $h_element.' class="h2"' : 'h2' ?> id="<?php echo $id2 ?>"><?php komaruHtml('2.4.6a') ?></<?php echo isset($h_element) ? $h_element : 'h2' ?>>
+<?php
+endif;
+?>
 
 <?php komaruHtml('1.2.1b') ?>
 
 <?php
-$gif_animation = '<img src="./images/mechanism_gif_small.gif" alt="温暖化のメカニズムを説明したGIFアニメ">';
+$alt = '温暖化のメカニズムを説明したGIFアニメ';
+$alt = \Komarushi\Main::getBarrierStatus('1.1.1g') == 'ng' ? '画像2' : $alt;
+$gif_animation = '<img src="./images/mechanism_gif_small.gif" alt="'.$alt.'">';
 if (\Komarushi\Main::getBarrierStatus('2.2.2d') == 'ok'):
 	$gif_animation = '<details open="open"><summary>アニメーション表示オン/オフ切り替え</summary>'.$gif_animation.'</details>';
 endif;
 echo $gif_animation;
 ?>
 
-<<?php echo isset($h_element) ? $h_element.' class="h2"' : 'h2' ?> id="<?php echo $id3 ?>">各地の気温の上昇</<?php echo isset($h_element) ? $h_element : 'h2' ?>>
 <?php
+if (\Komarushi\Main::getBarrierStatus('1.3.1h') == 'ng'):
+?>
+<p id="<?php echo $id3 ?>" style="font-size:160%;font-weight:bold;">【各地の気温の上昇】</p>
+<?php
+else:
+?>
+	<<?php echo isset($h_element) ? $h_element.' class="h2"' : 'h2' ?> id="<?php echo $id3 ?>">各地の気温の上昇</<?php echo isset($h_element) ? $h_element : 'h2' ?>>
+<?php
+endif;
+?>
 
+<?php
 $copied_style = '';
 if (\Komarushi\Main::getBarrierStatus('1.4.4b') == 'ng'):
 	$copied_style = ' style="font-size:12px;font-family: \'ＭＳ 明朝\',serif;"';
@@ -94,7 +126,17 @@ endif;
 <p<?php echo $copied_style ?>>温暖化対策をとらないまま、現在のペースで温暖化が進むと、日本の各都市の真夏日の日数が増加することが予測されています。東京では、現在、年間約46日の真夏日がありますが、21世紀末には年間約103日が真夏日になると言われています。</p>
 <?php komaruHtml('1.3.1b') ?>
 
-<<?php echo isset($h_element) ? $h_element.' class="h2"' : 'h2' ?> id="<?php echo $id4 ?>">教材の貸し出し</<?php echo isset($h_element) ? $h_element : 'h2' ?>>
+<?php
+if (\Komarushi\Main::getBarrierStatus('1.3.1h') == 'ng'):
+?>
+<p id="<?php echo $id4 ?>" style="font-size:160%;font-weight:bold;">【教材の貸し出し】</p>
+<?php
+else:
+?>
+	<<?php echo isset($h_element) ? $h_element.' class="h2"' : 'h2' ?> id="<?php echo $id4 ?>">教材の貸し出し</<?php echo isset($h_element) ? $h_element : 'h2' ?>>
+<?php
+endif;
+?>
 
 <p>学校、企業などで地球温暖化について学ぶための教材の貸出を行っております。以下手順で申請してください。</p>
 <?php komaruHtml('1.3.1a') ?>
@@ -108,7 +150,18 @@ if (\Komarushi\Main::getBarrierStatus('1.3.3f') == 'ng'):
 	$scope_col = '';
 endif;
 ?>
-<<?php echo isset($h_element) ? $h_element.' class="h3"' : 'h3' ?> id="<?php echo $id4 ?>">教材の貸し出し状況</<?php echo isset($h_element) ? $h_element : 'h3' ?>>
+
+<?php
+if (\Komarushi\Main::getBarrierStatus('1.3.1h') == 'ng'):
+?>
+<p id="<?php echo $id4 ?>" style="font-size:160%;font-weight:bold;">【教材の貸し出し状況】</p>
+<?php
+else:
+?>
+	<<?php echo isset($h_element) ? $h_element.' class="h3"' : 'h3' ?> id="<?php echo $id4 ?>">教材の貸し出し状況</<?php echo isset($h_element) ? $h_element : 'h3' ?>>
+<?php
+endif;
+?>
 
 <?php
 // 感覚的な特徴
@@ -157,10 +210,35 @@ endif;
 </tr>
 </table>
 
-<<?php echo isset($h_element) ? $h_element.' class="h2"' : 'h2' ?> id="<?php echo $id3 ?>">参考資料「2021年度 家庭からの二酸化炭素排出量（燃料種別内訳）」</<?php echo isset($h_element) ? $h_element : 'h2' ?>>
+<?php
+if (\Komarushi\Main::getBarrierStatus('1.3.1h') == 'ng'):
+?>
+<p style="font-size:160%;font-weight:bold;">【参考資料「2021年度 家庭からの二酸化炭素排出量（燃料種別内訳）」】</p>
+<?php
+else:
+?>
+	<<?php echo isset($h_element) ? $h_element.' class="h2"' : 'h2' ?>>参考資料「2021年度 家庭からの二酸化炭素排出量（燃料種別内訳）」</<?php echo isset($h_element) ? $h_element : 'h2' ?>>
+<?php
+endif;
+?>
 
 <?php komaruHtml('1.4.1c') ?>
 <?php komaruHtml('1.1.1e') ?>
+
+
+<?php
+if (\Komarushi\Main::getBarrierStatus('1.3.1h') == 'ng'):
+?>
+<p style="font-size:160%;font-weight:bold;">【参考資料「リンク集」】</p>
+<?php
+else:
+?>
+	<<?php echo isset($h_element) ? $h_element.' class="h2"' : 'h2' ?>>参考資料「リンク集」</<?php echo isset($h_element) ? $h_element : 'h2' ?>>
+<?php
+endif;
+?>
+
+<?php komaruHtml('2.4.4a') ?>
 
 </main>
 

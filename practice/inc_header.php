@@ -29,6 +29,7 @@
 	<link href="//fonts.googleapis.com/css2?family=Lato:wght@700&display=swap" rel="stylesheet">
 	<link rel="icon" href="./images/favicon.ico" />
 <?php komaruHtml('1.4.4b') ?>
+<?php komaruHtml('1.3.4a') ?>
 
 <?php
 $share_url = (empty($_SERVER['HTTPS']) ? 'http://' : 'https://').$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];

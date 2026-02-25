@@ -5,6 +5,13 @@
 <?php komaruHtml('2.4.2a') ?>
 </head>
 <body class="toppage">
+
+<?php if (\Komarushi\Main::getBarrierStatus('1.3.4a') == 'ng'): ?>
+  <div class="portrait-warning">
+    <p>駒瑠市のサイトはデバイスの向きを変更してご覧ください。</p>
+  </div>
+<?php endif; ?>
+
 <?php include(__DIR__.'/inc_error.php'); ?>
 <?php komaruHtml('1.4.2a') ?>
 <div id="outer-wrapper">

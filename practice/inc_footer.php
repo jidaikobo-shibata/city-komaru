@@ -39,7 +39,7 @@ City of Komaru. All rights reserved.<br>
 <?php
 foreach (\Komarushi\Main::$test_pattern as $k => $v):
   if ($v === 'ok') continue;
-	echo '<li>'.\kontiki\Util::s($k).'</li>';
+	echo '<li>'.\kontiki\Util::s($k). '_' . \kontiki\Util::s($v) . '</li>';
 endforeach;;
 ?>
 </ul>
@@ -58,5 +58,7 @@ endforeach;;
 </div>
 </div>
 </div>
+<?php komaruHtml('1.4.13a') ?>
+<?php komaruHtml('2.1.2c') ?>
 </body>
 </html>
