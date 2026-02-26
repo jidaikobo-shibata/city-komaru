@@ -85,7 +85,7 @@ $share_url = (empty($_SERVER['HTTPS']) ? 'http://' : 'https://').$_SERVER['HTTP_
             <form id="selectWcag4preset">
             <fieldset>
             <legend>プリセット版で使うWCAGのバージョンを選択してください</legend>
-            <p style="margin: 0;">WCAG 2.0以外のバリアは、徐々に増やしています。WCAG 2.2のバリアはまだありません。</p>
+            <p style="margin: 0;">WCAG 2.0以外のバリアは、徐々に増やしています。</p>
             <ul style="columns: 3;zoom:1.2">
                 <li><input type="radio" id="preset_wcag20" name="wcagver" value="20" checked><label for="preset_wcag20">WCAG 2.0</label></li>
                 <li><input type="radio" id="preset_wcag21" name="wcagver" value="21"><label for="preset_wcag21">WCAG 2.1</label></li>
@@ -184,7 +184,7 @@ $share_url = (empty($_SERVER['HTTPS']) ? 'http://' : 'https://').$_SERVER['HTTP_
                         $html.= '<li><input'.$checked.' type="radio" name="'.$cat4post.'" value="'.$file.'" id="'.$cat4post.'_'.$file.'"><label for="'.$cat4post.'_'.$file.'">';
                         $status = \Kontiki\Util::s(strtoupper($file));
                         $html.= $status.': '.$message.'</label>';
-                        $try = ' [<a href="practice/?criteria='.$cat.'">この実装を試す</a>]';
+                        $try = ' [<a href="practice/?criteria='.$cat.'_'.$file.'">この実装を試す</a>]';
                         $html.= $try;
                         $html.= "</li>\n";
                     endforeach;
@@ -288,6 +288,11 @@ $share_url = (empty($_SERVER['HTTPS']) ? 'http://' : 'https://').$_SERVER['HTTP_
     <section>
         <h2 id="change-log">変更履歴</h2>
         <ul>
+            <li><time datetime="2026-02-20">2026年2月20日</time>
+            <ul>
+                <li>複数の細かい修正をしています。</li>
+            </ul>
+            </li>
             <li><time datetime="2025-01-11">2025年1月11日</time>
             <ul>
                 <li>トップページの「あなたにもできる取り組み」の画像にツールチップを実装し、「1.4.13 ホバー又はフォーカスで表示されるコンテンツ (AA)」の不適合事例を実装しました（<a href="https://a11yc.com/city-komaru/practice/index.php?criteria=1.4.13a_ng">2秒以内で消えるツールチップ</a>、<a href="https://a11yc.com/city-komaru/practice/index.php?criteria=1.4.13a_ng2">消せないツールチップ</a>、<a href="https://a11yc.com/city-komaru/practice/index.php?criteria=1.4.13a_ng3">ホバーできないツールチップ</a>）</li>
