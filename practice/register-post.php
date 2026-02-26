@@ -9,6 +9,7 @@ $vals['shimei'] = filter_input(INPUT_POST, 'shimei');
 $vals['email'] = filter_input(INPUT_POST, 'email');
 $vals['phone'] = filter_input(INPUT_POST, 'phone');
 $vals['registration-captcha'] = filter_input(INPUT_POST, 'captcha');
+$vals['registration-captcha-math'] = filter_input(INPUT_POST, 'captcha_math');
 $vals['agree_privacypolicy'] = filter_input(INPUT_POST, 'agree_privacypolicy');
 setcookie('vals', json_encode($vals), (time()+86400), "/");
 
@@ -28,12 +29,28 @@ $is_331_ok = isset(\Komarushi\Main::$test_pattern['3.3.1a']) && \Komarushi\Main:
 $is_333_ok = isset(\Komarushi\Main::$test_pattern['3.3.3a']) && \Komarushi\Main::$test_pattern['3.3.3a'] == 'ok';
 
 //if (filter_input(INPUT_POST, 'captcha') !== 'uRab4?p')
-if ( ! is_null(filter_input(INPUT_POST, 'captcha')))
+if ($vals['type'] == 'new')
 {
-	if (strtolower(filter_input(INPUT_POST, 'captcha')) !== 'urab4?p')
+	$captcha_input = trim((string)filter_input(INPUT_POST, 'captcha'));
+	$captcha_math_input = trim((string)filter_input(INPUT_POST, 'captcha_math'));
+	$is_captcha_ok = $captcha_input !== '' && strtolower($captcha_input) === 'urab4?p';
+
+	$is_111i_ok = isset(\Komarushi\Main::$test_pattern['1.1.1i']) &&
+		preg_match('/^ok/', \Komarushi\Main::$test_pattern['1.1.1i']);
+	if ($is_111i_ok)
+	{
+		$math_answers = \Kontiki\Session::show('captcha', 'math_answer');
+		$math_answer = is_array($math_answers) && ! empty($math_answers) ? end($math_answers) : null;
+		if ($math_answer !== null && $captcha_math_input !== '' && $captcha_math_input === (string)$math_answer)
+		{
+			$is_captcha_ok = true;
+		}
+	}
+
+	if ( ! $is_captcha_ok)
 	{
 		$errors['registration-captcha'] = $is_331_ok ?
-							'画像に表示されている文字を確認してください' :
+							'画像の文字または計算問題の答えを確認してください' :
 							'入力内容が間違っています';
 		$errors['registration-captcha'].= $is_333_ok ? '。文字と一致していません' : '';
 		$is_error = true;
@@ -78,6 +95,17 @@ if ($is_error)
 {
 	setcookie('errors', json_encode($errors), (time()+86400), "/");
 	header('location: '.$preset);
+	exit();
+}
+
+// 登録内容変更の場合はログインへ
+if ($vals['type'] == 'renew')
+{
+	$mode_string = \Komarushi\Main::modeString(false);
+	$sep = empty($mode_string) ? '?' : '&';
+	$your_id = rawurlencode((string)$vals['your-id']);
+	$login = './login.php'.$mode_string.$sep.'your-id='.$your_id;
+	header('location: '.$login);
 	exit();
 }
 

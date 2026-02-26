@@ -7,6 +7,7 @@ $vals = [
 	'email'                => '',
 	'phone'                => '',
 	'registration-captcha' => '',
+	'registration-captcha-math' => '',
 	'agree_privacypolicy'  => '',
 ];
 if (isset($_COOKIE['vals']))

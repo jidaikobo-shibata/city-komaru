@@ -12,6 +12,7 @@
 <div class="inner-wrapper">
 	<div id="utilities">
 	<?php komaruHtml('2.4.1a') ?>
+	<a href="./login.php<?php echo \Komarushi\Main::modeString() ?>">会員ログイン</a>
 	<?php komaruHtml('2.4.5a') ?>
 	</div>
 	<div id="logo"><a href="./<?php echo \Komarushi\Main::modeString() ?>"><?php komaruHtml('1.1.1b') ?></a> 地球温暖化防止課</div>
@@ -96,13 +97,6 @@ $is_type_renew = $vals['type'] === 'renew' ? $checked : '';
 </fieldset>
 <?php komaruHtml('1.4.1a') ?>
 
-<?php if ( ! in_array(filter_input(INPUT_GET, "preset"), ['ok-a', 'ok-aa', 'story-2years-before', 'story-1years-before'])): ?>
-<p><label for="registration-captcha">画像に表示されている文字を入力してください。</label><br>
-<img src="./images/captcha.png" width="300" height="80" alt="画像"><br>
-<input type="text" name="captcha" size="12" id="registration-captcha" aria-describedby="registration-captcha-description" value="<?php echo $vals['registration-captcha']; ?>"> <span id="registration-captcha-description"><br>大文字小文字は区別されません。</span>
-</p>
-<?php endif; ?>
-
 <input type="hidden" name="preset" value="<?php echo \Kontiki\Util::s(filter_input(INPUT_GET, 'preset')) ?>" />
 <input type="hidden" name="criteria" value="<?php echo \Kontiki\Util::s(filter_input(INPUT_GET, 'criteria')) ?>" />
 
@@ -134,6 +128,25 @@ jQuery (function($){
 			area_show.find(':input:visible').eq(0).focus();
 		}
 	}
+});
+</script>
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+	const newArea = document.getElementById('new-area');
+	const renewArea = document.getElementById('renew-area');
+	const typeRadios = document.querySelectorAll('input[name="type"]');
+
+	function toggleByType(){
+		const checked = document.querySelector('input[name="type"]:checked');
+		const isNew = checked && checked.value === 'new';
+		if (newArea) newArea.style.display = isNew ? '' : 'none';
+		if (renewArea) renewArea.style.display = isNew ? 'none' : '';
+	}
+
+	toggleByType();
+	typeRadios.forEach(function(radio){
+		radio.addEventListener('change', toggleByType);
+	});
 });
 </script>
 <?php komaruHtml('2.2.1a') ?>
