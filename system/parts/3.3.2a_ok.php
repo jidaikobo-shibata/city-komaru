@@ -4,11 +4,12 @@
 komaruHtml('3.3.2b');
 
 // 1.3.1
-$label_onamae  = '<label for="shimei">お名前※</label>';
+$label_onamae_text = \Komarushi\Main::komaruHtml('1.3.2a', false, true);
+$label_onamae  = '<label for="shimei">'.$label_onamae_text.'</label>';
 $label_email   = '<label for="email">メールアドレス※</label>';
 $label_content = '<label for="content">お問い合わせ内容※</label>';
 if (\Komarushi\Main::getBarrierStatus('1.3.1g') == 'ng'):
-	$label_onamae  = 'お名前※';
+	$label_onamae  = \Komarushi\Main::komaruHtml('1.3.2a', false, true);
 	$label_email   = 'メールアドレス※';
 	$label_content = 'お問い合わせ内容※';
 endif;

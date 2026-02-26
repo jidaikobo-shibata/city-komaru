@@ -298,9 +298,10 @@ class Main
 	 * echo practice HTML - komaruHtml
 	 * @param String $critetrion
 	 * @param String $is_include
+	 * @param Bool $return
 	 * @return Void
 	 */
-	public static function komaruHtml($critetrion, $is_include = false)
+	public static function komaruHtml($critetrion, $is_include = false, $return = false)
 	{
 		// test pattern code
 		// $test_pattern_code = \Kontiki\Input::cookie('test_pattern_code');
@@ -323,6 +324,7 @@ class Main
 				in_array($critetrion_chk, $added_criteria)
 		)
 		{
+			if ($return) return '';
 			echo '';
 			return;
 		}
@@ -340,7 +342,17 @@ class Main
 			if ($is_include)
 			{
 				include($partfile);
+				if ($return) return '';
 				return;
+			}
+
+			// When return is requested, always capture output
+			if ($return)
+			{
+				ob_start();
+				include($partfile);
+				$html = ob_get_clean();
+				return $html;
 			}
 
 			// narmal call

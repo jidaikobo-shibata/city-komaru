@@ -9,7 +9,7 @@ global $ac_onamae, $ac_email, $ac_tel;
 komaruHtml('1.3.5a', true);
 ?>
 
-お名前※
+<?php komaruHtml('1.3.2a') ?>
 <p><input type="text" name="shimei"<?php echo $ac_onamae ?> id="shimei" size="20" value="" required /></p>
 
 メールアドレス※
