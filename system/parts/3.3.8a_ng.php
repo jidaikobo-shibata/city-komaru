@@ -6,6 +6,7 @@
 			['paste', 'drop', 'contextmenu'].forEach(function(type) {
 				el.addEventListener(type, function(event) {
 					event.preventDefault();
+					alert('ペースト禁止です');
 				});
 			});
 		}
