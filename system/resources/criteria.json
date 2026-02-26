@@ -455,6 +455,18 @@
 		"url20" : "minimize-error-reversible-all",
 		"url21" : "error-prevention-all"
 	},
+	"3.3.7" : {
+		"level" : "A",
+		"name"  : "冗長な入力",
+		"url20" : "",
+		"url21" : "redundant-entry"
+	},
+	"3.3.8" : {
+		"level" : "AA",
+		"name"  : "アクセシブルな認証 (最低限)",
+		"url20" : "",
+		"url21" : "accessible-authentication-minimum"
+	},
 	"4.1.1" : {
 		"level" : "A",
 		"name"  : "構文解析",

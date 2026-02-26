@@ -19,6 +19,7 @@
 <header id="site-header">
 	<div id="utilities">
 	<?php komaruHtml('2.4.1b') ?>
+	<a href="./login.php<?php echo \Komarushi\Main::modeString() ?>">会員ログイン</a>
 	<?php komaruHtml('2.4.5a') ?>
 	</div>
 	<h1 id="logo"><?php komaruHtml('1.1.1b') ?> 地球温暖化防止課</h1>

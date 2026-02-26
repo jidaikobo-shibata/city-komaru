@@ -103,6 +103,7 @@ class Util
 	 */
 	public static function s($str)
 	{
+		if ($str === null) return '';
 		if (is_bool($str)) return $str;
 		if (is_object($str)) return $str;
 		if (is_array($str)) return array_map(array('\Kontiki\Util', 's'), $str);
