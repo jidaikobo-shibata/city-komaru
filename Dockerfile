@@ -9,6 +9,9 @@ RUN set -eux; \
 	apt-get install -y --no-install-recommends git unzip; \
 	rm -rf /var/lib/apt/lists/*
 
+# Avoid git safe.directory warning for bind-mounted project path in container
+RUN git config --global --add safe.directory /var/www/html
+
 # Install Composer 2
 COPY --from=composer:2 /usr/bin/composer /usr/local/bin/composer
 
