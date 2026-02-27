@@ -5,3 +5,4 @@ codex/memory/
 AGENTS.md
 codex/checklist.md
 vendor/
+.phpunit.cache/
