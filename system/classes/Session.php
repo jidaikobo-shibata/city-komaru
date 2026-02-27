@@ -75,11 +75,7 @@ class Session
      */
     public static function add($realm, $key, $vals)
     {
-        static::$values[$realm][$key][] = $vals;
-
-        self::mergeSessionValueIfExists($realm, $key);
-        static::$values[$realm][$key] = array_unique(static::$values[$realm][$key]);
-        $_SESSION[$realm] = static::$values[$realm];
+        SessionBucket::add(static::$values, $_SESSION, $realm, $key, $vals);
     }
 
     /**
@@ -92,15 +88,7 @@ class Session
      */
     public static function remove($realm, $key = '', $c_key = '')
     {
-        if (empty($key) && empty($c_key)) {
-            self::removeRealm($realm);
-            return;
-        }
-        if (empty($c_key)) {
-            self::removeKey($realm, $key);
-            return;
-        }
-        self::removeEachValue($realm, $key, $c_key);
+        SessionBucket::remove(static::$values, $_SESSION, $realm, $key, $c_key);
     }
 
     /**
@@ -115,52 +103,7 @@ class Session
      */
     public static function fetch($realm, $key = '', $is_once = true)
     {
-        $vals = empty($key) ?
-            static::fetchRealmValues($realm, $is_once) :
-            static::fetchKeyValues($realm, $key, $is_once);
-
-        return static::normalizeFetchedValues($vals);
-    }
-
-    private static function fetchRealmValues($realm, $is_once)
-    {
-        $vals = array();
-        if (isset($_SESSION[$realm])) {
-            $vals = $_SESSION[$realm];
-        }
-        if (isset(static::$values[$realm])) {
-            $vals = array_merge($vals, static::$values[$realm]);
-        }
-        if ($is_once) {
-            static::remove($realm);
-        }
-        return $vals;
-    }
-
-    private static function fetchKeyValues($realm, $key, $is_once)
-    {
-        if (! isset(static::$values[$realm][$key]) && ! isset($_SESSION[$realm][$key])) {
-            return array();
-        }
-
-        $vals = array();
-        if (isset($_SESSION[$realm][$key])) {
-            $vals = $_SESSION[$realm][$key];
-        }
-        if (isset(static::$values[$realm])) {
-            static::$values[$realm][$key] = empty(static::$values[$realm][$key]) ? array() : static::$values[$realm][$key];
-            $vals = array_merge($vals, static::$values[$realm][$key]);
-        }
-        if ($is_once) {
-            static::remove($realm, $key);
-        }
-        return $vals;
-    }
-
-    private static function normalizeFetchedValues($vals)
-    {
-        $vals = array_unique($vals);
-        return $vals ?: false;
+        return SessionBucket::fetch(static::$values, $_SESSION, $realm, $key, $is_once);
     }
 
     private static function isSessionDisabled()
@@ -205,53 +148,6 @@ class Session
         return end($expires) + 5 < time();
     }
 
-    private static function mergeSessionValueIfExists($realm, $key)
-    {
-        if (isset($_SESSION[$realm][$key])) {
-            static::$values[$realm][$key] = array_merge(
-                $_SESSION[$realm][$key],
-                static::$values[$realm][$key]
-            );
-            return;
-        }
-        if (isset($_SESSION[$realm])) {
-            static::$values[$realm] = array_merge(
-                $_SESSION[$realm],
-                static::$values[$realm]
-            );
-        }
-    }
-
-    private static function removeRealm($realm)
-    {
-        if (isset($_SESSION[$realm])) {
-            unset($_SESSION[$realm]);
-        }
-        if (isset(static::$values[$realm])) {
-            unset(static::$values[$realm]);
-        }
-    }
-
-    private static function removeKey($realm, $key)
-    {
-        if (isset($_SESSION[$realm][$key])) {
-            unset($_SESSION[$realm][$key]);
-        }
-        if (isset(static::$values[$realm][$key])) {
-            unset(static::$values[$realm][$key]);
-        }
-    }
-
-    private static function removeEachValue($realm, $key, $c_key)
-    {
-        if (isset($_SESSION[$realm][$key][$c_key])) {
-            unset($_SESSION[$realm][$key][$c_key]);
-        }
-        if (isset(static::$values[$realm][$key][$c_key])) {
-            unset(static::$values[$realm][$key][$c_key]);
-        }
-    }
-
     /**
      * show
      *
@@ -261,9 +157,6 @@ class Session
      */
     public static function show($realm = '', $key = '')
     {
-        if (empty($realm)) {
-            return array_merge(static::$values, $_SESSION);
-        }
-        return static::fetch($realm, $key, false) ?: false;
+        return SessionBucket::show(static::$values, $_SESSION, $realm, $key);
     }
 }
