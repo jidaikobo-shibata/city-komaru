@@ -7,10 +7,7 @@
     "psr-4": {
       "Komarushi\\": "system/classes/",
       "Kontiki\\": "system/classes/"
-    },
-    "classmap": [
-      "system/classes/"
-    ]
+    }
   },
   "require": {},
   "require-dev": {
