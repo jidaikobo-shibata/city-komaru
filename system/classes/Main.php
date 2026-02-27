@@ -96,40 +96,16 @@ class Main
      */
     public static function generateTestPatternCode()
     {
-        $test_pattern_str = '';
-        if (\Kontiki\Input::post('gen_test_pattern_code')) {
-            $test_pattern = array();
-            $code_pattern = self::getCodePatterns();
-            $wcagver = RequestContext::postedWcagVersion(22);
-            $excluded_criteria = self::getExcludedCriteriaByWcagVersion($wcagver);
-
-            // set errors
-            foreach ($code_pattern as $criterion => $errors) {
-                if (\Kontiki\Input::post('code_type') == 'ng' && in_array(substr($criterion, 0, -1), $excluded_criteria)) {
-                    continue;
-                }
-                if (\Kontiki\Input::post('code_type') == 'individual') {
-                    $criterion4post = str_replace('.', '_', $criterion);
-                    $suffix = \Kontiki\Input::post($criterion4post);
-                    if (empty($suffix) || $suffix == 'ok') {
-                        continue;
-                    }
-                    $test_pattern[$criterion] = $suffix;
-                } else {
-                    shuffle($errors);
-                    $suffix = $errors[0];
-                    if ($suffix == 'ok') {
-                        continue;
-                    }
-                    $test_pattern[$criterion] = $errors[0];
-                }
-            }
-
-            // generate test pattern strings
-            $json = json_encode($test_pattern);
-            $test_pattern_str = base64_encode($json);
+        if (! \Kontiki\Input::post('gen_test_pattern_code')) {
+            return '';
         }
-        return $test_pattern_str;
+
+        $codePattern = self::getCodePatterns();
+        $wcagver = RequestContext::postedWcagVersion(22);
+        $excludedCriteria = self::getExcludedCriteriaByWcagVersion($wcagver);
+        $codeType = \Kontiki\Input::post('code_type');
+
+        return TestPatternGenerator::generate($codeType, $codePattern, $excludedCriteria);
     }
 
     private static function getExcludedCriteriaByWcagVersion($wcagver)

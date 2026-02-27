@@ -15,8 +15,12 @@ final class AutoloadTest extends TestCase
         $this->assertTrue(class_exists(\Komarushi\PartRenderer::class));
         $this->assertTrue(class_exists(\Komarushi\PatternResolver::class));
         $this->assertTrue(class_exists(\Komarushi\RequestContext::class));
+        $this->assertTrue(class_exists(\Komarushi\TestPatternGenerator::class));
         $this->assertTrue(class_exists(\Kontiki\Input::class));
+        $this->assertTrue(class_exists(\Kontiki\QueryStringHelper::class));
         $this->assertTrue(class_exists(\Kontiki\Session::class));
+        $this->assertTrue(class_exists(\Kontiki\SessionBucket::class));
+        $this->assertTrue(class_exists(\Kontiki\UrlCodec::class));
         $this->assertTrue(class_exists(\Kontiki\Util::class));
     }
 }
