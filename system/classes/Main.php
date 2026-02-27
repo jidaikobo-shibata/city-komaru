@@ -43,9 +43,10 @@ class Main
     {
         self::defineBaseConstants();
         $presets = self::loadPresetsAndMessages();
-        define('KOMARUSHI_PRESET', self::resolvePreset($presets));
-        define('KOMARUSHI_CRITERIA', self::resolveCriteria());
-        define('KOMARUSHI_WCAGVER', self::resolveWcagVersion());
+        $context = RequestContext::fromRequest($presets);
+        define('KOMARUSHI_PRESET', $context['preset']);
+        define('KOMARUSHI_CRITERIA', $context['criteria']);
+        define('KOMARUSHI_WCAGVER', $context['wcagver']);
 
         // current test pattern
         $test_pattern_code = \Kontiki\Input::cookie('test_pattern_code');
@@ -89,24 +90,6 @@ class Main
         static::$message_presets[$presetname] = explode("::", trim($ms[1]));
     }
 
-    private static function resolvePreset($presets)
-    {
-        $preset = \Kontiki\Input::get('preset', \Kontiki\Input::post('preset'));
-        return in_array($preset, $presets) ? $preset : '';
-    }
-
-    private static function resolveCriteria()
-    {
-        return \Kontiki\Input::get('criteria', \Kontiki\Input::post('criteria'));
-    }
-
-    private static function resolveWcagVersion()
-    {
-        $wcagver = \Kontiki\Input::get('wcagver', \Kontiki\Input::post('wcagver'));
-        $wcagver = in_array($wcagver, [20, 21, 22]) ? $wcagver : 22;
-        return intval($wcagver);
-    }
-
     /**
      * generate test pattern code
      * @return String
@@ -117,8 +100,7 @@ class Main
         if (\Kontiki\Input::post('gen_test_pattern_code')) {
             $test_pattern = array();
             $code_pattern = self::getCodePatterns();
-            $wcagver = intval(\Kontiki\Input::post('wcagver', 22));
-            $wcagver = in_array($wcagver, [20, 21, 22]) ? $wcagver : 22;
+            $wcagver = RequestContext::postedWcagVersion(22);
             $excluded_criteria = self::getExcludedCriteriaByWcagVersion($wcagver);
 
             // set errors
