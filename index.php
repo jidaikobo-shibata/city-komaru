@@ -77,7 +77,7 @@ $share_url = (empty($_SERVER['HTTPS']) ? 'http://' : 'https://') . $_SERVER['HTT
 </div>
 <section id="setting">
     <div class="wrapper">
-        <h2>障壁（バリア）の設定</h2>
+        <h2 id="config">障壁（バリア）の設定</h2>
         <section id="setting_preset">
             <h3>プリセット版</h3>
             <p class="ac">問題をあらかじめ設定（プリセット）した駒瑠市サイトです。カスタマイズ版にのみ存在する障壁もあります。</p>
