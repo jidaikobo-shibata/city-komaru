@@ -159,8 +159,8 @@ class Util
     /**
      * byte2Str
      *
-     * @param Integer $bytes
-     * @return String
+     * @param int|string $bytes
+     * @return string|int
      * @link http://qiita.com/git6_com/items/ecaafb1afb42fc207814
      */
     public static function byte2Str($bytes)

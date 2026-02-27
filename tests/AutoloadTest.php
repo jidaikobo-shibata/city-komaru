@@ -18,6 +18,7 @@ final class AutoloadTest extends TestCase
         $this->assertTrue(class_exists(\Komarushi\TestPatternGenerator::class));
         $this->assertTrue(class_exists(\Kontiki\Input::class));
         $this->assertTrue(class_exists(\Kontiki\QueryStringHelper::class));
+        $this->assertTrue(class_exists(\Kontiki\Arr::class));
         $this->assertTrue(class_exists(\Kontiki\Session::class));
         $this->assertTrue(class_exists(\Kontiki\SessionBucket::class));
         $this->assertTrue(class_exists(\Kontiki\UrlCodec::class));
