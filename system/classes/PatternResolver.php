@@ -4,6 +4,16 @@ namespace Komarushi;
 
 class PatternResolver
 {
+    /**
+     * Resolve final test pattern from code, preset and criteria.
+     *
+     * @param string $test_pattern_code
+     * @param string $preset
+     * @param string $preset_path
+     * @param string $criteria
+     * @param array $codePatterns
+     * @return array
+     */
     public static function resolve(
         $test_pattern_code,
         $preset,
@@ -22,6 +32,12 @@ class PatternResolver
         );
     }
 
+    /**
+     * Decode base64 test pattern string.
+     *
+     * @param string $test_pattern_code
+     * @return array
+     */
     private static function decodeTestPattern($test_pattern_code)
     {
         if (empty($test_pattern_code)) {
@@ -31,6 +47,14 @@ class PatternResolver
         return json_decode(base64_decode($test_pattern_code), true);
     }
 
+    /**
+     * Overwrite pattern with selected preset.
+     *
+     * @param array $pattern
+     * @param string $preset
+     * @param string $preset_path
+     * @return array
+     */
     private static function overwriteWithPreset($pattern, $preset, $preset_path)
     {
         if (empty($preset)) {
@@ -40,6 +64,14 @@ class PatternResolver
         return include($preset_path . $preset . '.php');
     }
 
+    /**
+     * Overwrite pattern with explicit criteria input.
+     *
+     * @param array $pattern
+     * @param string $criteria
+     * @param array $codePatterns
+     * @return void
+     */
     private static function overwriteWithCriteria(&$pattern, $criteria, $codePatterns)
     {
         if (empty($criteria)) {
@@ -58,6 +90,14 @@ class PatternResolver
         }
     }
 
+    /**
+     * Apply criterion with explicit suffix (e.g. 1.1.1a_ng).
+     *
+     * @param array $pattern
+     * @param array $each_criterions
+     * @param array $codePatterns
+     * @return void
+     */
     private static function applySpecificCriterion(&$pattern, $each_criterions, $codePatterns)
     {
         $criterion = $each_criterions[0];
@@ -73,6 +113,14 @@ class PatternResolver
         $pattern[$criterion] = $suffix;
     }
 
+    /**
+     * Apply grouped criterion (e.g. 1.1.1).
+     *
+     * @param array $pattern
+     * @param string $criterion
+     * @param array $codePatterns
+     * @return void
+     */
     private static function applyCriterionGroup(&$pattern, $criterion, $codePatterns)
     {
         foreach ($codePatterns as $k => $v) {
@@ -86,6 +134,12 @@ class PatternResolver
         }
     }
 
+    /**
+     * Build default OK set for every criterion.
+     *
+     * @param array $codePatterns
+     * @return array
+     */
     private static function buildOkPatternSet($codePatterns)
     {
         $oks = array();

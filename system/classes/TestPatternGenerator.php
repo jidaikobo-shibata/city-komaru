@@ -4,6 +4,14 @@ namespace Komarushi;
 
 class TestPatternGenerator
 {
+    /**
+     * Generate base64 encoded test pattern string.
+     *
+     * @param string $codeType
+     * @param array $codePattern
+     * @param array $excludedCriteria
+     * @return string
+     */
     public static function generate($codeType, $codePattern, $excludedCriteria)
     {
         $testPattern = array();
@@ -22,11 +30,27 @@ class TestPatternGenerator
         return base64_encode(json_encode($testPattern));
     }
 
+    /**
+     * Determine whether criterion should be skipped for this code type.
+     *
+     * @param string $codeType
+     * @param string $criterion
+     * @param array $excludedCriteria
+     * @return bool
+     */
     private static function shouldSkipCriterion($codeType, $criterion, $excludedCriteria)
     {
         return $codeType === 'ng' && in_array(substr($criterion, 0, -1), $excludedCriteria);
     }
 
+    /**
+     * Resolve suffix from post or random selection.
+     *
+     * @param string $codeType
+     * @param string $criterion
+     * @param array $errors
+     * @return string|null
+     */
     private static function resolveSuffix($codeType, $criterion, $errors)
     {
         if ($codeType === 'individual') {

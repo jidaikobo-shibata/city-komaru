@@ -4,6 +4,16 @@ namespace Kontiki;
 
 class SessionBucket
 {
+    /**
+     * Add value to bucket and sync to $_SESSION mirror.
+     *
+     * @param array $staticValues
+     * @param array $sessionValues
+     * @param string $realm
+     * @param string $key
+     * @param mixed $vals
+     * @return void
+     */
     public static function add(&$staticValues, &$sessionValues, $realm, $key, $vals)
     {
         $staticValues[$realm][$key][] = $vals;
@@ -13,6 +23,16 @@ class SessionBucket
         $sessionValues[$realm] = $staticValues[$realm];
     }
 
+    /**
+     * Remove values by realm/key/index.
+     *
+     * @param array $staticValues
+     * @param array $sessionValues
+     * @param string $realm
+     * @param string|int $key
+     * @param string|int $cKey
+     * @return void
+     */
     public static function remove(&$staticValues, &$sessionValues, $realm, $key = '', $cKey = '')
     {
         if ($key === '' && $cKey === '') {
@@ -26,6 +46,16 @@ class SessionBucket
         self::removeEachValue($staticValues, $sessionValues, $realm, $key, $cKey);
     }
 
+    /**
+     * Fetch values and optionally remove them.
+     *
+     * @param array $staticValues
+     * @param array $sessionValues
+     * @param string $realm
+     * @param string $key
+     * @param bool $isOnce
+     * @return array|false
+     */
     public static function fetch(&$staticValues, &$sessionValues, $realm, $key = '', $isOnce = true)
     {
         $vals = empty($key) ?
@@ -35,6 +65,15 @@ class SessionBucket
         return self::normalizeFetchedValues($vals);
     }
 
+    /**
+     * Show values without removing by default.
+     *
+     * @param array $staticValues
+     * @param array $sessionValues
+     * @param string $realm
+     * @param string $key
+     * @return array|false
+     */
     public static function show(&$staticValues, &$sessionValues, $realm = '', $key = '')
     {
         if (empty($realm)) {
@@ -43,6 +82,15 @@ class SessionBucket
         return self::fetch($staticValues, $sessionValues, $realm, $key, false) ?: false;
     }
 
+    /**
+     * Fetch values for whole realm.
+     *
+     * @param array $staticValues
+     * @param array $sessionValues
+     * @param string $realm
+     * @param bool $isOnce
+     * @return array
+     */
     private static function fetchRealmValues(&$staticValues, &$sessionValues, $realm, $isOnce)
     {
         $vals = array();
@@ -58,6 +106,16 @@ class SessionBucket
         return $vals;
     }
 
+    /**
+     * Fetch values for single key.
+     *
+     * @param array $staticValues
+     * @param array $sessionValues
+     * @param string $realm
+     * @param string $key
+     * @param bool $isOnce
+     * @return array
+     */
     private static function fetchKeyValues(&$staticValues, &$sessionValues, $realm, $key, $isOnce)
     {
         if (! self::hasKeyValues($staticValues, $sessionValues, $realm, $key)) {
@@ -70,11 +128,28 @@ class SessionBucket
         return $vals;
     }
 
+    /**
+     * Check key existence in any storage.
+     *
+     * @param array $staticValues
+     * @param array $sessionValues
+     * @param string $realm
+     * @param string $key
+     * @return bool
+     */
     private static function hasKeyValues(&$staticValues, &$sessionValues, $realm, $key)
     {
         return isset($staticValues[$realm][$key]) || isset($sessionValues[$realm][$key]);
     }
 
+    /**
+     * Collect key values from session storage.
+     *
+     * @param array $sessionValues
+     * @param string $realm
+     * @param string $key
+     * @return array
+     */
     private static function collectSessionValues(&$sessionValues, $realm, $key)
     {
         if (! isset($sessionValues[$realm][$key])) {
@@ -83,6 +158,15 @@ class SessionBucket
         return $sessionValues[$realm][$key];
     }
 
+    /**
+     * Merge static key values onto current value list.
+     *
+     * @param array $vals
+     * @param array $staticValues
+     * @param string $realm
+     * @param string $key
+     * @return array
+     */
     private static function mergeStaticKeyValues($vals, &$staticValues, $realm, $key)
     {
         if (! isset($staticValues[$realm])) {
@@ -93,6 +177,16 @@ class SessionBucket
         return array_merge($vals, $staticValues[$realm][$key]);
     }
 
+    /**
+     * Remove fetched key when one-time fetch is enabled.
+     *
+     * @param array $staticValues
+     * @param array $sessionValues
+     * @param string $realm
+     * @param string $key
+     * @param bool $isOnce
+     * @return void
+     */
     private static function removeFetchedKeyIfNeeded(&$staticValues, &$sessionValues, $realm, $key, $isOnce)
     {
         if (! $isOnce) {
@@ -101,12 +195,27 @@ class SessionBucket
         self::remove($staticValues, $sessionValues, $realm, $key);
     }
 
+    /**
+     * Normalize fetched values as unique list.
+     *
+     * @param array $vals
+     * @return array|false
+     */
     private static function normalizeFetchedValues($vals)
     {
         $vals = array_unique($vals);
         return $vals ?: false;
     }
 
+    /**
+     * Merge existing session values into static bucket.
+     *
+     * @param array $staticValues
+     * @param array $sessionValues
+     * @param string $realm
+     * @param string $key
+     * @return void
+     */
     private static function mergeSessionValueIfExists(&$staticValues, &$sessionValues, $realm, $key)
     {
         if (isset($sessionValues[$realm][$key])) {
@@ -124,6 +233,14 @@ class SessionBucket
         }
     }
 
+    /**
+     * Remove entire realm.
+     *
+     * @param array $staticValues
+     * @param array $sessionValues
+     * @param string $realm
+     * @return void
+     */
     private static function removeRealm(&$staticValues, &$sessionValues, $realm)
     {
         if (isset($sessionValues[$realm])) {
@@ -134,6 +251,15 @@ class SessionBucket
         }
     }
 
+    /**
+     * Remove one key in a realm.
+     *
+     * @param array $staticValues
+     * @param array $sessionValues
+     * @param string $realm
+     * @param string $key
+     * @return void
+     */
     private static function removeKey(&$staticValues, &$sessionValues, $realm, $key)
     {
         if (isset($sessionValues[$realm][$key])) {
@@ -144,6 +270,16 @@ class SessionBucket
         }
     }
 
+    /**
+     * Remove one indexed value in a key list.
+     *
+     * @param array $staticValues
+     * @param array $sessionValues
+     * @param string $realm
+     * @param string $key
+     * @param string|int $cKey
+     * @return void
+     */
     private static function removeEachValue(&$staticValues, &$sessionValues, $realm, $key, $cKey)
     {
         if (isset($sessionValues[$realm][$key][$cKey])) {

@@ -4,6 +4,19 @@ namespace Komarushi;
 
 class PartRenderer
 {
+    /**
+     * Render part html by criterion and current pattern.
+     *
+     * @param string $criterion
+     * @param bool $is_include
+     * @param bool $return
+     * @param array $test_pattern
+     * @param int $wcagver
+     * @param array $added_criteria_21
+     * @param array $added_criteria_22
+     * @param string $parts_path
+     * @return string
+     */
     public static function render(
         $criterion,
         $is_include,
@@ -40,6 +53,16 @@ class PartRenderer
         return '';
     }
 
+    /**
+     * Determine whether this criterion should be skipped.
+     *
+     * @param string $criterion
+     * @param array $test_pattern
+     * @param int $wcagver
+     * @param array $added_criteria_21
+     * @param array $added_criteria_22
+     * @return bool
+     */
     private static function shouldSkipCriterion(
         $criterion,
         $test_pattern,
@@ -55,6 +78,14 @@ class PartRenderer
         return in_array($criterion_chk, self::excludedCriteriaByWcagVersion($wcagver, $added_criteria_21, $added_criteria_22));
     }
 
+    /**
+     * Return excluded criteria list by WCAG version.
+     *
+     * @param int $wcagver
+     * @param array $added_criteria_21
+     * @param array $added_criteria_22
+     * @return array
+     */
     private static function excludedCriteriaByWcagVersion($wcagver, $added_criteria_21, $added_criteria_22)
     {
         if ($wcagver == 22) {
@@ -68,17 +99,37 @@ class PartRenderer
         return $added_criteria;
     }
 
+    /**
+     * Resolve part file path.
+     *
+     * @param string $criterion
+     * @param array $test_pattern
+     * @param string $parts_path
+     * @return string
+     */
     private static function resolvePartfile($criterion, $test_pattern, $parts_path)
     {
         return $parts_path . $criterion . '_' . $test_pattern[$criterion] . '.php';
     }
 
+    /**
+     * Whether this call is from normal template context.
+     *
+     * @return bool
+     */
     private static function isNormalCall()
     {
         $backtrace = debug_backtrace();
         return count($backtrace) <= 2;
     }
 
+    /**
+     * Include part file and capture output.
+     *
+     * @param string $partfile
+     * @param bool $drainAll
+     * @return string
+     */
     private static function captureIncludedHtml($partfile, $drainAll = false)
     {
         ob_start();

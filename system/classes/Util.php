@@ -37,7 +37,7 @@ class Util
      * this medhod doesn't apply sanitizing
      *
      * @param string $uri
-     * @param Array $query_strings array(array('key', 'val'),...)
+     * @param array $query_strings array(array('key', 'val'),...)
      * @return string
      */
     public static function addQueryStrings($uri, $query_strings = array())
@@ -49,7 +49,7 @@ class Util
      * remove query strings
      *
      * @param string $uri
-     * @param Array $query_strings array('key',....)
+     * @param array $query_strings array('key',....)
      * @return string
      */
     public static function removeQueryStrings($uri, $query_strings = array())
@@ -70,8 +70,8 @@ class Util
     /**
      * sanitiz html
      *
-     * @param string|Array|bool $str
-     * @return string|Array
+     * @param string|array|bool $str
+     * @return string|array
      */
     public static function s($str)
     {
@@ -190,10 +190,10 @@ class Util
     /**
      * multisort
      *
-     * @param Array $array
+     * @param array $array
      * @param string $by
      * @param string $order
-     * @return Array
+     * @return array
      */
     public static function multisort($array, $by = 'seq', $order = 'asc')
     {
@@ -215,9 +215,9 @@ class Util
      * keyByColumn
      * array_column() lower compatible
      *
-     * @param Array $arr
+     * @param array $arr
      * @param string $column
-     * @return Array
+     * @return array
      */
     public static function keyByColumn($arr, $column = 'id')
     {

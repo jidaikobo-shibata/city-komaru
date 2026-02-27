@@ -71,7 +71,7 @@ class Input
      * @param string $default The default value
      * @param string $filter default: FILTER_DEFAULT
      * @param string $options for filter_input()
-     * @return string|Array
+     * @return string|array
      */
     public static function param(
         $index,
@@ -93,7 +93,7 @@ class Input
      * @param Mixed $default The default value
      * @param string $filter default: FILTER_DEFAULT
      * @param string $options for filter_input()
-     * @return string|Array
+     * @return string|array
      */
     public static function get(
         $index,
@@ -107,12 +107,12 @@ class Input
     }
 
     /**
-     * Gets the specified Array GET variable.
+     * Gets the specified array GET variable.
      *
      * @param string $index The index to get
      * @param string $default The default value
      * @param string $filter default: FILTER_DEFAULT
-     * @return string|Array
+     * @return string|array
      */
     public static function getArr(
         $index,
@@ -129,7 +129,7 @@ class Input
      * @param Mixed $default The default value
      * @param string $filter default: FILTER_DEFAULT
      * @param string  $options  for filter_input()
-     * @return string|Array
+     * @return string|array
      */
     public static function post(
         $index,
@@ -143,12 +143,12 @@ class Input
     }
 
     /**
-     * Gets the specified Array POST variable.
+     * Gets the specified array POST variable.
      *
      * @param string $index The index to get
      * @param string $default The default value
      * @param string $filter default: FILTER_DEFAULT
-     * @return string|Array
+     * @return string|array
      */
     public static function postArr(
         $index,
@@ -165,7 +165,7 @@ class Input
      * @param string $default The default value
      * @param string $filter default: FILTER_DEFAULT
      * @param string $options for filter_input()
-     * @return string|Array
+     * @return string|array
      */
     public static function cookie(
         $index,
@@ -185,7 +185,7 @@ class Input
      * @param string $default The default value
      * @param string $filter default: FILTER_DEFAULT
      * @param string $options for filter_input()
-     * @return string|Array
+     * @return string|array
      */
     public static function server(
         $index,
@@ -210,7 +210,7 @@ class Input
      *
      * @param string $index The index to get
      * @param Mixed $default The default value
-     * @return string|Array
+     * @return string|array
      */
     public static function file($index = null, $default = null)
     {

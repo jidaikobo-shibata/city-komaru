@@ -4,6 +4,12 @@ namespace Kontiki;
 
 class UrlCodec
 {
+    /**
+     * Encode url-like string with project specific behavior.
+     *
+     * @param string $url
+     * @return string
+     */
     public static function encode($url)
     {
         $url = self::stripLineBreaks($url);
@@ -12,6 +18,12 @@ class UrlCodec
         return self::encodeUrlKeepingEscapedString($url);
     }
 
+    /**
+     * Decode previously encoded url-like string.
+     *
+     * @param string $url
+     * @return string
+     */
     public static function decode($url)
     {
         $url = self::stripLineBreaks($url);
@@ -22,11 +34,23 @@ class UrlCodec
         return str_replace('&amp;', '&', $url);
     }
 
+    /**
+     * Remove line break characters from string.
+     *
+     * @param string $str
+     * @return string
+     */
     private static function stripLineBreaks($str)
     {
         return str_replace(array("\n", "\r"), '', $str);
     }
 
+    /**
+     * Keep escaped strings as-is while encoding raw values.
+     *
+     * @param string $url
+     * @return string
+     */
     private static function encodeUrlKeepingEscapedString($url)
     {
         if (strpos($url, '%') === false) {

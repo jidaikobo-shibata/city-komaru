@@ -4,6 +4,12 @@ namespace Komarushi;
 
 class BarrierCatalog
 {
+    /**
+     * Build criterion => suffix list map from parts directory.
+     *
+     * @param string $partsPath
+     * @return array
+     */
     public static function codePatterns($partsPath)
     {
         $codePattern = array();
@@ -28,6 +34,13 @@ class BarrierCatalog
         return $codePattern;
     }
 
+    /**
+     * Extract comment messages from part files.
+     *
+     * @param string $partsPath
+     * @param array $codePattern
+     * @return array
+     */
     public static function patternMessages($partsPath, $codePattern)
     {
         $messages = array();

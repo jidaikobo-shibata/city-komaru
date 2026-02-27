@@ -106,6 +106,11 @@ class Session
         return SessionBucket::fetch(static::$values, $_SESSION, $realm, $key, $is_once);
     }
 
+    /**
+     * Check whether sessions are disabled by runtime.
+     *
+     * @return bool
+     */
     private static function isSessionDisabled()
     {
         if (! defined('PHP_SESSION_DISABLED') || version_compare(phpversion(), '5.4.0', '<')) {
@@ -114,11 +119,21 @@ class Session
         return session_status() === PHP_SESSION_DISABLED;
     }
 
+    /**
+     * Determine whether session can be started now.
+     *
+     * @return bool
+     */
     private static function canStartSession()
     {
         return static::isStarted() === false && ! headers_sent();
     }
 
+    /**
+     * Configure secure session ini settings.
+     *
+     * @return void
+     */
     private static function configureSessionIni()
     {
         if (Util::isSsl()) {
@@ -129,6 +144,11 @@ class Session
         ini_set('session.use_only_cookies', 1);
     }
 
+    /**
+     * Update expiry and regenerate id occasionally.
+     *
+     * @return void
+     */
     private static function keepSessionAliveSecurely()
     {
         static::add('kntk_sess', 'expire', time());
@@ -139,6 +159,11 @@ class Session
         session_regenerate_id(true);
     }
 
+    /**
+     * Decide if session id should be regenerated.
+     *
+     * @return bool
+     */
     private static function shouldRegenerateSessionId()
     {
         if (mt_rand(1, 10) !== 1) {

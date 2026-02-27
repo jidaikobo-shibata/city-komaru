@@ -56,12 +56,22 @@ class Main
         static::$message_patterns = self::getPatternMessages();
     }
 
+    /**
+     * Define base path constants.
+     *
+     * @return void
+     */
     private static function defineBaseConstants()
     {
         define('KOMARUSHI_PARTS_PATH', dirname(__DIR__) . '/parts/');
         define('KOMARUSHI_PRESETS_PATH', dirname(__DIR__) . '/presets/');
     }
 
+    /**
+     * Load preset ids and their messages.
+     *
+     * @return array
+     */
     private static function loadPresetsAndMessages()
     {
         $presets = array();
@@ -74,6 +84,12 @@ class Main
         return $presets;
     }
 
+    /**
+     * Extract preset file basename without extension.
+     *
+     * @param string $path
+     * @return string
+     */
     private static function extractPresetName($path)
     {
         $pathes = explode('/', $path);
@@ -81,6 +97,13 @@ class Main
         return substr($file, 0, strrpos($file, '.'));
     }
 
+    /**
+     * Parse and store preset message from preset file comment.
+     *
+     * @param string $path
+     * @param string $presetname
+     * @return void
+     */
     private static function loadPresetMessage($path, $presetname)
     {
         $str = file_get_contents($path);
@@ -108,6 +131,12 @@ class Main
         return TestPatternGenerator::generate($codeType, $codePattern, $excludedCriteria);
     }
 
+    /**
+     * Build excluded criteria list by WCAG version.
+     *
+     * @param int $wcagver
+     * @return array
+     */
     private static function getExcludedCriteriaByWcagVersion($wcagver)
     {
         if ($wcagver == 22) {
@@ -141,7 +170,7 @@ class Main
 
     /**
      * get code patterns
-     * @return Array
+     * @return array
      */
     public static function getCodePatterns()
     {
@@ -150,7 +179,7 @@ class Main
 
     /**
      * get pattern messages
-     * @return Array
+     * @return array
      */
     private static function getPatternMessages()
     {
@@ -202,7 +231,7 @@ class Main
     /**
      * get pattern set
      * @param string $test_pattern_code
-     * @return Array
+     * @return array
      */
     private static function getPatternSet($test_pattern_code)
     {
@@ -271,7 +300,7 @@ class Main
     /**
      * get preset messages
      * @param string $preset_id
-     * @return Array
+     * @return array
      */
     public static function getPresetMessages($preset_id = '')
     {
