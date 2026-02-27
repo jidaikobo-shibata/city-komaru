@@ -7,6 +7,7 @@ jQuery(function($) {
 	const radioButton = $('input[name="code_type"]')
 				detailsArea = $('#individual_set'),
 				detailsSummary = $('#individual_set summary');
+	const localHosts = ['localhost', '127.0.0.1', '::1'];
 	radioButton.on({
 		'change' : toggleIndividualSet,
 		'click'  : function(){event.stopPropagation()}
@@ -15,6 +16,9 @@ jQuery(function($) {
 		radioButton.eq(1).prop('checked', true).trigger('change');
 		return false;
 	});
+	if(localHosts.includes(location.hostname)){
+		detailsArea.attr('open', '');
+	}
 	function toggleIndividualSet(event){
 		target = !event ? radioButton.eq(1): $(event.target);
 		if(target.val() == 'individual'){
