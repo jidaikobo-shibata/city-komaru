@@ -57,11 +57,8 @@ $id_note = $id_disabled ? '<p>登録内容変更のため、会員IDは引き継
 	<input type="hidden" name="criteria" value="<?php echo \Kontiki\Util::s(filter_input(INPUT_GET, 'criteria')) ?>" />
 
 	<p><label for="login-id">会員ID</label><br />
-	<input type="text" name="login-id" id="login-id" size="20" autocomplete="username" value="<?php echo $id_value ?>"<?php echo $id_disabled ? ' disabled="disabled"' : '' ?> required />
-	<?php if ($id_disabled): ?>
-	<input type="hidden" name="login-id" value="<?php echo $id_value ?>" />
-	<?php endif; ?>
-	</p>
+		<input type="text" name="login-id" id="login-id" size="20" autocomplete="username" value="<?php echo $id_value ?>"<?php echo $id_disabled ? ' readonly="readonly"' : '' ?> required />
+		</p>
 
 	<p><label for="login-password">パスワード</label><br />
 	<input type="password" name="login-password" id="login-password" size="20" autocomplete="current-password" required /></p>
