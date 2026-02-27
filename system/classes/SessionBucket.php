@@ -60,22 +60,45 @@ class SessionBucket
 
     private static function fetchKeyValues(&$staticValues, &$sessionValues, $realm, $key, $isOnce)
     {
-        if (! isset($staticValues[$realm][$key]) && ! isset($sessionValues[$realm][$key])) {
+        if (! self::hasKeyValues($staticValues, $sessionValues, $realm, $key)) {
             return array();
         }
 
-        $vals = array();
-        if (isset($sessionValues[$realm][$key])) {
-            $vals = $sessionValues[$realm][$key];
-        }
-        if (isset($staticValues[$realm])) {
-            $staticValues[$realm][$key] = empty($staticValues[$realm][$key]) ? array() : $staticValues[$realm][$key];
-            $vals = array_merge($vals, $staticValues[$realm][$key]);
-        }
-        if ($isOnce) {
-            self::remove($staticValues, $sessionValues, $realm, $key);
-        }
+        $vals = self::collectSessionValues($sessionValues, $realm, $key);
+        $vals = self::mergeStaticKeyValues($vals, $staticValues, $realm, $key);
+        self::removeFetchedKeyIfNeeded($staticValues, $sessionValues, $realm, $key, $isOnce);
         return $vals;
+    }
+
+    private static function hasKeyValues(&$staticValues, &$sessionValues, $realm, $key)
+    {
+        return isset($staticValues[$realm][$key]) || isset($sessionValues[$realm][$key]);
+    }
+
+    private static function collectSessionValues(&$sessionValues, $realm, $key)
+    {
+        if (! isset($sessionValues[$realm][$key])) {
+            return array();
+        }
+        return $sessionValues[$realm][$key];
+    }
+
+    private static function mergeStaticKeyValues($vals, &$staticValues, $realm, $key)
+    {
+        if (! isset($staticValues[$realm])) {
+            return $vals;
+        }
+
+        $staticValues[$realm][$key] = empty($staticValues[$realm][$key]) ? array() : $staticValues[$realm][$key];
+        return array_merge($vals, $staticValues[$realm][$key]);
+    }
+
+    private static function removeFetchedKeyIfNeeded(&$staticValues, &$sessionValues, $realm, $key, $isOnce)
+    {
+        if (! $isOnce) {
+            return;
+        }
+        self::remove($staticValues, $sessionValues, $realm, $key);
     }
 
     private static function normalizeFetchedValues($vals)
