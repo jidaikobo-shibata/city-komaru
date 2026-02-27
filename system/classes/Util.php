@@ -60,25 +60,14 @@ class Util
      */
     public static function removeQueryStrings($uri, $query_strings = array())
     {
-        if (strpos($uri, '?') !== false) {
-            // all query strings
-            $query_strings = $query_strings ?: array_keys($_GET);
-
-            // replace
-            $uri = str_replace('&amp;', '&', $uri);
-            $pos = strpos($uri, '?');
-            $base_url = substr($uri, 0, $pos);
-            $qs = explode('&', substr($uri, $pos + 1));
-            foreach ($qs as $k => $v) {
-                foreach ($query_strings as $vv) {
-                    if (substr($v, 0, strpos($v, '=')) == $vv) {
-                        unset($qs[$k]);
-                    }
-                }
-            }
-            $uri = $qs ? $base_url . '?' . join('&amp;', $qs) : $base_url;
+        if (strpos($uri, '?') === false) {
+            return $uri;
         }
-        return $uri;
+
+        $keys_to_remove = self::getQueryKeysToRemove($query_strings);
+        list($base_url, $queries) = self::splitUriAndQueries($uri);
+        $filtered_queries = self::filterQueries($queries, $keys_to_remove);
+        return $filtered_queries ? $base_url . '?' . join('&amp;', $filtered_queries) : $base_url;
     }
 
     /**
@@ -136,15 +125,10 @@ class Util
      */
     public static function urlenc($url)
     {
-        $url = str_replace(array("\n", "\r"), '', $url);
+        $url = self::stripLineBreaks($url);
         $url = static::s($url); // & to &amp;
         $url = str_replace(' ', '%20', $url);
-        if (strpos($url, '%') === false) {
-            $url = urlencode($url);
-        } else {
-            $url = str_replace('://', '%3A%2F%2F', $url);
-        }
-        return $url;
+        return self::encodeUrlKeepingEscapedString($url);
     }
 
     /**
@@ -155,13 +139,59 @@ class Util
      */
     public static function urldec($url)
     {
-        $url = str_replace(array("\n", "\r"), '', $url);
+        $url = self::stripLineBreaks($url);
         $url = trim($url);
         $url = rtrim($url, '/');
         $url = static::urlenc($url);
         $url = urldecode($url);
         $url = str_replace('&amp;', '&', $url);
         return $url;
+    }
+
+    private static function getQueryKeysToRemove($query_strings)
+    {
+        return $query_strings ?: array_keys($_GET);
+    }
+
+    private static function splitUriAndQueries($uri)
+    {
+        $uri = str_replace('&amp;', '&', $uri);
+        $pos = strpos($uri, '?');
+        $base_url = substr($uri, 0, $pos);
+        $queries = explode('&', substr($uri, $pos + 1));
+        return array($base_url, $queries);
+    }
+
+    private static function filterQueries($queries, $keys_to_remove)
+    {
+        foreach ($queries as $k => $query) {
+            if (in_array(self::extractQueryKey($query), $keys_to_remove)) {
+                unset($queries[$k]);
+            }
+        }
+        return $queries;
+    }
+
+    private static function extractQueryKey($query)
+    {
+        $equal_pos = strpos($query, '=');
+        if ($equal_pos === false) {
+            return $query;
+        }
+        return substr($query, 0, $equal_pos);
+    }
+
+    private static function stripLineBreaks($str)
+    {
+        return str_replace(array("\n", "\r"), '', $str);
+    }
+
+    private static function encodeUrlKeepingEscapedString($url)
+    {
+        if (strpos($url, '%') === false) {
+            return urlencode($url);
+        }
+        return str_replace('://', '%3A%2F%2F', $url);
     }
 
     /**
