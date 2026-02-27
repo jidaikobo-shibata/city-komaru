@@ -4,6 +4,10 @@
   "type": "project",
   "license": "MIT",
   "autoload": {
+    "psr-4": {
+      "Komarushi\\": "system/classes/",
+      "Kontiki\\": "system/classes/"
+    },
     "classmap": [
       "system/classes/"
     ]
