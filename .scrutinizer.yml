@@ -1,7 +1,7 @@
 build:
   environment:
     php:
-      version: 8.3
+      version: 8.2
   dependencies:
     before:
       - composer self-update --2 || true
