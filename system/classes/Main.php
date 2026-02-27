@@ -117,16 +117,22 @@ class Main
         if (\Kontiki\Input::post('gen_test_pattern_code')) {
             $test_pattern = array();
             $code_pattern = self::getCodePatterns();
+            $wcagver = intval(\Kontiki\Input::post('wcagver', 22));
+            $wcagver = in_array($wcagver, [20, 21, 22]) ? $wcagver : 22;
+            $excluded_criteria = self::getExcludedCriteriaByWcagVersion($wcagver);
 
             // set errors
             foreach ($code_pattern as $criterion => $errors) {
+                if (\Kontiki\Input::post('code_type') == 'ng' && in_array(substr($criterion, 0, -1), $excluded_criteria)) {
+                    continue;
+                }
                 if (\Kontiki\Input::post('code_type') == 'individual') {
                     $criterion4post = str_replace('.', '_', $criterion);
                     $suffix = \Kontiki\Input::post($criterion4post);
-                    if ($suffix == 'ok') {
+                    if (empty($suffix) || $suffix == 'ok') {
                         continue;
                     }
-                    $test_pattern[$criterion] = \Kontiki\Input::post($criterion4post);
+                    $test_pattern[$criterion] = $suffix;
                 } else {
                     shuffle($errors);
                     $suffix = $errors[0];
@@ -142,6 +148,19 @@ class Main
             $test_pattern_str = base64_encode($json);
         }
         return $test_pattern_str;
+    }
+
+    private static function getExcludedCriteriaByWcagVersion($wcagver)
+    {
+        if ($wcagver == 22) {
+            return array();
+        }
+
+        $excluded_criteria = static::$added_criteria_22;
+        if ($wcagver == 20) {
+            $excluded_criteria = array_merge($excluded_criteria, static::$added_criteria_21);
+        }
+        return $excluded_criteria;
     }
 
     /**

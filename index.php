@@ -129,14 +129,63 @@ $share_url = (empty($_SERVER['HTTPS']) ? 'http://' : 'https://') . $_SERVER['HTT
 
             <form id="selectWcag4customize">
             <fieldset>
-            <legend>カスタマイズ版で使うWCAGのバージョンを選択してください（準備中です）</legend>
+            <legend>カスタマイズ版で使うWCAGのバージョンを選択してください</legend>
             <ul style="columns: 3;zoom:1.2">
-                <li><input type="radio" id="customize_wcag20" name="wcagver" value="20" disabled><label for="customize_wcag20">WCAG 2.0</label></li>
-                <li><input type="radio" id="customize_wcag21" name="wcagver" value="21" disabled><label for="customize_wcag21">WCAG 2.1</label></li>
-                <li><input type="radio" id="customize_wcag22" name="wcagver" value="22" disabled><label for="customize_wcag22">WCAG 2.2</label></li>
+                <li><input type="radio" id="customize_wcag20" name="wcagver" value="20"><label for="customize_wcag20">WCAG 2.0</label></li>
+                <li><input type="radio" id="customize_wcag21" name="wcagver" value="21"><label for="customize_wcag21">WCAG 2.1</label></li>
+                <li><input type="radio" id="customize_wcag22" name="wcagver" value="22" checked><label for="customize_wcag22">WCAG 2.2</label></li>
             </ul>
             </fieldset>
             </form>
+            <script>
+                (function() {
+                    const selectWcag4customize = document.getElementById('selectWcag4customize');
+
+                    function toggleCriteriaByWcag() {
+                        const criterionFieldsets = document.querySelectorAll('#individual_set fieldset[data-required-wcag]');
+                        const selected = selectWcag4customize.querySelector('input[name="wcagver"]:checked');
+                        const selectedVersion = selected ? parseInt(selected.value, 10) : 22;
+                        const hiddenWcagver = document.getElementById('wcagver4pattern');
+                        const randomCodeWcagLabel = document.getElementById('random_code_wcag_label');
+
+                        if (hiddenWcagver) {
+                            hiddenWcagver.value = selectedVersion;
+                        }
+                        if (randomCodeWcagLabel) {
+                            randomCodeWcagLabel.textContent = '（WCAG ' + (selectedVersion / 10).toFixed(1) + '）';
+                        }
+
+                        criterionFieldsets.forEach((fieldset) => {
+                            const requiredVersion = parseInt(fieldset.dataset.requiredWcag, 10) || 20;
+                            const disabled = selectedVersion < requiredVersion;
+                            const radios = fieldset.querySelectorAll('input[type="radio"]');
+                            const legend = fieldset.querySelector('legend');
+
+                            radios.forEach((radio) => {
+                                radio.disabled = disabled;
+                            });
+
+                            if (legend) {
+                                if (!legend.dataset.baseLabel) {
+                                    legend.dataset.baseLabel = legend.textContent;
+                                }
+                                legend.textContent = disabled ?
+                                    legend.dataset.baseLabel + '（対象外）' :
+                                    legend.dataset.baseLabel;
+                            }
+
+                            fieldset.style.borderColor = disabled ? '#de1300' : '';
+
+                            if (!disabled && !fieldset.querySelector('input[type="radio"]:checked') && radios.length > 0) {
+                                radios[0].checked = true;
+                            }
+                        });
+                    }
+
+                    selectWcag4customize.addEventListener('change', toggleCriteriaByWcag);
+                    toggleCriteriaByWcag();
+                })();
+            </script>
 
         <ol class="list">
             <li><strong>障壁の設定</strong> サイトに実装する障壁の設定を行います。ランダムな問題生成か個別指定を選んでください</li>
@@ -146,8 +195,9 @@ $share_url = (empty($_SERVER['HTTPS']) ? 'http://' : 'https://') . $_SERVER['HTT
         <p>※設定した障壁を使いまわしたい時には、この障壁パターンコードを保存しておいてください。ふたたびこのページのtextareaに貼付することで、おなじ障壁を再現できます<br />
 ※開発中のサービスですので、障壁の種類や箇所は随時変更があります。障壁パターンコードがうまく機能しなくなった場合は、障壁パターンコードを再生成してください</p>
         <form action="#test-pattern-str-exists" method="POST">
+            <input type="hidden" name="wcagver" id="wcagver4pattern" value="22">
             <?php $ng_checked = \Kontiki\Input::post('code_type') != 'individual' ? ' checked="checked"' : ''; ?>
-            <label class="block"><input type="radio" name="code_type" value="ng"<?php echo $ng_checked ?>> ランダムな問題を含んだ障壁パターンコードを生成</label>
+            <label class="block"><input type="radio" name="code_type" value="ng"<?php echo $ng_checked ?>> ランダムな問題を含んだ障壁パターンコードを生成<span id="random_code_wcag_label">（WCAG 2.2）</span></label>
 
             <details id="individual_set" class="block">
                 <summary tabindex="-1"><label><input type="radio" name="code_type" value="individual"> 障壁を個別に指定</label><span id="summary_desc" class="description">設定項目を表示します</span></summary>
@@ -172,9 +222,23 @@ $share_url = (empty($_SERVER['HTTPS']) ? 'http://' : 'https://') . $_SERVER['HTT
                             $html .= '</li>';
                         endif;
 
+                        $required_wcag = 20;
+                        if (in_array($criterion, \Komarushi\Main::$added_criteria_22)) :
+                            $required_wcag = 22;
+                        elseif (in_array($criterion, \Komarushi\Main::$added_criteria_21)) :
+                            $required_wcag = 21;
+                        endif;
+
                         $html .= "\t\t\t\t\t" . '<li>';
-                        $html .= '<!-- f2 --><fieldset>';
-                        $html .= '<legend>' . $criterion . ' ' . $criteria[$criterion]['name'] . '</legend>';
+                        $html .= '<!-- f2 --><fieldset data-required-wcag="' . $required_wcag . '">';
+                        $wcag_label = 'WCAG 2.0以上';
+                        if ($required_wcag == 21) :
+                            $wcag_label = 'WCAG 2.1以上';
+                        elseif ($required_wcag == 22) :
+                            $wcag_label = 'WCAG 2.2';
+                        endif;
+
+                        $html .= '<legend>' . $criterion . ' ' . $criteria[$criterion]['name'] . '（' . $wcag_label . '）</legend>';
                         $html .= '<!-- 2 --><ul>';
                     endif;
 
