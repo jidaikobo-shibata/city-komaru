@@ -14,6 +14,16 @@ JIS X 8341-3:2016で求められているアクセシビリティの試験を練
 
 - このサイトは「架空の地方自治体（駒瑠市）のとある課のサイト」という設定でできています。
 
+## デプロイ時のメモ
+
+- 本番サーバーでは `vendor/autoload.php` が必要です。
+- `phpunit` などの開発依存は本番に不要なため、`--no-dev` でインストールしてください。
+
+```bash
+composer install --no-dev
+composer dump-autoload -o
+```
+
 ## 著作権表示
 
 使っている音源は[https://www.zapsplat.com](https://www.zapsplat.com)で取得しました。
