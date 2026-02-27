@@ -41,7 +41,7 @@ foreach (\Komarushi\Main::$test_pattern as $k => $v) :
     if ($v === 'ok') {
         continue;
     }
-    echo '<li>' . \kontiki\Util::s($k) . '_' . \kontiki\Util::s($v) . '</li>';
+    echo '<li>' . \Kontiki\Util::s($k) . '_' . \Kontiki\Util::s($v) . '</li>';
 endforeach;
 ;
 ?>

@@ -91,18 +91,18 @@ class Main
 
     private static function resolvePreset($presets)
     {
-        $preset = \kontiki\Input::get('preset', \kontiki\Input::post('preset'));
+        $preset = \Kontiki\Input::get('preset', \Kontiki\Input::post('preset'));
         return in_array($preset, $presets) ? $preset : '';
     }
 
     private static function resolveCriteria()
     {
-        return \kontiki\Input::get('criteria', \kontiki\Input::post('criteria'));
+        return \Kontiki\Input::get('criteria', \Kontiki\Input::post('criteria'));
     }
 
     private static function resolveWcagVersion()
     {
-        $wcagver = \kontiki\Input::get('wcagver', \kontiki\Input::post('wcagver'));
+        $wcagver = \Kontiki\Input::get('wcagver', \Kontiki\Input::post('wcagver'));
         $wcagver = in_array($wcagver, [20, 21, 22]) ? $wcagver : 22;
         return intval($wcagver);
     }
@@ -220,7 +220,7 @@ class Main
     {
         $who = 'index';
         foreach (self::$files as $v) {
-            if (strpos(\kontiki\Input::server('REQUEST_URI'), $v) !== false) {
+            if (strpos(\Kontiki\Input::server('REQUEST_URI'), $v) !== false) {
                 $who = $v;
                 break;
             }
@@ -363,91 +363,21 @@ class Main
      */
     public static function komaruHtml($critetrion, $is_include = false, $return = false)
     {
-        if (self::shouldSkipCriterion($critetrion)) {
-            if ($return) {
-                return '';
-            }
-            echo '';
-            return;
-        }
-
-        $partfile = self::resolvePartfile($critetrion);
-        if (! file_exists($partfile)) {
-            if ($return) {
-                return '';
-            }
-            echo '';
-            return;
-        }
-
-        if ($is_include) {
-            include($partfile);
-            if ($return) {
-                return '';
-            }
-            return;
-        }
+        $html = PartRenderer::render(
+            $critetrion,
+            $is_include,
+            $return,
+            static::$test_pattern,
+            KOMARUSHI_WCAGVER,
+            static::$added_criteria_21,
+            static::$added_criteria_22,
+            KOMARUSHI_PARTS_PATH
+        );
 
         if ($return) {
-            return self::captureIncludedHtml($partfile, false);
+            return $html;
         }
-
-        if (self::isNormalCall()) {
-            echo self::captureIncludedHtml($partfile, true);
-            return;
-        }
-
-        include($partfile);
-        echo '';
-    }
-
-    private static function shouldSkipCriterion($critetrion)
-    {
-        if (! isset(static::$test_pattern[$critetrion])) {
-            return true;
-        }
-
-        $critetrion_chk = substr($critetrion, 0, -1);
-        return in_array($critetrion_chk, self::excludedCriteriaByWcagVersion());
-    }
-
-    private static function excludedCriteriaByWcagVersion()
-    {
-        if (KOMARUSHI_WCAGVER == 22) {
-            return array();
-        }
-
-        $added_criteria = static::$added_criteria_22;
-        if (KOMARUSHI_WCAGVER == 20) {
-            $added_criteria = array_merge($added_criteria, static::$added_criteria_21);
-        }
-        return $added_criteria;
-    }
-
-    private static function resolvePartfile($critetrion)
-    {
-        return KOMARUSHI_PARTS_PATH . $critetrion . '_' . static::$test_pattern[$critetrion] . '.php';
-    }
-
-    private static function isNormalCall()
-    {
-        $backtrace = debug_backtrace();
-        return count($backtrace) <= 2;
-    }
-
-    private static function captureIncludedHtml($partfile, $drainAll = false)
-    {
-        ob_start();
-        include($partfile);
-        if (! $drainAll) {
-            return ob_get_clean();
-        }
-
-        $html = '';
-        while (ob_get_level() > 0) {
-            $html .= ob_get_clean();
-        }
-        return $html;
+        echo $html;
     }
 
     /**

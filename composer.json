@@ -3,6 +3,11 @@
   "description": "Accessibility training site generator",
   "type": "project",
   "license": "MIT",
+  "autoload": {
+    "classmap": [
+      "system/classes/"
+    ]
+  },
   "require": {},
   "require-dev": {
     "phpunit/phpunit": "^11.5",

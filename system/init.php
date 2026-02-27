@@ -6,11 +6,8 @@ date_default_timezone_set('ASIA/Tokyo');
 ini_set('display_errors', "On");
 error_reporting(E_ALL);
 
-//class
-require(__DIR__ . '/classes/util.php');
-require(__DIR__ . '/classes/input.php');
-require(__DIR__ . '/classes/session.php');
-require(__DIR__ . '/classes/main.php');
+//autoload
+require(__DIR__ . '/../vendor/autoload.php');
 
 //forge
 \Komarushi\Main::forge();
