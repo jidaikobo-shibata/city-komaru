@@ -1,0 +1,11 @@
+build:
+  environment:
+    php:
+      version: 8.3
+  dependencies:
+    before:
+      - composer self-update --2 || true
+      - composer install --no-interaction --no-progress --prefer-dist
+  tests:
+    override:
+      - command: 'vendor/bin/phpcs --standard=phpcs.xml.dist --report=checkstyle -q > phpcs-report.xml || true'

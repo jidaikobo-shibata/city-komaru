@@ -1,0 +1,14 @@
+{
+  "name": "jidaikobo-shibata/city-komaru",
+  "description": "Accessibility training site generator",
+  "type": "project",
+  "license": "MIT",
+  "require": {},
+  "require-dev": {
+    "squizlabs/php_codesniffer": "^3.10"
+  },
+  "scripts": {
+    "lint": "phpcs --standard=phpcs.xml.dist"
+  }
+}
+
