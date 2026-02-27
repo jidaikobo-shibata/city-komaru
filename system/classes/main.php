@@ -265,93 +265,22 @@ class Main
             return $retval;
         }
 
-        $retval = self::decodeTestPattern($test_pattern_code);
-        $retval = self::overwriteWithPreset($retval);
-        self::overwriteWithCriteria($retval);
+        $result = PatternResolver::resolve(
+            $test_pattern_code,
+            KOMARUSHI_PRESET,
+            KOMARUSHI_PRESETS_PATH,
+            KOMARUSHI_CRITERIA,
+            self::getCodePatterns()
+        );
 
-        $oks = self::buildOkPatternSet();
-        if (! is_array($retval)) {
+        if ($result['failed']) {
             static::$is_test_pattern_code_failed = true;
             setcookie('test_pattern_code', base64_encode(json_encode(array())), time() + 86400 * 7, '/');
-            return $oks;
+            return $result['oks'];
         }
 
-        $retval = array_merge($oks, $retval);
+        $retval = array_merge($result['oks'], $result['pattern']);
         return $retval;
-    }
-
-    private static function decodeTestPattern($test_pattern_code)
-    {
-        if (empty($test_pattern_code)) {
-            return array();
-        }
-
-        return json_decode(base64_decode($test_pattern_code), true);
-    }
-
-    private static function overwriteWithPreset($retval)
-    {
-        if (empty(KOMARUSHI_PRESET)) {
-            return $retval;
-        }
-
-        return include(KOMARUSHI_PRESETS_PATH . KOMARUSHI_PRESET . '.php');
-    }
-
-    private static function overwriteWithCriteria(&$retval)
-    {
-        if (empty(KOMARUSHI_CRITERIA)) {
-            return;
-        }
-
-        $codePatterns = self::getCodePatterns();
-        $given_criteria = explode(',', KOMARUSHI_CRITERIA);
-
-        foreach ($given_criteria as $criterion) {
-            $each_criterions = explode('_', $criterion);
-            if (count($each_criterions) >= 2) {
-                self::applySpecificCriterion($retval, $each_criterions, $codePatterns);
-                continue;
-            }
-            self::applyCriterionGroup($retval, $each_criterions[0], $codePatterns);
-        }
-    }
-
-    private static function applySpecificCriterion(&$retval, $each_criterions, $codePatterns)
-    {
-        $criterion = $each_criterions[0];
-        $suffix = $each_criterions[1];
-
-        if (! isset($codePatterns[$criterion])) {
-            return;
-        }
-        if (! in_array($suffix, $codePatterns[$criterion])) {
-            return;
-        }
-
-        $retval[$criterion] = $suffix;
-    }
-
-    private static function applyCriterionGroup(&$retval, $criterion, $codePatterns)
-    {
-        foreach ($codePatterns as $k => $v) {
-            if (strpos($k, $criterion) === false) {
-                continue;
-            }
-            if (! isset($v[1])) {
-                continue;
-            }
-            $retval[$k] = $v[1];
-        }
-    }
-
-    private static function buildOkPatternSet()
-    {
-        $oks = array();
-        foreach (self::getCodePatterns() as $k => $v) {
-            $oks[$k] = $v[0];
-        }
-        return $oks;
     }
 
     /**
