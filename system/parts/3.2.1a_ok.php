@@ -6,7 +6,7 @@ $checked = $vals['agree_privacypolicy'] === 'on' ? ' checked="checked"' : '';
 
 $label_open = '<label>';
 $label_close = '</label>';
-if (\Komarushi\Main::getBarrierStatus('1.3.1g') == 'ng'):
+if (\Komarushi\Main::getBarrierStatus('1.3.1g') == 'ng') :
     $label_open = '';
     $label_close = '';
 endif;

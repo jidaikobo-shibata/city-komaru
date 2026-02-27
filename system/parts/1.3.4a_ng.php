@@ -1,4 +1,6 @@
-<?php /* デバイスの向きを横向きでのみ表示されるようにする */ ?>
+<?php
+
+/* デバイスの向きを横向きでのみ表示されるようにする */ ?>
     <style>
         .portrait-warning {
           display: none;
@@ -42,7 +44,7 @@
       window.addEventListener('load', checkOrientation);
       window.addEventListener('resize', checkOrientation);
 
-			// 警告のレイヤでイベント伝播抑止
+            // 警告のレイヤでイベント伝播抑止
       warning.addEventListener('click', function(event) {
         event.stopPropagation();
       });

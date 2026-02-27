@@ -1,4 +1,6 @@
-<?php /* タブキーで抜けられないキーボードトラップ（ページ末尾のテキストエリア） */ ?>
+<?php
+
+/* タブキーで抜けられないキーボードトラップ（ページ末尾のテキストエリア） */ ?>
 <script>
 jQuery (function($){
   $('#feedback-text').on('keydown', function(e){

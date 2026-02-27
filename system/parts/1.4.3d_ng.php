@@ -1,9 +1,11 @@
-<?php /* コントラスト上の問題のある情報提供（トップページ以外のページヘッダー） */ ?>
+<?php
+
+/* コントラスト上の問題のある情報提供（トップページ以外のページヘッダー） */ ?>
 <style>
 #page-header {
-	color: #fff;
+    color: #fff;
 }
 #page-header .inner-wrapper::before {
-	content: none;
+    content: none;
 }
 </style>

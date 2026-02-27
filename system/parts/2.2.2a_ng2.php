@@ -1,4 +1,5 @@
 <?php
+
 /* CO₂カウンタの自動更新を止めるボタンが表示されているが機能しない */
 komaruHtml('1.4.3a'); // コントラスト問題
 ?>
@@ -12,10 +13,10 @@ var co2 = date.getHours() < 12 ? 2000 : 6000;
 $('#co2aday').html(co2.toLocaleString());
 
 var countup = function() {
-	co2++;
-	if ($('#co2aday-button span').hasClass('fa-pause')) {
-		$('#co2aday').html(co2.toLocaleString());
-	}
+    co2++;
+    if ($('#co2aday-button span').hasClass('fa-pause')) {
+        $('#co2aday').html(co2.toLocaleString());
+    }
 }
 setInterval(countup, 1000);
 </script>

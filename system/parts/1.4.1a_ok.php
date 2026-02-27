@@ -7,8 +7,8 @@ $vals['your-id'] = '';
 $vals['shimei'] = '';
 $vals['email'] = '';
 $vals['phone'] = '';
-if (\Komarushi\Main::getBarrierStatus('3.3.7a') == 'ok'):
-	$vals = include('../practice/register-vals.php');
+if (\Komarushi\Main::getBarrierStatus('3.3.7a') == 'ok') :
+    $vals = include('../practice/register-vals.php');
 endif;
 
 // 1.3.5

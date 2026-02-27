@@ -1,4 +1,6 @@
-<?php /* 正しいautocomplete属性が適用されたお問い合わせフォーム */
+<?php
+
+/* 正しいautocomplete属性が適用されたお問い合わせフォーム */
 
 global $ac_onamae, $ac_email, $ac_tel;
 

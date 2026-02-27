@@ -1,6 +1,8 @@
-<?php /* トップページの「あなたにもできる取り組み」のツールチップはaria-describedbyで画像と紐付けられているので、スクリーンリーダでも読み上げることができる */
+<?php
 
-function e111h ($id)
+/* トップページの「あなたにもできる取り組み」のツールチップはaria-describedbyで画像と紐付けられているので、スクリーンリーダでも読み上げることができる */
+
+function e111h($id)
 {
     $aria_describedbys = [
         1 => ' aria-describedby="tooltip-effor1"',
