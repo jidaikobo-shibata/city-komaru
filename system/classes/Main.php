@@ -176,8 +176,8 @@ class Main
 
     /**
      * modeString
-     * @param Bool escape
-     * @return String
+     * @param bool $escape
+     * @return string
      */
     public static function modeString($escape = true)
     {
@@ -231,10 +231,10 @@ class Main
 
     /**
      * echo practice HTML - komaruHtml
-     * @param String $critetrion
-     * @param String $is_include
-     * @param Bool $return
-     * @return Void
+     * @param string $critetrion
+     * @param bool $is_include
+     * @param bool $return
+     * @return string|void
      */
     public static function komaruHtml($critetrion, $is_include = false, $return = false)
     {

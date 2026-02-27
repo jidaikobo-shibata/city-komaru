@@ -107,8 +107,8 @@ class Util
     /**
      * urlenc
      *
-     * @param String $url
-     * @return Bool
+     * @param string $url
+     * @return string
      */
     public static function urlenc($url)
     {
@@ -118,8 +118,8 @@ class Util
     /**
      * urldec
      *
-     * @param String $url
-     * @return Bool
+     * @param string $url
+     * @return string
      */
     public static function urldec($url)
     {
