@@ -24,36 +24,18 @@ class Session
      */
     public static function forge($session_name = 'KNTKSESSID')
     {
-        // SESSION disabled
-        $is_session_disabled = false;
-        if (defined('PHP_SESSION_DISABLED') && version_compare(phpversion(), '5.4.0', '>=')) {
-            $is_session_disabled = session_status() === PHP_SESSION_DISABLED ? true : false;
-        }
-        if ($is_session_disabled) {
+        if (self::isSessionDisabled()) {
             Util::error('couldn\'t start session.');
         }
 
-        // SESSION start
-        if (static::isStarted() === false && ! headers_sent()) {
-            if (Util::isSsl()) {
-                ini_set('session.cookie_secure', 1);
-            }
-            ini_set('session.cookie_httponly', true);
-            ini_set('session.use_trans_sid', 0);
-            ini_set('session.use_only_cookies', 1);
-            session_name($session_name);
-            session_start();
-
-            // keep security but avoid session down
-            static::add('kntk_sess', 'expire', time());
-            if (mt_rand(1, 10) === 1) {
-                $expires = static::show('kntk_sess', 'expire');
-                if (end($expires) + 5 < time()) {
-                    static::add('kntk_sess', 'expire', time());
-                    session_regenerate_id(true);
-                }
-            }
+        if (! self::canStartSession()) {
+            return;
         }
+
+        self::configureSessionIni();
+        session_name($session_name);
+        session_start();
+        self::keepSessionAliveSecurely();
     }
 
     /**
@@ -95,19 +77,7 @@ class Session
     {
         static::$values[$realm][$key][] = $vals;
 
-        // if key exists, merge.
-        if (isset($_SESSION[$realm][$key])) {
-            static::$values[$realm][$key] = array_merge(
-                $_SESSION[$realm][$key],
-                static::$values[$realm][$key]
-            );
-        } elseif (isset($_SESSION[$realm])) {
-            // realm
-            static::$values[$realm] = array_merge(
-                $_SESSION[$realm],
-                static::$values[$realm]
-            );
-        }
+        self::mergeSessionValueIfExists($realm, $key);
         static::$values[$realm][$key] = array_unique(static::$values[$realm][$key]);
         $_SESSION[$realm] = static::$values[$realm];
     }
@@ -122,31 +92,15 @@ class Session
      */
     public static function remove($realm, $key = '', $c_key = '')
     {
-        // remove realm
         if (empty($key) && empty($c_key)) {
-            if (isset($_SESSION[$realm])) {
-                unset($_SESSION[$realm]);
-            }
-            if (isset(static::$values[$realm])) {
-                unset(static::$values[$realm]);
-            }
-        } elseif (empty($c_key)) {
-            // remove key
-            if (isset($_SESSION[$realm][$key])) {
-                unset($_SESSION[$realm][$key]);
-            }
-            if (isset(static::$values[$realm][$key])) {
-                unset(static::$values[$realm][$key]);
-            }
-        } else {
-            // remove each value
-            if (isset($_SESSION[$realm][$key][$c_key])) {
-                unset($_SESSION[$realm][$key][$c_key]);
-            }
-            if (isset(static::$values[$realm][$key][$c_key])) {
-                unset(static::$values[$realm][$key][$c_key]);
-            }
+            self::removeRealm($realm);
+            return;
         }
+        if (empty($c_key)) {
+            self::removeKey($realm, $key);
+            return;
+        }
+        self::removeEachValue($realm, $key, $c_key);
     }
 
     /**
@@ -207,6 +161,95 @@ class Session
     {
         $vals = array_unique($vals);
         return $vals ?: false;
+    }
+
+    private static function isSessionDisabled()
+    {
+        if (! defined('PHP_SESSION_DISABLED') || version_compare(phpversion(), '5.4.0', '<')) {
+            return false;
+        }
+        return session_status() === PHP_SESSION_DISABLED;
+    }
+
+    private static function canStartSession()
+    {
+        return static::isStarted() === false && ! headers_sent();
+    }
+
+    private static function configureSessionIni()
+    {
+        if (Util::isSsl()) {
+            ini_set('session.cookie_secure', 1);
+        }
+        ini_set('session.cookie_httponly', true);
+        ini_set('session.use_trans_sid', 0);
+        ini_set('session.use_only_cookies', 1);
+    }
+
+    private static function keepSessionAliveSecurely()
+    {
+        static::add('kntk_sess', 'expire', time());
+        if (! self::shouldRegenerateSessionId()) {
+            return;
+        }
+        static::add('kntk_sess', 'expire', time());
+        session_regenerate_id(true);
+    }
+
+    private static function shouldRegenerateSessionId()
+    {
+        if (mt_rand(1, 10) !== 1) {
+            return false;
+        }
+        $expires = static::show('kntk_sess', 'expire');
+        return end($expires) + 5 < time();
+    }
+
+    private static function mergeSessionValueIfExists($realm, $key)
+    {
+        if (isset($_SESSION[$realm][$key])) {
+            static::$values[$realm][$key] = array_merge(
+                $_SESSION[$realm][$key],
+                static::$values[$realm][$key]
+            );
+            return;
+        }
+        if (isset($_SESSION[$realm])) {
+            static::$values[$realm] = array_merge(
+                $_SESSION[$realm],
+                static::$values[$realm]
+            );
+        }
+    }
+
+    private static function removeRealm($realm)
+    {
+        if (isset($_SESSION[$realm])) {
+            unset($_SESSION[$realm]);
+        }
+        if (isset(static::$values[$realm])) {
+            unset(static::$values[$realm]);
+        }
+    }
+
+    private static function removeKey($realm, $key)
+    {
+        if (isset($_SESSION[$realm][$key])) {
+            unset($_SESSION[$realm][$key]);
+        }
+        if (isset(static::$values[$realm][$key])) {
+            unset(static::$values[$realm][$key]);
+        }
+    }
+
+    private static function removeEachValue($realm, $key, $c_key)
+    {
+        if (isset($_SESSION[$realm][$key][$c_key])) {
+            unset($_SESSION[$realm][$key][$c_key]);
+        }
+        if (isset(static::$values[$realm][$key][$c_key])) {
+            unset(static::$values[$realm][$key][$c_key]);
+        }
     }
 
     /**
