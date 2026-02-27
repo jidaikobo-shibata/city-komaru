@@ -161,32 +161,50 @@ class Session
      */
     public static function fetch($realm, $key = '', $is_once = true)
     {
+        $vals = empty($key) ?
+            static::fetchRealmValues($realm, $is_once) :
+            static::fetchKeyValues($realm, $key, $is_once);
+
+        return static::normalizeFetchedValues($vals);
+    }
+
+    private static function fetchRealmValues($realm, $is_once)
+    {
         $vals = array();
-        if (empty($key)) {
-            if (isset($_SESSION[$realm])) {
-                $vals = $_SESSION[$realm];
-            }
-            if (isset(static::$values[$realm])) {
-                $vals = array_merge($vals, static::$values[$realm]);
-            }
-            if ($is_once) {
-                static::remove($realm);
-            }
-        } elseif (
-            isset(static::$values[$realm][$key]) ||
-            isset($_SESSION[$realm][$key])
-        ) {
-            if (isset($_SESSION[$realm][$key])) {
-                $vals = $_SESSION[$realm][$key];
-            }
-            if (isset(static::$values[$realm])) {
-                static::$values[$realm][$key] = empty(static::$values[$realm][$key]) ? array() : static::$values[$realm][$key];
-                $vals = array_merge($vals, static::$values[$realm][$key]);
-            }
-            if ($is_once) {
-                static::remove($realm, $key);
-            }
+        if (isset($_SESSION[$realm])) {
+            $vals = $_SESSION[$realm];
         }
+        if (isset(static::$values[$realm])) {
+            $vals = array_merge($vals, static::$values[$realm]);
+        }
+        if ($is_once) {
+            static::remove($realm);
+        }
+        return $vals;
+    }
+
+    private static function fetchKeyValues($realm, $key, $is_once)
+    {
+        if (! isset(static::$values[$realm][$key]) && ! isset($_SESSION[$realm][$key])) {
+            return array();
+        }
+
+        $vals = array();
+        if (isset($_SESSION[$realm][$key])) {
+            $vals = $_SESSION[$realm][$key];
+        }
+        if (isset(static::$values[$realm])) {
+            static::$values[$realm][$key] = empty(static::$values[$realm][$key]) ? array() : static::$values[$realm][$key];
+            $vals = array_merge($vals, static::$values[$realm][$key]);
+        }
+        if ($is_once) {
+            static::remove($realm, $key);
+        }
+        return $vals;
+    }
+
+    private static function normalizeFetchedValues($vals)
+    {
         $vals = array_unique($vals);
         return $vals ?: false;
     }
