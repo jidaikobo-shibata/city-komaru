@@ -187,24 +187,7 @@ class Main
      */
     public static function getCodePatterns()
     {
-        foreach (glob(KOMARUSHI_PARTS_PATH . '*.php') as $v) {
-            $pathes = explode('/', $v);
-            $file = array_pop($pathes);
-            $codes = explode('_', substr($file, 0, strrpos($file, '.')));
-            $critetrion = $codes[0];
-            $error = $codes[1];
-            if (! isset($code_pattern[$critetrion])) {
-                $code_pattern[$critetrion] = array();
-            }
-            $code_pattern[$critetrion][] = $error;
-        }
-        foreach ($code_pattern as $k => $v) {
-            usort($v, function ($a, $b) {
-                return strnatcmp(str_replace('ok', '_ok', $a), str_replace('ok', '_ok', $b));
-            });
-            $code_pattern[$k] = $v;
-        }
-        return $code_pattern;
+        return BarrierCatalog::codePatterns(KOMARUSHI_PARTS_PATH);
     }
 
     /**
@@ -214,21 +197,7 @@ class Main
     private static function getPatternMessages()
     {
         $code_pattern = self::getCodePatterns();
-        $messages = array();
-        foreach ($code_pattern as $k => $v) {
-            $messages[$k] = array();
-            foreach ($v as $vv) {
-                $str = file_get_contents(KOMARUSHI_PARTS_PATH . $k . '_' . $vv . '.php');
-                if ($str === false) {
-                    continue;
-                }
-                if (! preg_match('/\/\*(.+?)\*\//is', $str, $ms)) {
-                    continue;
-                }
-                $messages[$k][$vv] = trim($ms[1]);
-            }
-        }
-        return $messages;
+        return BarrierCatalog::patternMessages(KOMARUSHI_PARTS_PATH, $code_pattern);
     }
 
     /**
