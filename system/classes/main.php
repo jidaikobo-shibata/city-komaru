@@ -41,39 +41,11 @@ class Main
      */
     public static function forge()
     {
-        // parts path
-        define('KOMARUSHI_PARTS_PATH', dirname(__DIR__) . '/parts/');
-
-        // preset
-        define('KOMARUSHI_PRESETS_PATH', dirname(__DIR__) . '/presets/');
-        $presets = array();
-        foreach (glob(KOMARUSHI_PRESETS_PATH . '*.php') as $v) {
-            // pathes
-            $pathes = explode('/', $v);
-            $file = array_pop($pathes);
-            $presetname = substr($file, 0, strrpos($file, '.'));
-            $presets[] = $presetname;
-
-            // message
-            if ($str = file_get_contents($v)) {
-                if (! preg_match('/\/\*(.+?)\*\//is', $str, $ms)) {
-                    continue;
-                }
-                static::$message_presets[$presetname] = explode("::", trim($ms[1]));
-            };
-        }
-        $preset = \kontiki\Input::get('preset', \kontiki\Input::post('preset')); // post or get
-        $preset = in_array($preset, $presets) ? $preset : '' ;
-        define('KOMARUSHI_PRESET', $preset);
-
-        // criteria
-        $criteria = \kontiki\Input::get('criteria', \kontiki\Input::post('criteria')); // post or get
-        define('KOMARUSHI_CRITERIA', $criteria);
-
-        // wcagver
-        $wcagver = \kontiki\Input::get('wcagver', \kontiki\Input::post('wcagver')); // post or get
-        $wcagver = in_array($wcagver, [20, 21, 22]) ? $wcagver : 22;
-        define('KOMARUSHI_WCAGVER', intval($wcagver));
+        self::defineBaseConstants();
+        $presets = self::loadPresetsAndMessages();
+        define('KOMARUSHI_PRESET', self::resolvePreset($presets));
+        define('KOMARUSHI_CRITERIA', self::resolveCriteria());
+        define('KOMARUSHI_WCAGVER', self::resolveWcagVersion());
 
         // current test pattern
         $test_pattern_code = \Kontiki\Input::cookie('test_pattern_code');
@@ -81,6 +53,58 @@ class Main
 
         // pattern messages
         static::$message_patterns = self::getPatternMessages();
+    }
+
+    private static function defineBaseConstants()
+    {
+        define('KOMARUSHI_PARTS_PATH', dirname(__DIR__) . '/parts/');
+        define('KOMARUSHI_PRESETS_PATH', dirname(__DIR__) . '/presets/');
+    }
+
+    private static function loadPresetsAndMessages()
+    {
+        $presets = array();
+        foreach (glob(KOMARUSHI_PRESETS_PATH . '*.php') as $path) {
+            $presetname = self::extractPresetName($path);
+            $presets[] = $presetname;
+            self::loadPresetMessage($path, $presetname);
+        }
+
+        return $presets;
+    }
+
+    private static function extractPresetName($path)
+    {
+        $pathes = explode('/', $path);
+        $file = array_pop($pathes);
+        return substr($file, 0, strrpos($file, '.'));
+    }
+
+    private static function loadPresetMessage($path, $presetname)
+    {
+        $str = file_get_contents($path);
+        if (! $str || ! preg_match('/\/\*(.+?)\*\//is', $str, $ms)) {
+            return;
+        }
+        static::$message_presets[$presetname] = explode("::", trim($ms[1]));
+    }
+
+    private static function resolvePreset($presets)
+    {
+        $preset = \kontiki\Input::get('preset', \kontiki\Input::post('preset'));
+        return in_array($preset, $presets) ? $preset : '';
+    }
+
+    private static function resolveCriteria()
+    {
+        return \kontiki\Input::get('criteria', \kontiki\Input::post('criteria'));
+    }
+
+    private static function resolveWcagVersion()
+    {
+        $wcagver = \kontiki\Input::get('wcagver', \kontiki\Input::post('wcagver'));
+        $wcagver = in_array($wcagver, [20, 21, 22]) ? $wcagver : 22;
+        return intval($wcagver);
     }
 
     /**
@@ -241,49 +265,11 @@ class Main
             return $retval;
         }
 
-        $retval = ! empty($test_pattern_code) ?
-                        json_decode(base64_decode($test_pattern_code), true) :
-                        array();
+        $retval = self::decodeTestPattern($test_pattern_code);
+        $retval = self::overwriteWithPreset($retval);
+        self::overwriteWithCriteria($retval);
 
-        // preset overwrite
-        if (! empty(KOMARUSHI_PRESET)) {
-            $retval = include(KOMARUSHI_PRESETS_PATH . KOMARUSHI_PRESET . '.php');
-        }
-
-        // criteria overwrite
-        if (! empty(KOMARUSHI_CRITERIA)) {
-            $given_criteria = explode(',', KOMARUSHI_CRITERIA);
-            foreach ($given_criteria as $criterion) {
-                // アンダーバーがある時はエラーまで特定したい時
-                $each_criterions = explode('_', $criterion);
-                if (count($each_criterions) >= 2) {
-                    if (! isset(self::getCodePatterns()[$each_criterions[0]])) {
-                        continue;
-                    }
-                    if (! in_array($each_criterions[1], self::getCodePatterns()[$each_criterions[0]])) {
-                        continue;
-                    }
-                    $retval[$each_criterions[0]] = $each_criterions[1];
-                    continue;
-                } else {
-                    // アンダーバーがないので、達成基準をまとめて指定したいパターン。最初のNGのみ
-                    foreach (self::getCodePatterns() as $k => $v) {
-                        if (strpos($k, $each_criterions[0]) === false) {
-                            continue;
-                        }
-                        if (! isset($v[1])) {
-                            continue;
-                        }
-                        $retval[$k] = $v[1];
-                    }
-                }
-            }
-        }
-
-        $oks = array();
-        foreach (self::getCodePatterns() as $k => $v) {
-            $oks[$k] = $v[0];
-        }
+        $oks = self::buildOkPatternSet();
         if (! is_array($retval)) {
             static::$is_test_pattern_code_failed = true;
             setcookie('test_pattern_code', base64_encode(json_encode(array())), time() + 86400 * 7, '/');
@@ -292,6 +278,80 @@ class Main
 
         $retval = array_merge($oks, $retval);
         return $retval;
+    }
+
+    private static function decodeTestPattern($test_pattern_code)
+    {
+        if (empty($test_pattern_code)) {
+            return array();
+        }
+
+        return json_decode(base64_decode($test_pattern_code), true);
+    }
+
+    private static function overwriteWithPreset($retval)
+    {
+        if (empty(KOMARUSHI_PRESET)) {
+            return $retval;
+        }
+
+        return include(KOMARUSHI_PRESETS_PATH . KOMARUSHI_PRESET . '.php');
+    }
+
+    private static function overwriteWithCriteria(&$retval)
+    {
+        if (empty(KOMARUSHI_CRITERIA)) {
+            return;
+        }
+
+        $codePatterns = self::getCodePatterns();
+        $given_criteria = explode(',', KOMARUSHI_CRITERIA);
+
+        foreach ($given_criteria as $criterion) {
+            $each_criterions = explode('_', $criterion);
+            if (count($each_criterions) >= 2) {
+                self::applySpecificCriterion($retval, $each_criterions, $codePatterns);
+                continue;
+            }
+            self::applyCriterionGroup($retval, $each_criterions[0], $codePatterns);
+        }
+    }
+
+    private static function applySpecificCriterion(&$retval, $each_criterions, $codePatterns)
+    {
+        $criterion = $each_criterions[0];
+        $suffix = $each_criterions[1];
+
+        if (! isset($codePatterns[$criterion])) {
+            return;
+        }
+        if (! in_array($suffix, $codePatterns[$criterion])) {
+            return;
+        }
+
+        $retval[$criterion] = $suffix;
+    }
+
+    private static function applyCriterionGroup(&$retval, $criterion, $codePatterns)
+    {
+        foreach ($codePatterns as $k => $v) {
+            if (strpos($k, $criterion) === false) {
+                continue;
+            }
+            if (! isset($v[1])) {
+                continue;
+            }
+            $retval[$k] = $v[1];
+        }
+    }
+
+    private static function buildOkPatternSet()
+    {
+        $oks = array();
+        foreach (self::getCodePatterns() as $k => $v) {
+            $oks[$k] = $v[0];
+        }
+        return $oks;
     }
 
     /**
@@ -303,71 +363,91 @@ class Main
      */
     public static function komaruHtml($critetrion, $is_include = false, $return = false)
     {
-        // test pattern code
-        // $test_pattern_code = \Kontiki\Input::cookie('test_pattern_code');
-
-        // exlude different version
-        $added_criteria = array();
-        if (KOMARUSHI_WCAGVER != 22) {
-            $added_criteria = static::$added_criteria_22;
-            if (KOMARUSHI_WCAGVER == 20) {
-                $added_criteria = array_merge($added_criteria, static::$added_criteria_21);
-            }
-        }
-        $critetrion_chk = substr($critetrion, 0, -1);
-
-        // each html
-        if (
-            ! isset(static::$test_pattern[$critetrion]) ||
-                in_array($critetrion_chk, $added_criteria)
-        ) {
+        if (self::shouldSkipCriterion($critetrion)) {
             if ($return) {
                 return '';
             }
             echo '';
             return;
         }
-        $partfile = KOMARUSHI_PARTS_PATH . $critetrion . '_' . static::$test_pattern[$critetrion] . '.php';
 
-        // is normal or internal call
-        $backtrace = debug_backtrace();
-        $is_normal = count($backtrace) <= 2;
-
-        // output
-        $html = '';
-        if (file_exists($partfile)) {
-            // include and exit
-            if ($is_include) {
-                include($partfile);
-                if ($return) {
-                    return '';
-                }
-                return;
-            }
-
-            // When return is requested, always capture output
+        $partfile = self::resolvePartfile($critetrion);
+        if (! file_exists($partfile)) {
             if ($return) {
-                ob_start();
-                include($partfile);
-                $html = ob_get_clean();
-                return $html;
+                return '';
             }
-
-            // narmal call
-            if ($is_normal) {
-                ob_start();
-                include($partfile);
-                $levels = ob_get_level();
-                for ($i = 0; $i < $levels; $i++) {
-                    $html .= ob_get_clean();
-                }
-            // internal call
-            } else {
-                include($partfile);
-            }
+            echo '';
+            return;
         }
 
-        echo $html;
+        if ($is_include) {
+            include($partfile);
+            if ($return) {
+                return '';
+            }
+            return;
+        }
+
+        if ($return) {
+            return self::captureIncludedHtml($partfile, false);
+        }
+
+        if (self::isNormalCall()) {
+            echo self::captureIncludedHtml($partfile, true);
+            return;
+        }
+
+        include($partfile);
+        echo '';
+    }
+
+    private static function shouldSkipCriterion($critetrion)
+    {
+        if (! isset(static::$test_pattern[$critetrion])) {
+            return true;
+        }
+
+        $critetrion_chk = substr($critetrion, 0, -1);
+        return in_array($critetrion_chk, self::excludedCriteriaByWcagVersion());
+    }
+
+    private static function excludedCriteriaByWcagVersion()
+    {
+        if (KOMARUSHI_WCAGVER == 22) {
+            return array();
+        }
+
+        $added_criteria = static::$added_criteria_22;
+        if (KOMARUSHI_WCAGVER == 20) {
+            $added_criteria = array_merge($added_criteria, static::$added_criteria_21);
+        }
+        return $added_criteria;
+    }
+
+    private static function resolvePartfile($critetrion)
+    {
+        return KOMARUSHI_PARTS_PATH . $critetrion . '_' . static::$test_pattern[$critetrion] . '.php';
+    }
+
+    private static function isNormalCall()
+    {
+        $backtrace = debug_backtrace();
+        return count($backtrace) <= 2;
+    }
+
+    private static function captureIncludedHtml($partfile, $drainAll = false)
+    {
+        ob_start();
+        include($partfile);
+        if (! $drainAll) {
+            return ob_get_clean();
+        }
+
+        $html = '';
+        while (ob_get_level() > 0) {
+            $html .= ob_get_clean();
+        }
+        return $html;
     }
 
     /**
