@@ -1,7 +1,7 @@
-<?php require ('../system/init.php'); ?><!DOCTYPE html>
+<?php require('../system/init.php'); ?><!DOCTYPE html>
 <?php komaruHtml('3.1.1a') ?>
 <head>
-<?php include(__DIR__.'/inc_header.php'); ?>
+<?php include(__DIR__ . '/inc_header.php'); ?>
 <?php komaruHtml('2.4.2a') ?>
 </head>
 <body class="register">
@@ -10,18 +10,18 @@
 <div id="wrapper">
 <header id="site-header">
 <div class="inner-wrapper">
-	<div id="utilities">
-	<?php komaruHtml('2.4.1a') ?>
-	<a href="./login.php<?php echo \Komarushi\Main::modeString() ?>">会員ログイン</a>
-	</div>
-	<div id="logo"><a href="./<?php echo \Komarushi\Main::modeString() ?>"><?php komaruHtml('1.1.1b') ?></a> 地球温暖化防止課</div>
+    <div id="utilities">
+    <?php komaruHtml('2.4.1a') ?>
+    <a href="./login.php<?php echo \Komarushi\Main::modeString() ?>">会員ログイン</a>
+    </div>
+    <div id="logo"><a href="./<?php echo \Komarushi\Main::modeString() ?>"><?php komaruHtml('1.1.1b') ?></a> 地球温暖化防止課</div>
 </div>
 </header>
 <main id="main">
 <div id="page-header" class="full-width">
-	<div class="inner-wrapper">
-		<h1 class="heading">会員登録 - 登録内容の確認</h1>
-	</div>
+    <div class="inner-wrapper">
+        <h1 class="heading">会員登録 - 登録内容の確認</h1>
+    </div>
 </div>
 
 <div class="inner-wrapper">
@@ -57,4 +57,4 @@
 </div>
 </main>
 
-<?php include(__DIR__.'/inc_footer.php'); ?>
+<?php include(__DIR__ . '/inc_footer.php'); ?>

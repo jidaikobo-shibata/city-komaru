@@ -1,4 +1,5 @@
 <?php
+
 /* 開発者用 */
 return array (
   '1.1.1a' => 'ok',

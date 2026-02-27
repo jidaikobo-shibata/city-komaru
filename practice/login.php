@@ -1,7 +1,7 @@
-<?php require ('../system/init.php'); ?><!DOCTYPE html>
+<?php require('../system/init.php'); ?><!DOCTYPE html>
 <?php komaruHtml('3.1.1a') ?>
 <head>
-<?php include(__DIR__.'/inc_header.php'); ?>
+<?php include(__DIR__ . '/inc_header.php'); ?>
 <?php komaruHtml('2.4.2a') ?>
 </head>
 <body class="register">
@@ -10,32 +10,32 @@
 <div id="wrapper">
 <header id="site-header">
 <div class="inner-wrapper">
-	<div id="utilities">
-	<?php komaruHtml('2.4.1a') ?>
-	<a href="./login.php<?php echo \Komarushi\Main::modeString() ?>">会員ログイン</a>
-	<?php komaruHtml('2.4.5a') ?>
-	</div>
-	<div id="logo"><a href="./<?php echo \Komarushi\Main::modeString() ?>"><?php komaruHtml('1.1.1b') ?></a> 地球温暖化防止課</div>
-	<div id="menu">
-		<?php komaruHtml('3.2.3a') ?>
-		<nav id="langage-nav">
-			<button type="button" class="bttn-menu bttn" id="bttn-lang" aria-expanded="false" aria-controls="lang-menu" title="Language"><span class="fa fa-globe" aria-hidden="true"></span><span class="visually-hidden" lang="en">Language</span></button>
-			<div id="wrapper-lang-menu" class="wrapper-menu">
-				<ul id="lang-menu" class="menu-list" style="display:none">
-					<?php komaruHtml('3.1.2a') ?>
-				</ul>
-			</div>
-		</nav>
-		<?php komaruHtml('2.1.1a') ?>
-		<?php komaruHtml('2.4.3a') ?>
-	</div>
+    <div id="utilities">
+    <?php komaruHtml('2.4.1a') ?>
+    <a href="./login.php<?php echo \Komarushi\Main::modeString() ?>">会員ログイン</a>
+    <?php komaruHtml('2.4.5a') ?>
+    </div>
+    <div id="logo"><a href="./<?php echo \Komarushi\Main::modeString() ?>"><?php komaruHtml('1.1.1b') ?></a> 地球温暖化防止課</div>
+    <div id="menu">
+        <?php komaruHtml('3.2.3a') ?>
+        <nav id="langage-nav">
+            <button type="button" class="bttn-menu bttn" id="bttn-lang" aria-expanded="false" aria-controls="lang-menu" title="Language"><span class="fa fa-globe" aria-hidden="true"></span><span class="visually-hidden" lang="en">Language</span></button>
+            <div id="wrapper-lang-menu" class="wrapper-menu">
+                <ul id="lang-menu" class="menu-list" style="display:none">
+                    <?php komaruHtml('3.1.2a') ?>
+                </ul>
+            </div>
+        </nav>
+        <?php komaruHtml('2.1.1a') ?>
+        <?php komaruHtml('2.4.3a') ?>
+    </div>
 </div>
 </header>
 <main id="main">
 <div id="page-header" class="full-width">
-	<div class="inner-wrapper">
-		<h1 class="heading">会員ログイン</h1>
-	</div>
+    <div class="inner-wrapper">
+        <h1 class="heading">会員ログイン</h1>
+    </div>
 </div>
 
 <div class="inner-wrapper">
@@ -53,23 +53,23 @@ $id_note = $id_disabled ? '<p>登録内容変更のため、会員IDは引き継
 <?php echo $id_note; ?>
 
 <form action="./do-not-test.php" method="POST" id="form-login">
-	<input type="hidden" name="preset" value="<?php echo \Kontiki\Util::s(filter_input(INPUT_GET, 'preset')) ?>" />
-	<input type="hidden" name="criteria" value="<?php echo \Kontiki\Util::s(filter_input(INPUT_GET, 'criteria')) ?>" />
+    <input type="hidden" name="preset" value="<?php echo \Kontiki\Util::s(filter_input(INPUT_GET, 'preset')) ?>" />
+    <input type="hidden" name="criteria" value="<?php echo \Kontiki\Util::s(filter_input(INPUT_GET, 'criteria')) ?>" />
 
-	<p><label for="login-id">会員ID</label><br />
-		<input type="text" name="login-id" id="login-id" size="20" autocomplete="username" value="<?php echo $id_value ?>"<?php echo $id_disabled ? ' readonly="readonly"' : '' ?> required />
-		</p>
+    <p><label for="login-id">会員ID</label><br />
+        <input type="text" name="login-id" id="login-id" size="20" autocomplete="username" value="<?php echo $id_value ?>"<?php echo $id_disabled ? ' readonly="readonly"' : '' ?> required />
+        </p>
 
-	<p><label for="login-password">パスワード</label><br />
-	<input type="password" name="login-password" id="login-password" size="20" autocomplete="current-password" required /></p>
+    <p><label for="login-password">パスワード</label><br />
+    <input type="password" name="login-password" id="login-password" size="20" autocomplete="current-password" required /></p>
 
-	<?php komaruHtml('3.3.7a') ?>
-	<?php komaruHtml('3.3.8a') ?>
+    <?php komaruHtml('3.3.7a') ?>
+    <?php komaruHtml('3.3.8a') ?>
 
-	<input type="submit" value="ログイン" />
+    <input type="submit" value="ログイン" />
 </form>
 
 </div>
 </main>
 
-<?php include(__DIR__.'/inc_footer.php'); ?>
+<?php include(__DIR__ . '/inc_footer.php'); ?>

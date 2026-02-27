@@ -101,9 +101,8 @@ class Session
                 $_SESSION[$realm][$key],
                 static::$values[$realm][$key]
             );
-        }
-        // realm
-        elseif (isset($_SESSION[$realm])) {
+        } elseif (isset($_SESSION[$realm])) {
+            // realm
             static::$values[$realm] = array_merge(
                 $_SESSION[$realm],
                 static::$values[$realm]
@@ -131,18 +130,16 @@ class Session
             if (isset(static::$values[$realm])) {
                 unset(static::$values[$realm]);
             }
-        }
-        // remove key
-        elseif (empty($c_key)) {
+        } elseif (empty($c_key)) {
+            // remove key
             if (isset($_SESSION[$realm][$key])) {
                 unset($_SESSION[$realm][$key]);
             }
             if (isset(static::$values[$realm][$key])) {
                 unset(static::$values[$realm][$key]);
             }
-        }
-        // remove each value
-        else {
+        } else {
+            // remove each value
             if (isset($_SESSION[$realm][$key][$c_key])) {
                 unset($_SESSION[$realm][$key][$c_key]);
             }

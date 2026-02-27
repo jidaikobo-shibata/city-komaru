@@ -1,5 +1,5 @@
 <?php
-require (__dir__.'/system/init.php');
+require(__dir__ . '/system/init.php');
 
 $test_pattern_str = \Komarushi\Main::generateTestPatternCode();
 \Komarushi\Main::setTestPatternCode(\Kontiki\Input::post('test_pattern_code', ''));
@@ -45,7 +45,7 @@ $test_pattern_str = \Komarushi\Main::generateTestPatternCode();
     <link href="//fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/layout.css?v=0" media="all">
 <?php
-$share_url = (empty($_SERVER['HTTPS']) ? 'http://' : 'https://').$_SERVER['HTTP_HOST'] .dirname($_SERVER['REQUEST_URI']).'/';
+$share_url = (empty($_SERVER['HTTPS']) ? 'http://' : 'https://') . $_SERVER['HTTP_HOST'] . dirname($_SERVER['REQUEST_URI']) . '/';
 ?>
     <!-- OGP -->
     <meta property="og:locale" content="ja_JP" />
@@ -97,13 +97,17 @@ $share_url = (empty($_SERVER['HTTPS']) ? 'http://' : 'https://').$_SERVER['HTTP_
             <?php
             $presets = \Kontiki\Util::s(\Komarushi\Main::$message_presets);
             $preset_html = '';
-            $preset_html.= '<ul id="preset" class="list">';
-            foreach ($presets as $k => $v):
-                if ($k[0] == '_') continue;
-                if (strpos($k, 'story') !== false) continue;
-                $preset_html.= '<li><a href="practice/?preset='.\Kontiki\Util::s($k).'&amp;wcagver=22">'.$v[0].'</a><p>'.$v[1].'</p></li>';
+            $preset_html .= '<ul id="preset" class="list">';
+            foreach ($presets as $k => $v) :
+                if ($k[0] == '_') {
+                    continue;
+                }
+                if (strpos($k, 'story') !== false) {
+                    continue;
+                }
+                $preset_html .= '<li><a href="practice/?preset=' . \Kontiki\Util::s($k) . '&amp;wcagver=22">' . $v[0] . '</a><p>' . $v[1] . '</p></li>';
             endforeach;
-            $preset_html.= '</ul>';
+            $preset_html .= '</ul>';
             echo $preset_html;
             ?>
 
@@ -150,7 +154,7 @@ $share_url = (empty($_SERVER['HTTPS']) ? 'http://' : 'https://').$_SERVER['HTTP_
                 <summary tabindex="-1"><label><input type="radio" name="code_type" value="individual"> 障壁を個別に指定</label><span id="summary_desc" class="description">設定項目を表示します</span></summary>
                 <?php
 
-                $criteria_path = __DIR__.'/system/resources/criteria.json';
+                $criteria_path = __DIR__ . '/system/resources/criteria.json';
                 $criteria = file_exists($criteria_path) ?
                                     json_decode(file_get_contents($criteria_path), true) :
                                     array();
@@ -158,42 +162,41 @@ $share_url = (empty($_SERVER['HTTPS']) ? 'http://' : 'https://').$_SERVER['HTTP_
                 $html = '';
                 $patterns = \Kontiki\Util::s(\Komarushi\Main::$message_patterns);
                 $prev_criterion = '';
-                $html.= '<ul class="list">'."\n";
-                foreach ($patterns as $cat => $messages):
+                $html .= '<ul class="list">' . "\n";
+                foreach ($patterns as $cat => $messages) :
                     $criterion = preg_replace("/[a-z]/", "", $cat);
                     $is_critreion_open = $prev_criterion != $criterion;
-                    if ($is_critreion_open && isset($criteria[$criterion])):
-                        if ( ! empty($prev_criterion)):
-                          $html.= '</ul>';
-                            $html.= '</fieldset>';
-                            $html.= '</li>';
+                    if ($is_critreion_open && isset($criteria[$criterion])) :
+                        if (! empty($prev_criterion)) :
+                            $html .= '</ul>';
+                            $html .= '</fieldset>';
+                            $html .= '</li>';
                         endif;
 
-                        $html.= "\t\t\t\t\t".'<li>';
-                        $html.= '<!-- f2 --><fieldset>';
-                        $html.= '<legend>'.$criterion.' '.$criteria[$criterion]['name'].'</legend>';
-                        $html.= '<!-- 2 --><ul>';
+                        $html .= "\t\t\t\t\t" . '<li>';
+                        $html .= '<!-- f2 --><fieldset>';
+                        $html .= '<legend>' . $criterion . ' ' . $criteria[$criterion]['name'] . '</legend>';
+                        $html .= '<!-- 2 --><ul>';
                     endif;
 
-                    $html.= '<li>'.$cat."\n\t\t\t\t\t\t".'<ul>';
+                    $html .= '<li>' . $cat . "\n\t\t\t\t\t\t" . '<ul>';
                     $n = 0;
-                    foreach ($messages as $file => $message):
+                    foreach ($messages as $file => $message) :
                         $checked = $n == 0 ? ' checked="checked"' : '';
                         $n++;
                         $cat4post = str_replace('.', '_', $cat);
-                        $html.= '<li><input'.$checked.' type="radio" name="'.$cat4post.'" value="'.$file.'" id="'.$cat4post.'_'.$file.'"><label for="'.$cat4post.'_'.$file.'">';
+                        $html .= '<li><input' . $checked . ' type="radio" name="' . $cat4post . '" value="' . $file . '" id="' . $cat4post . '_' . $file . '"><label for="' . $cat4post . '_' . $file . '">';
                         $status = \Kontiki\Util::s(strtoupper($file));
-                        $html.= $status.': '.$message.'</label>';
-                        $try = ' [<a href="practice/?criteria='.$cat.'_'.$file.'">この実装を試す</a>]';
-                        $html.= $try;
-                        $html.= "</li>\n";
+                        $html .= $status . ': ' . $message . '</label>';
+                        $try = ' [<a href="practice/?criteria=' . $cat . '_' . $file . '">この実装を試す</a>]';
+                        $html .= $try;
+                        $html .= "</li>\n";
                     endforeach;
-                    $html.= '</ul><!-- /2 -->'."\t\t\t\t\t".'</li>'."\n";
+                    $html .= '</ul><!-- /2 -->' . "\t\t\t\t\t" . '</li>' . "\n";
 
                     $prev_criterion = $criterion;
-
                 endforeach;
-                $html.= '</ul><!-- /1 -->'."\n";
+                $html .= '</ul><!-- /1 -->' . "\n";
 
                 echo $html;
                 ?>
@@ -242,13 +245,17 @@ $share_url = (empty($_SERVER['HTTPS']) ? 'http://' : 'https://').$_SERVER['HTTP_
         <?php
         $presets = \Kontiki\Util::s(\Komarushi\Main::$message_presets);
         $preset_html = '';
-        $preset_html.= '<ul class="box_list">';
-        foreach (array_reverse($presets) as $k => $v):
-            if (strpos($k, 'story') === false) continue;
-            if ($k[0] == '_') continue;
-            $preset_html.= '<li><a href="practice/accessibility.php?preset='.\Kontiki\Util::s($k).'">'.$v[0].'</a><p>'.$v[1].'</p></li>';
+        $preset_html .= '<ul class="box_list">';
+        foreach (array_reverse($presets) as $k => $v) :
+            if (strpos($k, 'story') === false) {
+                continue;
+            }
+            if ($k[0] == '_') {
+                continue;
+            }
+            $preset_html .= '<li><a href="practice/accessibility.php?preset=' . \Kontiki\Util::s($k) . '">' . $v[0] . '</a><p>' . $v[1] . '</p></li>';
         endforeach;
-        $preset_html.= '</ul>';
+        $preset_html .= '</ul>';
         echo $preset_html;
         ?>
         </section>
