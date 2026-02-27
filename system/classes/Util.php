@@ -161,7 +161,6 @@ class Util
      *
      * @param int|string $bytes
      * @return string|int
-     * @link http://qiita.com/git6_com/items/ecaafb1afb42fc207814
      */
     public static function byte2Str($bytes)
     {
@@ -169,18 +168,23 @@ class Util
             return $bytes;
         }
 
-        if ($bytes >= 1073741824) {
-            $bytes = number_format($bytes / 1073741824, 2) . ' GB';
-        } elseif ($bytes >= 1048576) {
-            $bytes = number_format($bytes / 1048576, 1) . ' MB';
-        } elseif ($bytes >= 1024) {
-            $bytes = number_format($bytes / 1024, 1) . ' KB';
-        } elseif ($bytes === 0) {
-            $bytes = '0 bytes';
-        } else {
-            $bytes .= $bytes == 1 ? ' byte' : ' bytes';
+        $units = array(
+            array(1073741824, ' GB', 2),
+            array(1048576, ' MB', 1),
+            array(1024, ' KB', 1),
+        );
+
+        foreach ($units as $unit) {
+            if ($bytes >= $unit[0]) {
+                return number_format($bytes / $unit[0], $unit[2]) . $unit[1];
+            }
         }
-        return $bytes;
+
+        if ($bytes == 0) {
+            return '0 bytes';
+        }
+
+        return $bytes . ($bytes == 1 ? ' byte' : ' bytes');
     }
 
     /**
