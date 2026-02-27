@@ -17,7 +17,7 @@ class Util
     /**
      * get current uri
      *
-     * @return String
+     * @return string
      */
     public static function uri()
     {
@@ -36,9 +36,9 @@ class Util
      * add query strings
      * this medhod doesn't apply sanitizing
      *
-     * @param String $uri
+     * @param string $uri
      * @param Array $query_strings array(array('key', 'val'),...)
-     * @return String
+     * @return string
      */
     public static function addQueryStrings($uri, $query_strings = array())
     {
@@ -48,9 +48,9 @@ class Util
     /**
      * remove query strings
      *
-     * @param String $uri
+     * @param string $uri
      * @param Array $query_strings array('key',....)
-     * @return String
+     * @return string
      */
     public static function removeQueryStrings($uri, $query_strings = array())
     {
@@ -60,7 +60,7 @@ class Util
     /**
      * is ssl
      *
-     * @return Bool
+     * @return bool
      */
     public static function isSsl()
     {
@@ -70,8 +70,8 @@ class Util
     /**
      * sanitiz html
      *
-     * @param String|Array|Bool $str
-     * @return String|Array
+     * @param string|Array|bool $str
+     * @return string|Array
      */
     public static function s($str)
     {
@@ -93,10 +93,10 @@ class Util
     /**
      * truncate
      *
-     * @param String $str
-     * @param Integer $len
-     * @param String $lead
-     * @return String
+     * @param string $str
+     * @param int $len
+     * @param string $lead
+     * @return string
      */
     public static function truncate($str, $len, $lead = '...')
     {
@@ -129,8 +129,8 @@ class Util
     /**
      * redirect
      *
-     * @param String $url
-     * @return Void
+     * @param string $url
+     * @return void
      */
     public static function redirect($url)
     {
@@ -145,8 +145,8 @@ class Util
     /**
      * error
      *
-     * @param String $message
-     * @return Void
+     * @param string $message
+     * @return void
      */
     public static function error($message = '')
     {
@@ -187,8 +187,8 @@ class Util
      * multisort
      *
      * @param Array $array
-     * @param String $by
-     * @param String $order
+     * @param string $by
+     * @param string $order
      * @return Array
      */
     public static function multisort($array, $by = 'seq', $order = 'asc')
@@ -212,7 +212,7 @@ class Util
      * array_column() lower compatible
      *
      * @param Array $arr
-     * @param String $column
+     * @param string $column
      * @return Array
      */
     public static function keyByColumn($arr, $column = 'id')

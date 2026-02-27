@@ -37,7 +37,7 @@ class Main
      * construct
      * set constant:
      * KOMARUSHI_PARTS_PATH, KOMARUSHI_PRESETS_PATH, KOMARUSHI_PRESET, KOMARUSHI_CRITERIA
-     * @return Void
+     * @return void
      */
     public static function forge()
     {
@@ -92,7 +92,7 @@ class Main
 
     /**
      * generate test pattern code
-     * @return String
+     * @return string
      */
     public static function generateTestPatternCode()
     {
@@ -123,8 +123,8 @@ class Main
 
     /**
      * set test pattern code
-     * @param String $test_pattern_str
-     * @return Void
+     * @param string $test_pattern_str
+     * @return void
      */
     public static function setTestPatternCode($test_pattern_str)
     {
@@ -160,7 +160,7 @@ class Main
 
     /**
      * whoAmI
-     * @return String
+     * @return string
      */
     public static function whoAmI()
     {
@@ -201,7 +201,7 @@ class Main
 
     /**
      * get pattern set
-     * @param String $test_pattern_code
+     * @param string $test_pattern_code
      * @return Array
      */
     private static function getPatternSet($test_pattern_code)
@@ -257,8 +257,8 @@ class Main
 
     /**
      * get barrier status
-     * @param String $barrier_id
-     * @return String [ok, ng1...]
+     * @param string $barrier_id
+     * @return string [ok, ng1...]
      */
     public static function getBarrierStatus($barrier_id)
     {
@@ -270,7 +270,7 @@ class Main
 
     /**
      * get preset messages
-     * @param String $preset_id
+     * @param string $preset_id
      * @return Array
      */
     public static function getPresetMessages($preset_id = '')

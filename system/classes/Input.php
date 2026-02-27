@@ -18,8 +18,8 @@ class Input
     /**
      * delete null-byte
      *
-     * @param String $str
-     * @return String
+     * @param string $str
+     * @return string
      */
     public static function deleteNullByte($str = '')
     {
@@ -35,8 +35,8 @@ class Input
     /**
      * Return's the referrer
      *
-     * @param String $default
-     * @return String
+     * @param string $default
+     * @return string
      */
     public static function referrer($default = '')
     {
@@ -46,8 +46,8 @@ class Input
     /**
      * Return's the user agent
      *
-     * @param String $default
-     * @return String
+     * @param string $default
+     * @return string
      */
     public static function userAgent($default = '')
     {
@@ -57,7 +57,7 @@ class Input
     /**
      * Check Post data existence
      *
-     * @return Bool
+     * @return bool
      */
     public static function isPostExists()
     {
@@ -67,11 +67,11 @@ class Input
     /**
      * Gets the specified GET or Post variable.
      *
-     * @param String $index The index to get
-     * @param String $default The default value
-     * @param String $filter default: FILTER_DEFAULT
-     * @param String $options for filter_input()
-     * @return String|Array
+     * @param string $index The index to get
+     * @param string $default The default value
+     * @param string $filter default: FILTER_DEFAULT
+     * @param string $options for filter_input()
+     * @return string|Array
      */
     public static function param(
         $index,
@@ -89,11 +89,11 @@ class Input
     /**
      * Gets the specified GET variable.
      *
-     * @param String $index The index to get
+     * @param string $index The index to get
      * @param Mixed $default The default value
-     * @param String $filter default: FILTER_DEFAULT
-     * @param String $options for filter_input()
-     * @return String|Array
+     * @param string $filter default: FILTER_DEFAULT
+     * @param string $options for filter_input()
+     * @return string|Array
      */
     public static function get(
         $index,
@@ -109,10 +109,10 @@ class Input
     /**
      * Gets the specified Array GET variable.
      *
-     * @param String $index The index to get
-     * @param String $default The default value
-     * @param String $filter default: FILTER_DEFAULT
-     * @return String|Array
+     * @param string $index The index to get
+     * @param string $default The default value
+     * @param string $filter default: FILTER_DEFAULT
+     * @return string|Array
      */
     public static function getArr(
         $index,
@@ -125,11 +125,11 @@ class Input
     /**
      * Gets the specified POST variable.
      *
-     * @param String $index The index to get
+     * @param string $index The index to get
      * @param Mixed $default The default value
-     * @param String $filter default: FILTER_DEFAULT
-     * @param String  $options  for filter_input()
-     * @return String|Array
+     * @param string $filter default: FILTER_DEFAULT
+     * @param string  $options  for filter_input()
+     * @return string|Array
      */
     public static function post(
         $index,
@@ -145,10 +145,10 @@ class Input
     /**
      * Gets the specified Array POST variable.
      *
-     * @param String $index The index to get
-     * @param String $default The default value
-     * @param String $filter default: FILTER_DEFAULT
-     * @return String|Array
+     * @param string $index The index to get
+     * @param string $default The default value
+     * @param string $filter default: FILTER_DEFAULT
+     * @return string|Array
      */
     public static function postArr(
         $index,
@@ -161,11 +161,11 @@ class Input
     /**
      * Gets the specified COOKIE variable.
      *
-     * @param String $index The index to get
-     * @param String $default The default value
-     * @param String $filter default: FILTER_DEFAULT
-     * @param String $options for filter_input()
-     * @return String|Array
+     * @param string $index The index to get
+     * @param string $default The default value
+     * @param string $filter default: FILTER_DEFAULT
+     * @param string $options for filter_input()
+     * @return string|Array
      */
     public static function cookie(
         $index,
@@ -181,11 +181,11 @@ class Input
     /**
      * Gets the specified SERVER variable.
      *
-     * @param String $index The index to get
-     * @param String $default The default value
-     * @param String $filter default: FILTER_DEFAULT
-     * @param String $options for filter_input()
-     * @return String|Array
+     * @param string $index The index to get
+     * @param string $default The default value
+     * @param string $filter default: FILTER_DEFAULT
+     * @param string $options for filter_input()
+     * @return string|Array
      */
     public static function server(
         $index,
@@ -208,9 +208,9 @@ class Input
     /**
      * Fetch an item from the FILE array
      *
-     * @param String $index The index to get
+     * @param string $index The index to get
      * @param Mixed $default The default value
-     * @return String|Array
+     * @return string|Array
      */
     public static function file($index = null, $default = null)
     {
