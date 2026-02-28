@@ -484,6 +484,21 @@ fieldset > ul
 	padding-left: 6px;
 	list-style: none;
 }
+.wcag-version-list {
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	gap: .5em 1em;
+	text-align: center;
+	zoom: 1.2;
+}
+.wcag-version-list > li {
+	display: flex;
+	justify-content: center;
+	padding-left: 0;
+}
+.wcag-version-list > li::before {
+	content: none;
+}
 fieldset > ul > li {
 	font-weight: bold;
 }
@@ -520,5 +535,8 @@ fieldset > ul > li li {
 @media all and (max-width: 500px) {
 	#setting_customize .block {
 		margin: 10px auto;
+	}
+	.wcag-version-list {
+		grid-template-columns: 1fr;
 	}
 }

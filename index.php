@@ -85,7 +85,7 @@ $share_url = (empty($_SERVER['HTTPS']) ? 'http://' : 'https://') . $_SERVER['HTT
             <form id="selectWcag4preset">
             <fieldset>
             <legend>プリセット版で使うWCAGのバージョンを選択してください</legend>
-            <ul style="columns: 3;zoom:1.2">
+            <ul class="wcag-version-list">
                 <li><input type="radio" id="preset_wcag20" name="wcagver" value="20" checked><label for="preset_wcag20">WCAG 2.0</label></li>
                 <li><input type="radio" id="preset_wcag21" name="wcagver" value="21"><label for="preset_wcag21">WCAG 2.1</label></li>
                 <li><input type="radio" id="preset_wcag22" name="wcagver" value="22"><label for="preset_wcag22">WCAG 2.2</label></li>
@@ -130,7 +130,7 @@ $share_url = (empty($_SERVER['HTTPS']) ? 'http://' : 'https://') . $_SERVER['HTT
             <form id="selectWcag4customize">
             <fieldset>
             <legend>カスタマイズ版で使うWCAGのバージョンを選択してください</legend>
-            <ul style="columns: 3;zoom:1.2">
+            <ul class="wcag-version-list">
                 <li><input type="radio" id="customize_wcag20" name="wcagver" value="20"><label for="customize_wcag20">WCAG 2.0</label></li>
                 <li><input type="radio" id="customize_wcag21" name="wcagver" value="21"><label for="customize_wcag21">WCAG 2.1</label></li>
                 <li><input type="radio" id="customize_wcag22" name="wcagver" value="22" checked><label for="customize_wcag22">WCAG 2.2</label></li>
