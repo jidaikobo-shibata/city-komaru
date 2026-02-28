@@ -178,11 +178,17 @@ if (\Komarushi\Main::getBarrierStatus('1.3.3a') == 'ng') :
 endif;
 ?>
 
+<?php
+$stock_table_class = \Komarushi\Main::getBarrierStatus('1.4.10a') == 'ng' ?
+    'table even' :
+    'table even responsive-table';
+?>
+
 <?php if ($sensory) : ?>
 <p>「ちきゅうくん」が隠れている資料は借りづらい資料です。</p>
 <?php endif; ?>
 
-<table class="table even">
+<table class="<?php echo $stock_table_class; ?>">
 <thead>
 <tr>
     <th<?php echo $scope_col ?>>種別</th>
@@ -193,21 +199,21 @@ endif;
 </thead>
 <tr>
     <th<?php echo $scope_row ?> style="white-space: nowrap;">パネル</th>
-    <td>地球温暖化の仕組み</td>
-    <td>地球温暖化の仕組みを解説したA1サイズのパネルです</td>
-    <td style="white-space: nowrap;"><?php echo $sensory1 ?></td>
+    <td data-label="名前">地球温暖化の仕組み</td>
+    <td data-label="説明">地球温暖化の仕組みを解説したA1サイズのパネルです</td>
+    <td data-label="貸出" style="white-space: nowrap;"><?php echo $sensory1 ?></td>
 </tr>
 <tr>
     <th<?php echo $scope_row ?>>DVD</th>
-    <td>地球温暖化捏造説</td>
-    <td>地球温暖化は起こってないってホント？</td>
-    <td><?php echo $sensory3 ?></td>
+    <td data-label="名前">地球温暖化捏造説</td>
+    <td data-label="説明">地球温暖化は起こってないってホント？</td>
+    <td data-label="貸出"><?php echo $sensory3 ?></td>
 </tr>
 <tr>
     <th<?php echo $scope_row ?>>紙芝居</th>
-    <td style="white-space: nowrap;">フードマイレージってなあに？</td>
-    <td>地球温暖化とフードマイレージの関係を小学生にもわかりやすく伝えます</td>
-    <td><?php echo $sensory2 ?></td>
+    <td data-label="名前" style="white-space: nowrap;">フードマイレージってなあに？</td>
+    <td data-label="説明">地球温暖化とフードマイレージの関係を小学生にもわかりやすく伝えます</td>
+    <td data-label="貸出"><?php echo $sensory2 ?></td>
 </tr>
 </table>
 
