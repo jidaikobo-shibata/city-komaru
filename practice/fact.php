@@ -211,7 +211,7 @@ $stock_table_class = \Komarushi\Main::getBarrierStatus('1.4.10a') == 'ng' ?
 </tr>
 <tr>
     <th<?php echo $scope_row ?>>紙芝居</th>
-    <td data-label="名前" style="white-space: nowrap;">フードマイレージってなあに？</td>
+    <td data-label="名前">フードマイレージってなあに？</td>
     <td data-label="説明">地球温暖化とフードマイレージの関係を小学生にもわかりやすく伝えます</td>
     <td data-label="貸出"><?php echo $sensory2 ?></td>
 </tr>
