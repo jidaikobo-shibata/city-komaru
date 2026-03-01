@@ -600,7 +600,8 @@ form strong {
 }
 #feedback .choice {
 	display: inline-block;
-	width: 21.67em;
+	width: auto;
+	min-width: min(21.67em, 100%);
 	max-width: 100%;
 	margin-right: 8px;
 	margin-bottom: 8px;
@@ -1049,7 +1050,7 @@ form strong {
 
 #form-registration {
 	margin-top: calc( 1.5rem + 20px + 30px );
-	padding: 12px 40px 32px;
+	padding: 12px 24px 32px;
 	position: relative;
 	border-top: 2px solid #EA1905;
 	background-color: #F5F5F5;
@@ -1152,6 +1153,30 @@ form strong {
 	}
 }
 @media all and ( max-width: 760px ) {
+	#feedback .choice {
+		display: block;
+		width: 100%;
+		min-width: 0;
+		margin-right: 0;
+	}
+	#form-registration {
+		padding-left: 16px;
+		padding-right: 16px;
+	}
+	#select-registration-type {
+		grid-template-columns: 1fr;
+		position: static;
+		margin-bottom: 16px;
+	}
+	#select-registration-type input:last-of-type,
+	#select-registration-type label:last-of-type {
+		grid-column: 1/2;
+		grid-row: 2/3;
+	}
+	#select-registration-type label {
+		min-width: 0;
+		float: none;
+	}
 	.table.responsive-table {
 		border-bottom: none;
 	}
@@ -1358,9 +1383,6 @@ form strong {
 	#bttn-nav,
 	#bttn-lang {
 		width: 100%;
-	}
-	#select-registration-type {
-		grid-template-columns: 1fr;
 	}
 	#select-registration-type input:last-of-type,
 	#select-registration-type label:last-of-type {

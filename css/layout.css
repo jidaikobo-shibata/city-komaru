@@ -491,12 +491,12 @@ fieldset > ul
 	grid-template-columns: repeat(3, minmax(0, 1fr));
 	gap: .5em 1em;
 	text-align: center;
-	zoom: 1.2;
 }
 .wcag-version-list > li {
 	display: flex;
 	justify-content: center;
 	padding-left: 0;
+	min-width: 0;
 }
 .wcag-version-list > li::before {
 	content: none;
@@ -514,7 +514,9 @@ fieldset > ul > li li {
 }
 
 .block fieldset label {
-	display: inline;
+	display: inline-block;
+	max-width: 100%;
+	overflow-wrap: anywhere;
 }
 /*:checked + label {
 	font-weight: 600;
@@ -537,6 +539,10 @@ fieldset > ul > li li {
 @media all and (max-width: 500px) {
 	#setting_customize .block {
 		margin: 10px auto;
+	}
+	.block .description {
+		display: block;
+		margin: .5em 0 0;
 	}
 	.wcag-version-list {
 		grid-template-columns: 1fr;
