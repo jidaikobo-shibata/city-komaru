@@ -617,6 +617,11 @@ form strong {
 	height: 95px;
 	border: 1px solid #888888;
 }
+#content,
+#feedback-text {
+	font-size: clamp(18px, 1.2rem, 22px);
+	line-height: 1.5;
+}
 #feedback input[type=text],
 #feedback input[type=email],
 #feedback input[type=tel],

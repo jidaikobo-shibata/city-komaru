@@ -414,7 +414,9 @@ textarea {
 	width: 100%;
 	border: 1px solid #CCCCCC;
 	resize: vertical;
-	font-size: 1rem;
+	font-family: inherit;
+	font-size: clamp(18px, 1.2rem, 22px);
+	line-height: 1.5;
 	padding: 3px 5px;
 }
 [type=submit],
