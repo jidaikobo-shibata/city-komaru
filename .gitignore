@@ -1,8 +1,6 @@
 # Codex local memories
-codex/
-codex/memory/
+.codex/
 .serena/
 AGENTS.md
-codex/checklist.md
 vendor/
 .phpunit.cache/

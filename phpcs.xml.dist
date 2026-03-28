@@ -12,7 +12,7 @@
 
   <exclude-pattern>*/vendor/*</exclude-pattern>
   <exclude-pattern>*/.serena/*</exclude-pattern>
-  <exclude-pattern>*/codex/*</exclude-pattern>
+  <exclude-pattern>*/.codex/*</exclude-pattern>
 
   <rule ref="PSR12">
     <exclude name="Generic.Files.LineLength"/>
