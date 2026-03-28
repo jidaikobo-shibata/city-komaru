@@ -358,6 +358,11 @@ $share_url = (empty($_SERVER['HTTPS']) ? 'http://' : 'https://') . $_SERVER['HTT
     <section>
         <h2 id="change-log">変更履歴</h2>
         <ul>
+            <li><time datetime="2026-03-28">2026年3月28日</time>
+            <ul>
+                <li>トップページの動画見出しに「1.4.12 テキストの間隔 (AA)」の適合例と不適合例を追加しました（<a href="https://a11yc.com/city-komaru/practice/index.php?criteria=1.4.12a_ok">1.4.12a_ok</a>、<a href="https://a11yc.com/city-komaru/practice/index.php?criteria=1.4.12a_ng">1.4.12a_ng</a>）。</li>
+            </ul>
+            </li>
             <li><time datetime="2026-02-20">2026年2月20日</time>
             <ul>
                 <li>複数の細かい修正をしています。</li>
