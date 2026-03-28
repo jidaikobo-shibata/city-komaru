@@ -61,6 +61,10 @@
     <?php komaruHtml('1.3.1c') ?>
 </div>
 
+<?php komaruHtml('1.4.12a') ?>
+<h2 id="movie-title">2050年二酸化炭素排出実質ゼロを目指す啓発動画<br>
+地球温暖化のためにあなたができること</h2>
+
 <div class="movie">
     <iframe<?php komaruHtml('2.4.1c') ?> width="600" height="370" src="./inc_movie.php<?php echo \Komarushi\Main::modeString() ?>"></iframe>
     <?php if (\Komarushi\Main::getBarrierStatus('1.2a') == 'ok3') : ?>
